@@ -1,0 +1,9 @@
+# encoding: utf-8
+#
+# If you want several aliases for a keyword, just a separate them 
+# with a | character. Make sure there are no ambiguities in the keywords
+
+"pt":
+  name: Portuguese
+  nativo: português
+  describe: descreva|contexto
