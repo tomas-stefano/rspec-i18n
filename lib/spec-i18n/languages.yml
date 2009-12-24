@@ -7,3 +7,26 @@
   name: Portuguese
   nativo: português
   describe: descreva|contexto
+  it: deve
+  should: deve
+  before: antes
+  after: depois
+  hooks:
+    each: de_cada_exemplo
+    all: de_todos_exemplos
+  matchers:
+    be_equal: ser_igual_a
+
+"es":
+  name: Spanish
+  native: español
+  describe: describir 
+  it: deberia
+  should: deberia
+  before: antes
+  after: despues
+  hooks:
+    each: de_cada_ejemplo
+    all: de_todos_ejemplo
+  matchers:
+    be_equal: ser_igual_a
