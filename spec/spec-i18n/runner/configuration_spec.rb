@@ -35,6 +35,15 @@ module Spec
             end
 
           end
+          
+          describe "load language" do
+            before(:each) do
+              config.spec_language(:pt)
+            end
+            it "should load all the modules" do
+              config.load_language.should be_true
+            end
+          end
         end
       end
     end

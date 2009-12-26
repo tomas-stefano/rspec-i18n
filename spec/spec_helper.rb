@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'ruby-debug'
 require 'spec'
 require 'spec-i18n'
 

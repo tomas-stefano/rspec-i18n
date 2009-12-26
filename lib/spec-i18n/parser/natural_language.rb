@@ -29,6 +29,20 @@ module SpecI18n
         language_adverbs = spec_keywords("should")
         language_adverbs.merge(spec_keywords("should_not"))
       end
+      
+      def before_and_after_keywords
+        adverbs = spec_keywords("before")
+        adverbs.merge(spec_keywords("after"))
+      end
+      
+      def hooks_params_keywords
+        hooks = {}
+        keywords['hooks'].each do |hook, value|
+          values = value.split('|')
+          hooks[hook] = values
+        end
+        hooks
+      end
 
       def spec_keywords(key, space=false)
         raise "No #{key} in #{@keywords.inspect}" if @keywords[key].nil?

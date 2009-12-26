@@ -2,15 +2,20 @@ module Spec
   module Runner
     class Configuration
       def spec_language(language)
-        if language
-          @spec_language = language.to_s
-        else
-          @spec_language =  "en"
-        end
+        @spec_language = language ? language.to_s : "en"
+        load_language
+        @spec_language
       end
 
       def language
         @spec_language
+      end
+      
+      # Load all Modules and Classes for the language specified
+      def load_language
+        Spec::DSL::Main.register_adverbs
+        Kernel.register_expectations_keywords
+        Spec::Example::BeforeAndAfterHooks.register_hooks
       end
     end
     

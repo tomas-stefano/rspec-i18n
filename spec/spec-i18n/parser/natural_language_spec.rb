@@ -7,6 +7,7 @@ module SpecI18n
       before(:each) do
         @pt = NaturalLanguage.get('pt')
         @es = NaturalLanguage.get('es')
+        @en = NaturalLanguage.get('en')
       end
 
       context "get languages" do
@@ -58,6 +59,29 @@ module SpecI18n
         it "should return the expectation keywords of the current language" do
           keywords = { "should" => ["deberia"], "should_not" => ["no_debe"]}
           @es.expectation_keywords.should == keywords
+        end
+      end
+      
+      context "of before and after keywords" do
+        
+        it "should return the hooks for the current language" do
+          keywords = { "before" => ["before"], "after" => ["after"]}
+          @en.before_and_after_keywords.should == keywords
+        end
+        
+        it "should return the hooks for the language" do
+          keywords = { "before" => ["antes"], "after" => ["depois"]}
+          @pt.before_and_after_keywords.should == keywords
+        end
+      end
+      
+      context "of hooks keywords" do
+        
+        it "should return the hooks parameters for the current language" do
+          keywords = { "each" => ["de_cada", "de_cada_exemplo"], 
+                       "all" => ["de_todos", "de_todos_exemplos"],
+                       "suite" => ["suite"]}
+          @pt.hooks_params_keywords.should == keywords                       
         end
       end
 

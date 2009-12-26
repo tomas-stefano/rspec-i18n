@@ -1,0 +1,13 @@
+== Refactoring
+
+* The SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language) is duplicated in 
+some places - check a better way to implement this
+* Simplified more and more tests!
+
+== Future
+
+* Translate all matchers
+* Translate subjects
+* Put a #language header in the spec_helper file (Cucumber Style) instead load from config(maintain the two options)
+* Create the directory features to test with Cucumber
+* Check a better way to manipulating the mocks and stubs for i18n (What do you think?)

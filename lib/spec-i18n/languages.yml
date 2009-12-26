@@ -16,6 +16,7 @@
   hooks:
     each: each
     all: all
+    suite: suite
   matchers:
     be_equal: be_equal
 
@@ -23,22 +24,24 @@
   name: Portuguese
   nativo: português
   describe: descreva|contexto
-  it: deve
+  it: exemplo
   should: deve
   should_not: nao_deve
   before: antes
   after: depois
   hooks:
-    each: de_cada_exemplo
-    all: de_todos_exemplos
+    each: de_cada|de_cada_exemplo|
+    all: de_todos|de_todos_exemplos
+    suite: suite
   matchers:
     be_equal: ser_igual_a
 
+# Please put the right words for this language! =D
 "es":
   name: Spanish
   native: español
   describe: describir 
-  it: deberia
+  it: ejemplo
   should: deberia
   should_not: no_debe
   before: antes
@@ -46,5 +49,6 @@
   hooks:
     each: de_cada_ejemplo
     all: de_todos_ejemplo
+    suite: suite
   matchers:
     be_equal: ser_igual_a
