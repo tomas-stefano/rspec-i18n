@@ -10,6 +10,7 @@
   describe: describe
   it: it
   should: should
+  should_not: should_not
   before: before
   after: after
   hooks:
@@ -24,6 +25,7 @@
   describe: descreva|contexto
   it: deve
   should: deve
+  should_not: nao_deve
   before: antes
   after: depois
   hooks:
@@ -38,6 +40,7 @@
   describe: describir 
   it: deberia
   should: deberia
+  should_not: no_debe
   before: antes
   after: despues
   hooks:

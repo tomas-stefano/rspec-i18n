@@ -6,6 +6,7 @@ module SpecI18n
 
       before(:each) do
         @pt = NaturalLanguage.get('pt')
+        @es = NaturalLanguage.get('es')
       end
 
       context "get languages" do
@@ -32,25 +33,31 @@ module SpecI18n
       context "of dsl keywords" do
       
         it "should return all the dsl keywords" do
-          @pt.dsl_keywords.should == ["descreva", "contexto"]
+          @pt.dsl_keywords.should == {"describe" => [ "descreva", "contexto"] }
         end
 
         it "should return the describe dsl keyword" do
           lang = { "describe" => "descreva", :before => "antes" }
           @pt.should_receive(:keywords).and_return(lang)
-          @pt.dsl_keywords.should == [lang["describe"]]
+          @pt.dsl_keywords.should == { "describe" => [ lang["describe"] ] }
         end
       end
 
       context "of expectations keywords" do
-        it "should return the should expectations keywords" do
-          @pt.expectation_keywords.should == ["deve"]
+        
+        before(:each) do
+          @keywords = { "should" => ["deve"], "should_not" => ["nao_deve"] }
         end
 
-        it "should return the expectation keyword" do
-          lang = {"describe" => "descreva", "should" => "deve"}
-          @pt.should_receive(:keywords).and_return(lang)
-          @pt.expectation_keywords.should == [lang["should"]]
+        it "should return the expectation keyword of the language" do
+          lang = {"describe" => "descreva", "should" => "deve", "should_not" => "nao_deve"}
+          @pt.should_receive(:keywords).twice.and_return(lang)
+          @pt.expectation_keywords.should == @keywords
+        end
+        
+        it "should return the expectation keywords of the current language" do
+          keywords = { "should" => ["deberia"], "should_not" => ["no_debe"]}
+          @es.expectation_keywords.should == keywords
         end
       end
 
@@ -68,7 +75,7 @@ module SpecI18n
         it "should split correctly the keys" do
          lang = { "describe" => "descreva|contexto" }
          NaturalLanguage.instance_variable_set(:@keywords, lang["describe"])
-         @pt.spec_keywords("describe").should == ["descreva", "contexto"]
+         @pt.spec_keywords("describe").should == { "describe" => ["descreva", "contexto"] }
         end
       end
     end

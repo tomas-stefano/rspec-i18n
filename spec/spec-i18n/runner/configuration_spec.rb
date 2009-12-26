@@ -7,7 +7,7 @@ module Spec
         with_sandboxed_config do
           describe "#spec_language" do
 
-            it "should default to nil" do
+            it "should default a english language for nil" do
               config.spec_language(nil).should == "en"
             end
 

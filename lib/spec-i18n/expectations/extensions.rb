@@ -1,0 +1,1 @@
+require 'spec-i18n/expectations/extensions/kernel'

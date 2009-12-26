@@ -26,12 +26,14 @@ module SpecI18n
       end
 
       def expectation_keywords
-        spec_keywords("should")
+        language_adverbs = spec_keywords("should")
+        language_adverbs.merge(spec_keywords("should_not"))
       end
 
       def spec_keywords(key, space=false)
         raise "No #{key} in #{@keywords.inspect}" if @keywords[key].nil?
-        keywords[key].split('|')
+        values = keywords[key].split('|')
+        { key => values }
       end
 
     end
