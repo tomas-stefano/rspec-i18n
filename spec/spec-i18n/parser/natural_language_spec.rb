@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module RspecI18n
+module SpecI18n
   module Parser
     describe NaturalLanguage do
 
@@ -8,13 +8,24 @@ module RspecI18n
         @pt = NaturalLanguage.get('pt')
       end
 
-      it "should raise for the non existing language" do
-        lambda {  NaturalLanguage.new('en') }.should raise_error()
+      context "get languages" do
+        
+        it "should get the default language" do
+          NaturalLanguage.get("en").should_not be_nil
+        end
+        
+        it "should raise for the non existing language" do
+          language = "non_existing"
+          lambda {  
+            NaturalLanguage.new(language) 
+          }.should raise_error(LanguageNotFound, "Language #{language} Not Supported")
+        end
+
       end
 
       %w(describe before after it should).each do |keyword|
         it "should have the #{keyword} keyword" do
-          @pt.keywords.should be_include(keyword)
+          
         end
       end
 
@@ -49,7 +60,9 @@ module RspecI18n
 
       context "splitting the keys" do
         it "should raise no found key" do
-          lambda {@pt.spec_keywords("no_found")}.should raise_error(RuntimeError)
+          lambda {
+            @pt.spec_keywords("no_found")
+          }.should raise_error(RuntimeError)
         end
 
         it "should split correctly the keys" do

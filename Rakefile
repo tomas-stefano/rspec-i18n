@@ -9,7 +9,7 @@ begin
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "rspec-i18n"
     gemspec.summary = "The internacionalization gem for Rspec"
-    gemspec.description = "A internacionalization tool written n Ruby"
+    gemspec.description = "A internacionalization tool written in Ruby"
     gemspec.email = "tomasdestefi@gmail.com"
     gemspec.homepage = "http://github.com/tomas-stefano/rspec-i18n"
     gemspec.authors = ["Tomas D'Stefano"]
@@ -21,6 +21,8 @@ begin
     Jeweler::GemcutterTasks.new
   end
 rescue LoadError
+  puts("-" * 80)
   puts "Jeweler not available. Install it with:
-  [sudo] gem install jeweler" 
+  [sudo] gem install jeweler"
+  puts("-" * 80)
 end

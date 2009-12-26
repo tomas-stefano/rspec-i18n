@@ -1,7 +1,22 @@
 # encoding: utf-8
 #
+# (based on Cucumber implementation)
 # If you want several aliases for a keyword, just a separate them 
 # with a | character. Make sure there are no ambiguities in the keywords
+
+"en":
+  name: English
+  nativo: English
+  describe: describe
+  it: it
+  should: should
+  before: before
+  after: after
+  hooks:
+    each: each
+    all: all
+  matchers:
+    be_equal: be_equal
 
 "pt":
   name: Portuguese

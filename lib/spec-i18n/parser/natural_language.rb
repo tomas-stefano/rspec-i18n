@@ -1,4 +1,4 @@
-module RspecI18n
+module SpecI18n
   module Parser
     class NaturalLanguage
       KEYWORDS_LANGUAGE = %w{ name native describe before after it should}
@@ -9,15 +9,15 @@ module RspecI18n
         end
 
         def all
-          RspecI18n::SPEC_LANGUAGES.keys.sort.map { |language| get(language) }
+          SpecI18n::SPEC_LANGUAGES.keys.sort.map { |language| get(language) }
         end
       end
 
       attr_reader :keywords
       
       def initialize(language)
-        @keywords = RspecI18n::SPEC_LANGUAGES[language]
-        raise "Language Not Supported" if @keywords.nil?
+        @keywords = SpecI18n::SPEC_LANGUAGES[language]
+        raise(LanguageNotFound, "Language #{language} Not Supported") if @keywords.nil?
         @parser = nil
       end
 
@@ -35,5 +35,9 @@ module RspecI18n
       end
 
     end
+
+    class LanguageNotFound < StandardError
+    end
+
   end
 end

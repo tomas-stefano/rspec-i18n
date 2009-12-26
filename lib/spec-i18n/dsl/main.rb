@@ -3,7 +3,8 @@ module Spec
     module Main
 
       def register_adverbs
-        language = RspecI18n::Parser::NaturalLanguage.get("pt")
+        spec_language = Spec::Runner.configuration.language
+        language = SpecI18n::Parser::NaturalLanguage.get(spec_language)
         @adverbs = language.dsl_keywords
         @adverbs.each do |adverb|
           alias_adverb(adverb)

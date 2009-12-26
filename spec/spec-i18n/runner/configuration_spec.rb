@@ -6,15 +6,34 @@ module Spec
       with_sandboxed_options do
         with_sandboxed_config do
           describe "#spec_language" do
+
             it "should default to nil" do
-              config.spec_language.should be_nil
+              config.spec_language(nil).should == "en"
             end
+
             it "should return a pt language" do
               config.spec_language(:pt).should == "pt"
             end
+
             it "should return a es language using a Symbol" do
               config.spec_language(:es).should == "es"
             end
+            
+            it "should return a en language for the nil parameter" do
+              config.spec_language(nil)
+              config.language.should == "en"
+            end
+
+            it "should set the portuguese language" do
+              config.spec_language(:pt)
+              config.language.should == "pt"
+            end
+
+            it "should set the espanish language" do
+              config.spec_language(:es)
+              config.language.should == "es"
+            end
+
           end
         end
       end

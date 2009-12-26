@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'spec'
-require 'spec/runner/differs/default'
 require 'spec-i18n'
 
 $:.unshift(File.dirname(__FILE__), '../lib')

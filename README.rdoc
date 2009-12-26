@@ -5,7 +5,7 @@
   The Rspec-i18n gem provide a easy way to write specs in many languages you
   prefer. The Rspec-i18n was created for the purpose of teaching people who are
   starting to develop applications but also serves to true applications.
-  I know that many people prefer to write code in English
+  I know that many people prefer to write code/specs in English
   =)
   But if you don't prefer that, you'll like the Rspec-i18n.
 
@@ -13,11 +13,14 @@
   
   Rspec-i18n will supports any language you want. This is Portuguese(Brazil):
     
-    # language: pt-BR
+    require 'spec'
     require 'spec-i18n'
 
-    Spec::Runner.configure do |spec|
-      ... # spec_helper
+    Spec::Runner.configure do |config|
+      
+      config.spec_language :pt
+      
+      ...
     end
 
     # In spec/pessoa_spec.rb
@@ -31,9 +34,6 @@
         @pessoa.nome.deve ser_igual_a(@nome)
       end
     end
-
-  A # language:  header on the first line of the spec_helper.rb tell Rspec-i18n
-  what spoken language to use.
 
 == Listing the available languages
 
@@ -50,5 +50,7 @@ implementation)
 
   [sudo] gem install rspec-i18n
 
+== TODO
 
-
+-  A # language:  header on the first line of the spec_helper.rb tell Rspec-i18n
+   what spoken language to use(Cucumber Style).
