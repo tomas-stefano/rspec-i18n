@@ -2,17 +2,17 @@
 
 == Description
 
-  The Rspec-i18n gem provide a easy way to write specs in any language you
-  prefer. The Rspec-i18n was created for the purpose of teaching people who are
-  starting to developing applications but also serves to Production use.
-  I know that many people prefer to write code/specs in English =)
+The Rspec-i18n gem provide a easy way to write specs in any language you
+prefer. The Rspec-i18n was created for the purpose of teaching people who are
+starting to developing applications but also serves to Production use.
+I know that many people prefer to write code/specs in English =)
 
-  But if you don't prefer that, you'll like the Rspec-i18n.
+But if you don't prefer that, you'll like the Rspec-i18n.
 
 == Synopsis
   
-  Rspec-i18n will supports any language you want(See languages.yml file). This is 
-  Portuguese(Brazil):
+Rspec-i18n will supports any language you want(See languages.yml file). This is 
+Portuguese(Brazil):
     
     require 'spec'
     require 'spec-i18n'
@@ -41,14 +41,13 @@
 
 == Examples
 
-	See more examples in the examples folder
+See more examples in the examples folder
 
 == Listing the available languages
 
     spec-i18n --language help (NOT YET IMPLEMENTED)
 
-== Adding a new language or completing a existing one(based on Cucumber
-   implementation)
+== Adding a new language or completing a existing one(based on Cucumber implementation)
 
   1. Make a fork of Rspec-i18n and pull it down
   2. Add your language keywords to languages.yml
@@ -62,4 +61,4 @@
 
 == TODO
 
-	1. See the TODO.txt file and see more details
+See the TODO.txt file and see more details
