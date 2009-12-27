@@ -34,7 +34,7 @@
         @pessoa = Pessoa.new(@nome)
       end
 
-      deve "retornar o seu nome" do
+      exemplo "retornar o seu nome" do
         @pessoa.nome.deve == @nome
       end
     end
@@ -48,7 +48,7 @@
     spec-i18n --language help (NOT YET IMPLEMENTED)
 
 == Adding a new language or completing a existing one(based on Cucumber
-implementation)
+   implementation)
 
   1. Make a fork of Rspec-i18n and pull it down
   2. Add your language keywords to languages.yml

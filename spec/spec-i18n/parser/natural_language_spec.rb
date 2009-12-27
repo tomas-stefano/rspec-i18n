@@ -27,7 +27,7 @@ module SpecI18n
 
       %w(describe before after it should).each do |keyword|
         it "should have the #{keyword} keyword" do
-          
+          pending
         end
       end
 
@@ -82,6 +82,22 @@ module SpecI18n
                        "all" => ["de_todos", "de_todos_exemplos"],
                        "suite" => ["suite"]}
           @pt.hooks_params_keywords.should == keywords                       
+        end
+      end
+      
+      context "of example group keywords" do
+        
+        before(:each) do
+          @keywords = { "it" => ["exemplo", "especificar"] }
+        end
+        
+        it "should return the example group keywords for the current language" do
+          @pt.example_group_keywords.should == @keywords
+        end
+        
+        it "should return the example group for the portuguese language" do
+          @keywords = { "it" => ["it", "specify"]}
+          @en.example_group_keywords.should == @keywords
         end
       end
 

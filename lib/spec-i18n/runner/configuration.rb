@@ -15,6 +15,7 @@ module Spec
       def load_language
         Spec::DSL::Main.register_adverbs
         Kernel.register_expectations_keywords
+        Spec::Example::ExampleGroupMethods.register_example_adverbs
         Spec::Example::BeforeAndAfterHooks.register_hooks
       end
     end

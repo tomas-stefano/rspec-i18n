@@ -43,6 +43,10 @@ module SpecI18n
         end
         hooks
       end
+      
+      def example_group_keywords
+        spec_keywords("it")
+      end
 
       def spec_keywords(key, space=false)
         raise "No #{key} in #{@keywords.inspect}" if @keywords[key].nil?

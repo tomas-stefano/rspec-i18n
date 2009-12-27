@@ -8,6 +8,22 @@ some places - check a better way to implement this
 
 * Translate all matchers
 * Translate subjects
+* Translate shared examples
 * Put a #language header in the spec_helper file (Cucumber Style) instead load from config(maintain the two options)
 * Create the directory features to test with Cucumber
+* Make the describe/it i18n available from a class 
+	
+	Example:
+	#	class StackSpec < Spec::ExampleGroup
+	#     describe Stack, "with no elements"
+	#
+	#     before
+	#       @stack = Stack.new
+	#     end
+	#
+	#     it "should raise on pop" do
+	#       lambda{ @stack.pop }.should raise_error
+	#     end
+	#   end
+	
 * Check a better way to manipulating the mocks and stubs for i18n (What do you think?)

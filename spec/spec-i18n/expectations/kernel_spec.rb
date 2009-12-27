@@ -10,7 +10,7 @@ describe Object, "#should and #should_not" do
     @languages.each do |language|
       Spec::Runner.configuration.spec_language(language)
       language = SpecI18n::Parser::NaturalLanguage.get(language)
-      language.expectation_keywords.keys.each do |keyword|
+      language.expectation_keywords.values.flatten.each do |keyword|
         Kernel.methods.should be_include(keyword)
       end
     end

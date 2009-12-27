@@ -8,7 +8,7 @@
   name: English
   nativo: English
   describe: describe
-  it: it
+  it: it|specify
   should: should
   should_not: should_not
   before: before
@@ -24,13 +24,13 @@
   name: Portuguese
   nativo: português
   describe: descreva|contexto
-  it: exemplo
+  it: exemplo|especificar
   should: deve
   should_not: nao_deve
   before: antes
   after: depois
   hooks:
-    each: de_cada|de_cada_exemplo|
+    each: de_cada|de_cada_exemplo
     all: de_todos|de_todos_exemplos
     suite: suite
   matchers:
