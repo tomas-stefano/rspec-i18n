@@ -1,3 +1,5 @@
+require 'rubygems'
+require 'spec'
 require 'spec-i18n'
 
 Spec::Runner.configure do |config|

@@ -14,12 +14,11 @@ begin
     gemspec.homepage = "http://github.com/tomas-stefano/rspec-i18n"
     gemspec.authors = ["Tomas D'Stefano"]
 
-    gem.add_dependency 'rspec', '>= 1.2.9'
+    gemspec.add_dependency('rspec', '>= 1.2.9')
 
-    gem.add_development_dependency 'rspec', '>= 1.2.9'
-
-    Jeweler::GemcutterTasks.new
+    gemspec.add_development_dependency('rspec', '>= 1.2.9')
   end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts("-" * 80)
   puts "Jeweler not available. Install it with:
