@@ -27,7 +27,7 @@ module SpecI18n
 
       %w(describe before after it should).each do |keyword|
         it "should have the #{keyword} keyword" do
-          pending
+          @pt.keywords.keys.should be_include(keyword)
         end
       end
 

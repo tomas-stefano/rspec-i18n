@@ -2,6 +2,8 @@
 
 This is the first preview release of Rspec-i18n, a Internacionalization Development library for Ruby.
 
-* Added translation to all the base keywords(describe, should, should_not, before, after)
+* Added translation to all the base keywords(describe, it, should, should_not, 
+  before(:each), before(:all), before(:suite), after(:each), after(:all),
+  after(:suite))
 * Added a languages.yml. Will be translated to all languages.
 * Added a simple parser for the read the languages in languages.yml.
