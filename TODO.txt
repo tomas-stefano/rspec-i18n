@@ -1,7 +1,7 @@
 == Refactoring
 
 * The SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language) is duplicated in 
-some places - check a better way to implement this
+  some places - check a better way to implement this
 * Simplified more and more tests!
 * Find the right module for the example group specs(it/example) (I think =>
   Spec::Example::ExampleGroupMethods but I think I was wrong)
@@ -9,6 +9,7 @@ some places - check a better way to implement this
 == Future
 
 * Translate all matchers
+* * Making the spec-i18n executable(to see languages and other stuff)
 * Translate subjects
 * Translate shared examples
 * Put a #language header in the spec_helper file (Cucumber Style) instead load from config(maintain the two options)
@@ -16,16 +17,17 @@ some places - check a better way to implement this
 * Make the describe/it i18n available from a class 
 	
 	Example:
-	#	class StackSpec < Spec::ExampleGroup
-	#     describe Stack, "with no elements"
+	#	class PilhaSpec < Spec::ExampleGroup
+	#     descreva Pilha, "sem nenhum elemento"
 	#
-	#     before
-	#       @stack = Stack.new
+	#     antes
+	#       @pilha = Pilha.new
 	#     end
 	#
-	#     it "should raise on pop" do
-	#       lambda{ @stack.pop }.should raise_error
+	#     exemplo "deve lançar um erro no momento do pop" do
+	#       lambda { @pilha.pop }.deve mostrar_erro
 	#     end
+	#
 	#   end
 	
 * Check a better way to manipulating the mocks and stubs for i18n (What do you think?)

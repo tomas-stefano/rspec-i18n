@@ -1,8 +1,10 @@
+require 'rbconfig'
 require 'yaml'
 
 module SpecI18n
-  version = YAML.load_file(File.dirname(__FILE__) + '/../../VERSION.yml')
-  SPEC_I18n_VERSION = [version[:major], version[:minor], version[:build]].compact.join(".")
+  version            = YAML.load_file(File.dirname(__FILE__) + '/../../VERSION.yml')
+  VERSION            = [version[:major], version[:minor], version[:patch]].compact.join(".")
   SPEC_LANGUAGE_FILE = File.expand_path(File.dirname(__FILE__) + '/languages.yml')
-  SPEC_LANGUAGES = YAML.load_file(SPEC_LANGUAGE_FILE)
+  SPEC_LANGUAGES     = YAML.load_file(SPEC_LANGUAGE_FILE)
+  WINDOWS            = Config::CONFIG['host_os'] =~ /mswin|mingw/
 end
