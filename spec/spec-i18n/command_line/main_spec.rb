@@ -8,10 +8,15 @@ module SpecI18n
         @err = StringIO.new
       end
       
-      it "should initialize the Main class" do
-        @command_line = Main.new(%w{--help}, @out)
-        
+      it "should load the options" do
+        options = %w{--help}
+        @command_line = Main.new(options)
+        SpecI18n::CommandLine::Options.should_receive(:new).
+                  with(STDOUT, STDERR, options).and_return(options)
+                  
+        @command_line.execute!
       end
+      
     end
   end
 end

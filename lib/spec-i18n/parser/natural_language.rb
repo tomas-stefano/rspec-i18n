@@ -7,10 +7,17 @@ module SpecI18n
         def get(language)
           new(language)
         end
-
-        def all
-          SpecI18n::SPEC_LANGUAGES.keys.sort.map { |language| get(language) }
+        
+        def list_languages
+          SpecI18n::SPEC_LANGUAGES.keys.sort.map do |lang|
+            [
+              lang, 
+              SpecI18n::SPEC_LANGUAGES[lang]['name'], 
+              SpecI18n::SPEC_LANGUAGES[lang]['native']
+            ]
+          end
         end
+        
       end
 
       attr_reader :keywords
@@ -18,7 +25,6 @@ module SpecI18n
       def initialize(language)
         @keywords = SpecI18n::SPEC_LANGUAGES[language]
         raise(LanguageNotFound, "Language #{language} Not Supported") if @keywords.nil?
-        @parser = nil
       end
 
       def dsl_keywords

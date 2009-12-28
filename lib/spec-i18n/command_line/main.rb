@@ -1,4 +1,5 @@
 require 'cucumber/formatter/color_io'
+require 'spec-i18n/command_line/options'
 
 module SpecI18n
   module CommandLine
@@ -15,6 +16,10 @@ module SpecI18n
           @out_stream = out_stream
         end
         @error_stream = error_stream
+      end
+      
+      def execute!
+        options = Options.new(@out_stream, @error_stream, @args)
       end
     end
   end

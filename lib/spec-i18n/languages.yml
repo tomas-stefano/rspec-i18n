@@ -6,7 +6,7 @@
 
 "en":
   name: English
-  nativo: English
+  native: English
   describe: describe
   it: it|specify
   should: should
@@ -22,7 +22,7 @@
 
 "pt":
   name: Portuguese
-  nativo: português
+  native: português
   describe: descreva|contexto
   it: exemplo|especificar
   should: deve

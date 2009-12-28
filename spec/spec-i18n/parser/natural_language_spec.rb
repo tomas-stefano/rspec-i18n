@@ -24,8 +24,31 @@ module SpecI18n
         end
 
       end
+      
+      context "list languages" do
+        
+        before(:each) do
+          @portuguese = ["pt", "Portuguese", "português"]
+          @spanish = ["es", "Spanish", "español"]
+        end
+        
+        it "should return all the keywords language for portuguese" do
+          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return("pt")
+          NaturalLanguage.list_languages.should == [@portuguese]
+        end
+        
+        it "should return all the keywords for spanish" do
+          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return("es")
+          NaturalLanguage.list_languages.should == [@spanish]
+        end
+        
+        it "should return all the keywords for spanish and portuguese" do
+          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return(["pt", "es"])
+          NaturalLanguage.list_languages.should == [@portuguese, @spanish].sort
+        end
+      end
 
-      %w(describe before after it should).each do |keyword|
+      %w(describe before after it should name native).each do |keyword|
         it "should have the #{keyword} keyword" do
           @pt.keywords.keys.should be_include(keyword)
         end
