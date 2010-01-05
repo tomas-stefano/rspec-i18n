@@ -2,6 +2,7 @@ require 'cucumber'
 require 'cucumber/formatter/pretty'
 require 'cucumber/formatter/unicode'
 require 'cucumber/cli/language_help_formatter'
+require 'spec-i18n/parser'
   
 module SpecI18n
   module CommandLine
@@ -13,13 +14,13 @@ module SpecI18n
         # because I don't want reiventing the wheel
         #
         def list_languages_and_exit(io)
-          raw = Parser::NaturalLanguage.list_languages
+          raw = SpecI18n::Parser::NaturalLanguage.list_languages
           print_table io, raw, :check_lang => false
         end
         
         def list_keywords_and_exit(io, lang)
-          language = Parser::NaturalLanguage.get(lang)
-          raw = Parser::NaturalLanguage.list_keywords(lang)
+          language = SpecI18n::Parser::NaturalLanguage.get(lang)
+          raw = SpecI18n::Parser::NaturalLanguage.list_keywords(lang)
           print_table io, raw, :incomplete => language.incomplete?
         end
         

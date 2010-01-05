@@ -3,8 +3,10 @@ rspec_i18n_dir = File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')
 
 $:.unshift(rspec_i18n_dir) unless $:.include?(rspec_i18n_dir)
 
-# The dup is to keep ARGV intact, so that tools like ruby-debug can respawn.
+require 'rubygems'
+require 'spec-i18n/command_line/main'
 
+# The dup is to keep ARGV intact, so that tools like ruby-debug can respawn.
 begin
   SpecI18n::CommandLine::Main.execute(ARGV.dup)
 rescue SystemExit => e

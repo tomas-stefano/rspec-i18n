@@ -26,7 +26,7 @@ module SpecI18n
             if language == 'help'
               LanguageHelpFormatter.list_languages_and_exit(@output_stream)
             else
-              LanguageHelpFormatter.list_keywords_and_exit(language)
+              LanguageHelpFormatter.list_keywords_and_exit(@output_stream, language)
             end
           end
           opts.on_tail("-v", "--version", "Show version.") do

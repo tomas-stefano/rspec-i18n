@@ -32,7 +32,7 @@ module SpecI18n
             it "should list all know keywords for the language" do
               when_parsing "--language pt" do
                 require 'spec-i18n/command_line/language_help_formatter'
-                LanguageHelpFormatter.should_receive(:list_keywords_and_exit).with("pt")
+                LanguageHelpFormatter.should_receive(:list_keywords_and_exit).with(@output_stream, "pt")
               end
             end
             

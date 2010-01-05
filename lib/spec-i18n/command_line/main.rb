@@ -1,5 +1,6 @@
 require 'cucumber/formatter/color_io'
 require 'spec-i18n/command_line/options'
+require 'spec-i18n/platform'
 
 module SpecI18n
   module CommandLine
