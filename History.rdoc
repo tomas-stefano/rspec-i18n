@@ -1,3 +1,8 @@
+=== Version 0.2.1
+
+This release has some bugfixes in the command_line executable
+
+* Quick Fix the namespaces and add more spec for it
 
 === Version 0.2.0
 
