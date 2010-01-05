@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rspec-i18n}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tomas D'Stefano"]
@@ -46,6 +46,7 @@ Gem::Specification.new do |s|
      "lib/spec-i18n/runner/configuration.rb",
      "lib/spec-i18n/spec_language.rb",
      "pkg/rspec-i18n-0.1.0.gem",
+     "pkg/rspec-i18n-0.2.0.gem",
      "rspec-i18n.gemspec",
      "spec/spec-i18n/command_line/language_help_formatter_spec.rb",
      "spec/spec-i18n/command_line/main_spec.rb",
@@ -67,7 +68,7 @@ Gem::Specification.new do |s|
 --------------------------------------------------------------------------------
                               U P G R A D I N G 
 
-Thank you for installing rspec-i18n-0.2.0
+Thank you for installing rspec-i18n-0.2.1
 Please be sure to read http://wiki.github.com/tomas-stefano/rspec-i18n/upgrading
 for important information about this release.
 
