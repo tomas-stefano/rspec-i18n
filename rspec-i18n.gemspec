@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rspec-i18n}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tomas D'Stefano"]
-  s.date = %q{2009-12-27}
+  s.date = %q{2010-01-05}
   s.default_executable = %q{rspec-i18n}
-  s.description = %q{A internacionalization tool written in Ruby}
+  s.description = %q{A internacionalization tool written in Ruby for the Rspec Framework}
   s.email = %q{tomasdestefi@gmail.com}
   s.executables = ["rspec-i18n"]
   s.extra_rdoc_files = [
@@ -25,8 +25,11 @@ Gem::Specification.new do |s|
      "TODO.txt",
      "VERSION.yml",
      "bin/rspec-i18n",
-     "examples/person_spec.rb",
+     "examples/i18n/pt/person_spec.rb",
      "lib/spec-i18n.rb",
+     "lib/spec-i18n/command_line/language_help_formatter.rb",
+     "lib/spec-i18n/command_line/main.rb",
+     "lib/spec-i18n/command_line/options.rb",
      "lib/spec-i18n/dsl.rb",
      "lib/spec-i18n/dsl/main.rb",
      "lib/spec-i18n/example.rb",
@@ -42,6 +45,11 @@ Gem::Specification.new do |s|
      "lib/spec-i18n/runner.rb",
      "lib/spec-i18n/runner/configuration.rb",
      "lib/spec-i18n/spec_language.rb",
+     "pkg/rspec-i18n-0.1.0.gem",
+     "rspec-i18n.gemspec",
+     "spec/spec-i18n/command_line/language_help_formatter_spec.rb",
+     "spec/spec-i18n/command_line/main_spec.rb",
+     "spec/spec-i18n/command_line/options_spec.rb",
      "spec/spec-i18n/dsl/main_spec.rb",
      "spec/spec-i18n/example/before_and_after_hooks_spec.rb",
      "spec/spec-i18n/example/example_group_methods_spec.rb",
@@ -55,12 +63,27 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/tomas-stefano/rspec-i18n}
+  s.post_install_message = %q{
+--------------------------------------------------------------------------------
+                              U P G R A D I N G 
+
+Thank you for installing rspec-i18n-0.2.0
+Please be sure to read http://wiki.github.com/tomas-stefano/rspec-i18n/upgrading
+for important information about this release.
+
+Remember: 'TDD is a muscle. You have to exercise it.' =) (Brian Liles)
+
+--------------------------------------------------------------------------------
+}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{The internacionalization gem for Rspec}
   s.test_files = [
-    "spec/spec-i18n/dsl/main_spec.rb",
+    "spec/spec-i18n/command_line/language_help_formatter_spec.rb",
+     "spec/spec-i18n/command_line/main_spec.rb",
+     "spec/spec-i18n/command_line/options_spec.rb",
+     "spec/spec-i18n/dsl/main_spec.rb",
      "spec/spec-i18n/example/before_and_after_hooks_spec.rb",
      "spec/spec-i18n/example/example_group_methods_spec.rb",
      "spec/spec-i18n/example_spec.rb",
@@ -70,7 +93,7 @@ Gem::Specification.new do |s|
      "spec/spec-i18n/runner/runner_spec.rb",
      "spec/spec-i18n/spec_language_spec.rb",
      "spec/spec_helper.rb",
-     "examples/person_spec.rb"
+     "examples/i18n/pt/person_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -79,14 +102,20 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_runtime_dependency(%q<cucumber>, [">= 0.5.3"])
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_development_dependency(%q<cucumber>, [">= 0.5.3"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_dependency(%q<cucumber>, [">= 0.5.3"])
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_dependency(%q<cucumber>, [">= 0.5.3"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
+    s.add_dependency(%q<cucumber>, [">= 0.5.3"])
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
+    s.add_dependency(%q<cucumber>, [">= 0.5.3"])
   end
 end
 
