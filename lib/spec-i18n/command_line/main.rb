@@ -20,6 +20,7 @@ module SpecI18n
       
       def execute!
         options = Options.new(@out_stream, @error_stream, @args)
+        options.parse!(@args) 
       end
     end
   end

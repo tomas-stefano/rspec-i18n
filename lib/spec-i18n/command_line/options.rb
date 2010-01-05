@@ -4,7 +4,6 @@ module SpecI18n
   module CommandLine
     class Options
       
-      attr_reader :options
       def initialize(output_stream = STDOUT, error_stream = STDERR, options = {})
         @output_stream = output_stream
         @error_stream = error_stream
@@ -21,7 +20,7 @@ module SpecI18n
             "rspec-i18n --language help",
             "rspec-i18n --language pt"].join("\n")
             
-          opts.on("--language LANGUAGE", 
+          opts.on("-l LANGUAGE", "--language LANGUAGE", 
             "List keywords for a particular language",
             %{Run with "--language help" to see all languages}) do |language|
             if language == 'help'
@@ -30,7 +29,7 @@ module SpecI18n
               LanguageHelpFormatter.list_keywords_and_exit(language)
             end
           end
-          opts.on_tail("--version", "Show version.") do
+          opts.on_tail("-v", "--version", "Show version.") do
             @output_stream.puts SpecI18n::VERSION
             Kernel.exit(0)
           end
@@ -39,6 +38,7 @@ module SpecI18n
             Kernel.exit(0)
           end
         end.parse!
+        self
       end
       
     end
