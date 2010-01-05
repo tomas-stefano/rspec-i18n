@@ -45,7 +45,13 @@ See more examples in the examples folder
 
 == Listing the available languages
 
-    spec-i18n --language help (NOT YET IMPLEMENTED)
+    rspec-i18n --language help
+
+== Listing the available keywords for the language
+
+	rspec-i18n --language pt
+	
+	rspec-i18n --language es
 
 == Adding a new language or completing a existing one(based on Cucumber implementation)
 
