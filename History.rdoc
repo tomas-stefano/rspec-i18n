@@ -1,3 +1,10 @@
+
+=== Version 0.2.0
+
+This release has improvements to the commandline and some fixes internals
+
+* Added a spec-i18n executable(to see languages and the keywords)
+
 === Version 0.1.0
 
 This is the first preview release of Rspec-i18n, a Internacionalization Development library for Ruby.

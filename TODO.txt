@@ -9,7 +9,6 @@
 == Future
 
 * Translate all matchers
-* * Making the spec-i18n executable(to see languages and other stuff)
 * Translate subjects
 * Translate shared examples
 * Put a #language header in the spec_helper file (Cucumber Style) instead load from config(maintain the two options)
