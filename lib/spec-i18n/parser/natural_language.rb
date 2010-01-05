@@ -1,7 +1,7 @@
 module SpecI18n
   module Parser
     class NaturalLanguage
-      KEYWORDS_LANGUAGE = %w{ name native describe before after it should}
+      KEYWORDS_LANGUAGE = %w{ name native describe before after it should should_not}
 
       class << self
         def get(language)
@@ -18,6 +18,14 @@ module SpecI18n
           end
         end
         
+        def list_keywords(language)
+          language = NaturalLanguage.get(language)
+          
+          NaturalLanguage::KEYWORDS_LANGUAGE.map do |key|
+            [key, language.spec_keywords(key)[key].join(" / ")]
+          end
+        end
+        
       end
 
       attr_reader :keywords
@@ -25,6 +33,12 @@ module SpecI18n
       def initialize(language)
         @keywords = SpecI18n::SPEC_LANGUAGES[language]
         raise(LanguageNotFound, "Language #{language} Not Supported") if @keywords.nil?
+      end
+      
+      def incomplete?
+        language_words = KEYWORDS_LANGUAGE.collect { |key| keywords[key].nil? }
+        return false if language_words.include?(true)
+        true
       end
 
       def dsl_keywords

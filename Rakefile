@@ -14,7 +14,7 @@ Thank you for installing rspec-i18n-#{SpecI18n::VERSION}
 Please be sure to read http://wiki.github.com/tomas-stefano/rspec-i18n/upgrading
 for important information about this release.
 
-Remember: 'TDD is a muscle. You have to exercise it.' =) (Brian Liles - The true author of the phrase)
+Remember: 'TDD is a muscle. You have to exercise it.' =) (Brian Liles)
 
 #{ '-' * 80}
 POST_INSTALL_MESSAGE

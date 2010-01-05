@@ -25,6 +25,19 @@ module SpecI18n
 
       end
       
+      context "imcomplete languages" do
+        
+        it "should return true for the complete language" do
+          @pt.incomplete?.should be_true
+        end
+        
+        it "should return false for the imcomplete language" do
+          @pt.stub!(:keywords).and_return({ :name => []})
+          @pt.incomplete?.should be_false
+        end
+        
+      end
+      
       context "list languages" do
         
         before(:each) do
@@ -32,20 +45,46 @@ module SpecI18n
           @spanish = ["es", "Spanish", "español"]
         end
         
-        it "should return all the keywords language for portuguese" do
+        it "should return the three keywords language for portuguese" do
           SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return("pt")
           NaturalLanguage.list_languages.should == [@portuguese]
         end
         
-        it "should return all the keywords for spanish" do
+        it "should return the three keywords for spanish" do
           SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return("es")
           NaturalLanguage.list_languages.should == [@spanish]
         end
         
-        it "should return all the keywords for spanish and portuguese" do
+        it "should return the three keywords for spanish and portuguese" do
           SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return(["pt", "es"])
           NaturalLanguage.list_languages.should == [@portuguese, @spanish].sort
         end
+      end
+      
+      context "list all keywords" do
+        
+        before(:each) do
+          @portuguese = NaturalLanguage.get("pt")
+        end
+        
+        # TODO: It's 3 a.m in the morning ... Ugly Specs ... #FIXME
+        
+        it "should return the name keyword for the portuguese language" do
+          name = ["name", "Portuguese"]
+          NaturalLanguage.list_keywords("pt").first.should == name
+        end
+        
+        it "should return the example keyword for the portuguese language" do
+          keywords = NaturalLanguage.list_keywords('pt')
+          example = keywords.map { |array| array if array.include?("it") }.compact.flatten
+          example.should == ["it", "exemplo / especificar"]
+        end
+        
+        it "should return all the keywords for the spanish language" do
+          native = ["native", "español"]
+          NaturalLanguage.list_keywords('es')[1].should == native
+        end
+        
       end
 
       %w(describe before after it should name native).each do |keyword|

@@ -19,9 +19,7 @@ module SpecI18n
           opts.banner = [ "Usage: rspec-i18n [options] [LANGUAGE]", "",
             "Examples:",
             "rspec-i18n --language help",
-            "rspec-i18n -l help",
-            "rspec-i18n --language pt",
-            "rspec-i18n -l pt"].join("\n")
+            "rspec-i18n --language pt"].join("\n")
             
           opts.on("--language LANGUAGE", 
             "List keywords for a particular language",
@@ -29,18 +27,9 @@ module SpecI18n
             if language == 'help'
               LanguageHelpFormatter.list_languages_and_exit(@output_stream)
             else
-              #list_keywords_and_exit(language)
+              LanguageHelpFormatter.list_keywords_and_exit(language)
             end
-          end  
-            opts.on("--i18n LANG",
-              "List keywords for in a particular language",
-              %{Run with "--i18n help" to see all languages}) do |lang|
-              if lang == 'help'
-                list_languages_and_exit
-              else
-                list_keywords_and_exit(lang)
-              end
-            end
+          end
           opts.on_tail("--version", "Show version.") do
             @output_stream.puts SpecI18n::VERSION
             Kernel.exit(0)

@@ -29,6 +29,13 @@ module SpecI18n
               end
             end
             
+            it "should list all know keywords for the language" do
+              when_parsing "--language pt" do
+                require 'spec-i18n/command_line/language_help_formatter'
+                LanguageHelpFormatter.should_receive(:list_keywords_and_exit).with("pt")
+              end
+            end
+            
             it "exits the program" do
               when_parsing('--language help') { Kernel.should_receive(:exit) }
             end
