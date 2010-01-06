@@ -33,7 +33,7 @@ module Spec
       
       def grep_language_and_scope(scope)
         if SpecI18n.spec_language
-          language = SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language)
+          language = SpecI18n.natural_language
           scope = grep_the_scope(scope, language.hooks_params_keywords)
         end
       end
