@@ -41,7 +41,7 @@ Portuguese(Brazil):
 
 == Examples
 
-See more examples in the examples folder
+See more examples in the "examples":http://github.com/tomas-stefano/rspec-i18n/blob/master/examples/ folder
 
 == Listing the available languages
 

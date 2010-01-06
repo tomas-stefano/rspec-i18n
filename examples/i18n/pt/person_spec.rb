@@ -19,11 +19,10 @@ class Pessoa
   end
 end
 
-# Silly Tests
 descreva Pessoa do
   
   antes(:de_todos) do
-    @pessoa = Pessoa.new("Tomás", "D'Stefano")
+    @pessoa = Pessoa.new("Homer", "Simpson")
   end
   
   antes(:de_cada) do
@@ -38,12 +37,31 @@ descreva Pessoa do
     @outras_pessoas = []
   end
   
-  exemplo "deve retornar o nome completo" do
-    @pessoa.nome_completo.deve == "Tomás D'Stefano"
-  end
+  contexto "Nome completo" do
+    
+    antes(:de_cada_exemplo) do
+      @pessoa = Pessoa.new("Tomás", "D'Stefano")
+    end
   
-  especificar "a idade é opcional" do
-    Pessoa.new("Aaromn", "Monkey", 20).idade.deve == 20
+    exemplo "deve retornar o nome completo" do
+      @pessoa.nome_completo.deve == "Tomás D'Stefano"
+    end
+    
+    exemplo 'nome completo não pode ser nulo' do
+      @pessoa.nome_completo.nao_deve be_nil
+    end
+    
+  end
+
+  contexto "a idade" do
+    
+    antes(:de_todos_exemplos) do
+      @pessoa = Pessoa.new("Aaromn", "Monkey", 20)
+    end
+
+    especificar "deve ser opcional" do
+      @pessoa.idade.deve == 20
+    end
   end
   
 end
