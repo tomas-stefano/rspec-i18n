@@ -11,8 +11,9 @@ But if you don't prefer that, you'll like the Rspec-i18n.
 
 == Synopsis
   
-Rspec-i18n will supports any language you want(See languages.yml file). This is 
-Portuguese(Brazil):
+Rspec-i18n will supports any language you want
+(See {languages.yml}{http://github.com/tomas-stefano/rspec-i18n/blob/master/lib/spec-i18n/languages.yml} file). 
+This is Portuguese(Brazil):
     
     require 'spec'
     require 'spec-i18n'
@@ -41,7 +42,7 @@ Portuguese(Brazil):
 
 == Examples
 
-See more examples in the "examples":http://github.com/tomas-stefano/rspec-i18n/blob/master/examples/ folder
+See more examples in the {examples}{http://github.com/tomas-stefano/rspec-i18n/blob/master/examples/i18n} folder
 
 == Listing the available languages
 
