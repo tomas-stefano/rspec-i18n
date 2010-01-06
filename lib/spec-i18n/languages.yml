@@ -34,7 +34,18 @@
     all: de_todos|de_todos_exemplos
     suite: suite
   matchers:
-    be_equal: ser_igual_a
+    be:
+    be_a_kind_of:
+    be_close:
+    be_an_instance_of:
+    eql:    
+    equal:
+    exist:
+    include:
+    match:
+    raise_error:
+    satisfy:
+    throw_symbol:
 
 # Please put the right words for this language! =D
 "es":

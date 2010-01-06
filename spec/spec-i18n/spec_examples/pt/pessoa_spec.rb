@@ -46,6 +46,10 @@ descreva Pessoa do
       @pessoa.nome_completo.deve == "Tomás D'Stefano"
     end
     
+    exemplo 'nome completo não pode ser nulo' do
+      @pessoa.nome_completo.nao_deve be_nil
+    end
+    
   end
 
   contexto "a idade" do
