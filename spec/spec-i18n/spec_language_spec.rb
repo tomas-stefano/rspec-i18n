@@ -13,4 +13,10 @@ describe SpecI18n do
       spec_language.should == language
     end
   end
+  
+  it "should assign the natural language" do
+    language = 'pt'
+    Spec::Runner.configuration.spec_language(language)
+    natural_language.keywords.should == Parser::NaturalLanguage.get(spec_language).keywords
+  end
 end

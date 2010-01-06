@@ -19,7 +19,7 @@
 	#	class PilhaSpec < Spec::ExampleGroup
 	#     descreva Pilha, "sem nenhum elemento"
 	#
-	#     antes
+	#     antes do
 	#       @pilha = Pilha.new
 	#     end
 	#

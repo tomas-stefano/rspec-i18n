@@ -3,17 +3,16 @@ module Spec
     module BeforeAndAfterHooks
       
       def register_hooks
-        language = SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language)
+        language = SpecI18n.natural_language
         language.before_and_after_keywords.each do |key, values|
           values.map { |value| alias_method value, key }
         end
       end
   
       def before_parts(scope)
-        if SpecI18n.spec_language
-          language = SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language)
-          scope = grep_the_scope(scope, language.hooks_params_keywords)
-        end
+        
+        scope = grep_language_and_scope(scope) || scope
+        
         case scope
         when :each; before_each_parts
         when :all; before_all_parts
@@ -22,14 +21,20 @@ module Spec
       end
       
       def after_parts(scope)
-        if SpecI18n.spec_language
-          language = SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language)
-          scope = grep_the_scope(scope, language.hooks_params_keywords)
-        end
+        
+        scope = grep_language_and_scope(scope) || scope
+        
         case scope
         when :each; after_each_parts
         when :all; after_all_parts
         when :suite; after_suite_parts
+        end
+      end
+      
+      def grep_language_and_scope(scope)
+        if SpecI18n.spec_language
+          language = SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language)
+          scope = grep_the_scope(scope, language.hooks_params_keywords)
         end
       end
 
