@@ -13,34 +13,35 @@ module SpecI18n
       def parse!(args)
         @args = args
         @args.extend(::OptionParser::Arguable)
-        
         @args.options do |opts|
-          opts.banner = [ "Usage: rspec-i18n [options] [LANGUAGE]", "",
-            "Examples:",
-            "rspec-i18n --language help",
-            "rspec-i18n --language pt"].join("\n")
-            
-          opts.on("-l LANGUAGE", "--language LANGUAGE", 
-            "List keywords for a particular language",
+          opts.banner = [ "Usage: rspec-i18n [options] [LANGUAGE]", "", "Examples:",
+            "rspec-i18n --language help", "rspec-i18n --language pt"].join("\n")            
+          opts.on("-l LANGUAGE", "--language LANGUAGE", "List keywords for a particular language",
             %{Run with "--language help" to see all languages}) do |language|
-            if language == 'help'
-              LanguageHelpFormatter.list_languages_and_exit(@output_stream)
-            else
-              LanguageHelpFormatter.list_keywords_and_exit(@output_stream, language)
-            end
+            print_languages(language)
           end
           opts.on_tail("-v", "--version", "Show version.") do
-            @output_stream.puts SpecI18n::VERSION
-            Kernel.exit(0)
+            print_and_exit(SpecI18n::VERSION)
           end
           opts.on_tail("-h", "--help", "You're looking at it.") do
-            @output_stream.puts opts.help
-            Kernel.exit(0)
+            print_and_exit(opts.help)
           end
         end.parse!
         self
       end
       
+      def print_languages(language)
+        if language == 'help'
+          LanguageHelpFormatter.list_languages_and_exit(@output_stream)
+        else
+          LanguageHelpFormatter.list_keywords_and_exit(@output_stream, language)
+        end
+      end
+      
+      def print_and_exit(message)
+        @output_stream.puts message
+        Kernel.exit(0)
+      end
     end
   end
 end
