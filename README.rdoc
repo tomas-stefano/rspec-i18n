@@ -12,7 +12,7 @@ But if you don't prefer that, you'll like the Rspec-i18n.
 == Synopsis
   
 Rspec-i18n will supports any language you want
-(See {languages.yml}{http://github.com/tomas-stefano/rspec-i18n/blob/master/lib/spec-i18n/languages.yml} file). 
+(See http://github.com/tomas-stefano/rspec-i18n/blob/master/lib/spec-i18n/languages.yml file). 
 This is Portuguese(Brazil):
     
     require 'spec'
@@ -42,7 +42,7 @@ This is Portuguese(Brazil):
 
 == Examples
 
-See more examples in the {examples}{http://github.com/tomas-stefano/rspec-i18n/blob/master/examples/i18n} folder
+See more examples in http://github.com/tomas-stefano/rspec-i18n/blob/master/examples/i18n
 
 == Listing the available languages
 
@@ -60,7 +60,7 @@ See more examples in the {examples}{http://github.com/tomas-stefano/rspec-i18n/b
   2. Add your language keywords to languages.yml
   3. Commit and push your changes - then send a pull request at Github
 
-  ** OBS: Hints for better words in languages.yml are Welcome =D.
+** OBS: Hints for better words in languages.yml are Welcome =D.
 
 == Install
 
