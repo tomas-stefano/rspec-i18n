@@ -30,4 +30,4 @@
 	#   end
 	
 * Check a better way to manipulating the mocks and stubs for i18n (What do you think?)
-* Verify the following matchers: simple_matcher, wrap_expectation, respond_to, 
+* Verify the following matchers: simple_matcher, wrap_expectation, respond_to, change.
