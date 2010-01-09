@@ -1,0 +1,12 @@
+pkg
+doc
+coverage*
+tmtags
+.DS_Store
+.emacs-project
+*~
+email.txt
+tmp
+*.sw?
+spec/spec_files.txt
+tags
