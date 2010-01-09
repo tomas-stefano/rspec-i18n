@@ -5,6 +5,14 @@ require 'spec-i18n'
 
 $:.unshift(File.dirname(__FILE__), '../lib')
 
+include SpecI18n
+
+def portuguese_language(expected)
+  pt = Parser::NaturalLanguage.get("pt")
+  SpecI18n.stub!(:natural_language).and_return(pt)
+  predicade = pt.stub(:keywords).and_return(expected)
+end
+
 def with_sandboxed_options
   attr_reader :options
   

@@ -4,6 +4,7 @@
 # If you want several aliases for a keyword, just a separate them 
 # with a | character. Make sure there are no ambiguities in the keywords
 
+# The English language => Just for example
 "en":
   name: English
   native: English
@@ -18,7 +19,8 @@
     all: all
     suite: suite
   matchers:
-    be_equal: be_equal
+    be: be
+    equal: equal
 
 "pt":
   name: Portuguese
@@ -39,7 +41,7 @@
     be_close:
     be_an_instance_of:
     eql: igl
-    equal: igual
+    equal: igual|igual_a
     exist:
     have:
     include:
