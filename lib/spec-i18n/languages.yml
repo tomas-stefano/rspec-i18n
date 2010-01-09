@@ -37,7 +37,7 @@
     suite: suite
   matchers:
     be: ser|estar
-    be_a_kind_of:
+    be_a_kind_of: ser_do_tipo
     be_close: estar_perto|estar_proximo
     be_an_instance_of:
     eql: igl
