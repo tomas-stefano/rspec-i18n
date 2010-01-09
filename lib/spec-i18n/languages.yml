@@ -36,9 +36,9 @@
     all: de_todos|de_todos_exemplos
     suite: suite
   matchers:
-    be: ser
+    be: ser|estar
     be_a_kind_of:
-    be_close:
+    be_close: estar_perto|estar_proximo
     be_an_instance_of:
     eql: igl
     equal: igual|igual_a
