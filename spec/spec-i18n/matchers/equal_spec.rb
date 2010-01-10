@@ -14,6 +14,13 @@ module Spec
         values.each { |method_name| Object.instance_methods.should be_include(method_name) }
       end
       
+      it "should match when actual.equal?(expected)" do
+        1.should igual(1)
+      end
+
+      it "should not match when !actual.equal?(expected)" do
+        1.should_not igual_a("1")
+      end
     end
   end
 end

@@ -47,8 +47,7 @@
     include: incluir
     match: corresponder
     raise_error: mostrar_erro
-    satisfy:
-    throw_symbol:
+    satisfy: satisfazer
 
 # Please put the right words for this language! =D
 "es":

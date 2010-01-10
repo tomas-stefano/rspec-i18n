@@ -9,5 +9,6 @@ require 'spec-i18n/matchers/include'
 require 'spec-i18n/matchers/match'
 require 'spec-i18n/matchers/method_missing'
 require 'spec-i18n/matchers/raise_error'
+require 'spec-i18n/matchers/satisfy'
 
 include Spec::Matchers

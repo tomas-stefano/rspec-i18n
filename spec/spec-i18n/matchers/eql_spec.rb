@@ -5,21 +5,29 @@ module Spec
     describe "eql" do
       
       before(:each) do
-        include SpecI18n
-        @pt = Parser::NaturalLanguage.get("pt")
-        Spec::Runner.configuration.spec_language("pt")
+        @expected_matcher = {'matchers' => {'eql' => 'igl'}}
+        portuguese_language(@expected_matcher)
         Spec::Matchers.register_eql_matcher
       end
       
       it "should have eql matchers translated" do
-        eql_word = @pt.keywords['matchers']['eql']
+        eql_word = @expected_matcher['matchers']['eql']
         1.methods.should be_include(eql_word)
       end
       
       it "should have eql? matchers translated" do
-        eql_word = @pt.keywords['matchers']['eql'] + '?'        
+        eql_word = @expected_matcher['matchers']['eql'] + '?'
         1.methods.should be_include(eql_word)
       end
+      
+      it "should match when actual.eql?(expected)" do
+        1.should igl(1)
+      end
+      
+      it "should not match when !actual.eql?(expected)" do
+        1.should_not igl(2)
+      end
+      
     end
   end
 end
