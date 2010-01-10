@@ -39,14 +39,14 @@
     be: ser|estar
     be_a_kind_of: ser_do_tipo
     be_close: estar_perto|estar_proximo
-    be_an_instance_of:
+    be_an_instance_of: ser_instancia_de
     eql: igl
     equal: igual|igual_a
     exist: existir
     have:
     include: incluir
     match: corresponder
-    raise_error:
+    raise_error: mostrar_erro
     satisfy:
     throw_symbol:
 
