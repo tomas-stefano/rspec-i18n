@@ -1,5 +1,9 @@
 = Rspec-i18n
 
+* http://github.com/tomas-stefano/rspec-i18n/wikis
+* http://gemcutter.org/gems/rspec-i18n
+* http://rspec-i18n.lighthouseapp.com
+
 == Description
 
 The Rspec-i18n gem provide a easy way to write specs in any language you

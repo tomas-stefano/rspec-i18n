@@ -1,7 +1,7 @@
 == Refactoring
 
-* The SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language) is duplicated in 
-  some places - check a better way to implement this
+* The SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language) is duplicated in some places - check a better way to implement this
+* Refactoring the method for register matchers
 * Simplified more and more tests!
 * Find the right module for the example group specs(it/example) (I think =>
   Spec::Example::ExampleGroupMethods but I think I was wrong)
