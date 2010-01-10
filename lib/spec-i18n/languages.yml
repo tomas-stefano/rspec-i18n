@@ -45,7 +45,7 @@
     exist: existir
     have:
     include: incluir
-    match:
+    match: corresponder
     raise_error:
     satisfy:
     throw_symbol:

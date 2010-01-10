@@ -6,6 +6,7 @@ require 'spec-i18n/matchers/eql'
 require 'spec-i18n/matchers/equal'
 require 'spec-i18n/matchers/exist'
 require 'spec-i18n/matchers/include'
+require 'spec-i18n/matchers/match'
 require 'spec-i18n/matchers/method_missing'
 
 include Spec::Matchers
