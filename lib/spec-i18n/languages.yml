@@ -42,9 +42,9 @@
     be_an_instance_of:
     eql: igl
     equal: igual|igual_a
-    exist:
+    exist: existir
     have:
-    include:
+    include: incluir
     match:
     raise_error:
     satisfy:
