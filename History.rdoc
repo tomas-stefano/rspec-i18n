@@ -1,3 +1,9 @@
+=== development (in git)
+
+* enhancements
+  *added the following matchers: be_close, be_instance_of, be_kind_of, eql,
+	equal, exist, include, match, raise_error(raise_exception)
+
 === Version 0.2.1
 
 This release has some bugfixes in the command_line executable
