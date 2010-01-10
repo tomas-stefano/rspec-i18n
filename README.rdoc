@@ -27,7 +27,7 @@ This is Portuguese(Brazil):
 
     # In spec/pessoa_spec.rb
 
-	require 'spec_helper'
+    require 'spec_helper'
 	
     descreva Pessoa do
       antes(:de_cada) do

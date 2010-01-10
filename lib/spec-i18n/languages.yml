@@ -43,7 +43,10 @@
     eql: igl
     equal: igual|igual_a
     exist: existir
-    have:
+    have: ter
+    have_exactly: ter_exatamente
+    have_at_least: ter_no_minimo
+    have_at_most: ter_no_maximo
     include: incluir
     match: corresponder
     raise_error: mostrar_erro
