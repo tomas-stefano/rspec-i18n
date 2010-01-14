@@ -1,8 +1,11 @@
 === development (in git)
 
 * enhancements
-  *added the following matchers: be_close, be_instance_of, be_kind_of, eql,
-	equal, exist, include, match, raise_error(raise_exception)
+  *added the translation of following matchers: be_close, be_instance_of, 
+   be_kind_of, eql,	equal, exist, have(have_exactly), have_at_least, 
+   have_at_most, include, match, raise_error(raise_exception), satisfy
+  * refactoring Parser::NaturalLanguage.get(SpecI18n.spec_language) 
+    duplications
 
 === Version 0.2.1
 
