@@ -1,5 +1,6 @@
 == Refactoring
 
+* Put the matchers keywords in the ist languages rspec-i18n executable
 * Simplified more and more tests!
 * Find the right module for the example group specs(it/example) (I think =>
   Spec::Example::ExampleGroupMethods but I think I was wrong)
