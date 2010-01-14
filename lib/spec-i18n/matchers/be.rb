@@ -8,9 +8,10 @@ module Spec
           
           # TODO: working with warnings
           return unless be_matcher
-          
-          be_matcher.split('|')
-          be_matcher.map { |be_value| alias_method be_value, :be }
+      
+          be_matcher.split('|').map do |be_value|
+            alias_method be_value, :be
+          end
         end
       end
     end

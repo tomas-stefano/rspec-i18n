@@ -4,7 +4,7 @@ module Spec
 
       begin
         language = SpecI18n.natural_language
-        be_word = language.keywords['matchers']['be']        
+        be_word = language.keywords['matchers']['be']      
         sym = be_to_english(sym, be_word)
       end
       
@@ -19,7 +19,8 @@ module Spec
     # :be_true == :be_true
     def be_to_english(sym, be_word)
       be_word = be_word || 'be'
-      sym.to_s.gsub(be_word.to_s, 'be').to_sym
+      
+      sym.to_s.gsub(/#{be_word}/, 'be').to_sym
     end
   end
 end

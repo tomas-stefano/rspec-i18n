@@ -28,6 +28,10 @@ describe "should be_predicate" do
     lambda { atual.should ser_feliz }.should raise_error
   end
   
+  it 'should convert be word to english with two parameters' do
+    be_to_english(:ser_feliz, 'ser|estar').should == :be_feliz
+  end
+  
   it "should convert be word to english" do
     be_to_english(:ser_feliz, :ser).should == :be_feliz
   end

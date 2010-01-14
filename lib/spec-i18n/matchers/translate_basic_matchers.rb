@@ -7,14 +7,18 @@ module Spec
                          :have_at_most, :have_exactly, :include, :match, 
                          :raise_error, :satisfy ]
       
+      MATCHERS_WITH_QUESTIONS = [ :eql, :equal ]
+      
       def translate_basic_matchers
         language = SpecI18n.natural_language        
         RSPEC_MATCHERS.each do |rspec_matcher|
           matcher = language.keywords['matchers'][rspec_matcher.to_s]
 
-          return true if matcher.nil?
+          # TODO: Generating warnings for the incomplete languages
+          next unless matcher
 
-          matcher.split('|').map do |matcher_value| 
+          matcher.split('|').map do |matcher_value|
+            alias_method "#{matcher_value}?", "#{rspec_matcher}?" if MATCHERS_WITH_QUESTIONS.include?(rspec_matcher)
             alias_method matcher_value, rspec_matcher
           end
         end
