@@ -19,7 +19,7 @@ module Spec
       before(:each) do
         @expected_matcher = {'matchers' => {'exist' => 'existir'}}
         portuguese_language(@expected_matcher)
-        Spec::Matchers.register_exist_matcher
+        Spec::Matchers.register_all_matchers
         @real = Substance.new true, 'something real'
         @imaginary = Substance.new false, 'something imaginary'
       end

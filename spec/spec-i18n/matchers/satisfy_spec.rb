@@ -5,7 +5,7 @@ describe "should satisfy { block }" do
   before(:each) do
     @expected_matcher = { 'matchers' => { 'satisfy' => 'satisfazer'} }
     portuguese_language(@expected_matcher)
-    Spec::Matchers.register_satisfy_matcher
+    Spec::Matchers.register_all_matchers
   end
   
   it 'should trasnlate the satisfy matcher' do

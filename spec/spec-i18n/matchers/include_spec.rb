@@ -4,7 +4,7 @@ describe "should include(expected)" do
   before(:each) do
     @expected_matcher = {'matchers' => { 'include' => 'incluir'} }
     portuguese_language(@expected_matcher)
-    Spec::Matchers.register_include_matcher
+    Spec::Matchers.register_all_matchers
   end
   
   it "should translated the include matcher" do

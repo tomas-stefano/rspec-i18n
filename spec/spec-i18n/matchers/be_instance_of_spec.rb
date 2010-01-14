@@ -7,7 +7,7 @@ module Spec
       before(:each) do
         @expected_matcher = { 'matchers' => { 'be_an_instance_of' => 'ser_instancia_de'} }
         portuguese_language(@expected_matcher)
-        Spec::Matchers.register_be_an_instance_of_matcher
+        Spec::Matchers.register_all_matchers
       end
       
       it "register the be_an_instance_of method" do

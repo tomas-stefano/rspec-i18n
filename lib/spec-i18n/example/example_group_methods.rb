@@ -3,7 +3,7 @@ module Spec
     module ExampleGroupMethods
       
         def self.register_example_adverbs
-          language = SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language)
+          language = SpecI18n.natural_language
           @adverbs = language.example_group_keywords
           @adverbs.each do |key, values|
             values.map do |value|

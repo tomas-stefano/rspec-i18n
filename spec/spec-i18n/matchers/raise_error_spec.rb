@@ -5,7 +5,7 @@ describe "should raise_error" do
   before(:each) do
     @expected_matcher = {'matchers' => {'raise_error' => 'mostrar_erro'}}
     portuguese_language(@expected_matcher)
-    Spec::Matchers.register_raise_error_matcher
+    Spec::Matchers.register_all_matchers
   end
   
   it 'should register the methods for the value equal matcher' do

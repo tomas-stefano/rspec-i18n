@@ -17,7 +17,7 @@ module Spec
         Kernel.register_expectations_keywords
         Spec::Example::ExampleGroupMethods.register_example_adverbs
         Spec::Example::BeforeAndAfterHooks.register_hooks
-#        Spec::Matchers.register_all_matchers
+        Spec::Matchers.register_all_matchers
       end
     end
     

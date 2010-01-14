@@ -7,7 +7,7 @@ module Spec
       before(:each) do
         @expected_matcher = {'matchers' => {'eql' => 'igl'}}
         portuguese_language(@expected_matcher)
-        Spec::Matchers.register_eql_matcher
+        Spec::Matchers.register_all_matchers
       end
       
       it "should have eql matchers translated" do

@@ -4,7 +4,7 @@ describe "should be_predicate" do
   
   before(:each) do
     portuguese_language({"matchers" => {"be" => "ser"}})
-    Spec::Matchers::Be.register_be_matcher
+    Spec::Matchers.register_all_matchers
   end
   
   it "should pass with be language translated" do

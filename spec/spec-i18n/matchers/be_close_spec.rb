@@ -7,7 +7,7 @@ module Spec
       before(:each) do
         @expected_matcher = {'matchers' => { 'be_close' => 'estar_perto'} }
         portuguese_language(@expected_matcher)
-        Spec::Matchers.register_be_close_matcher
+        Spec::Matchers.register_all_matchers
       end
       
       it "should register the be_close matcher" do

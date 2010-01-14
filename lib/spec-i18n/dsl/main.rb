@@ -8,7 +8,7 @@ module Spec
       # 
       # Register alias for the language specified
       def register_adverbs
-        language = SpecI18n::Parser::NaturalLanguage.get(SpecI18n.spec_language)
+        language = SpecI18n.natural_language
         @adverbs = language.dsl_keywords
         @adverbs.each do |key, values|
           values.map { |value| alias_method value, key }

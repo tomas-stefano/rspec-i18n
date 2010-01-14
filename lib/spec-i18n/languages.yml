@@ -67,4 +67,6 @@
     all: de_todos_ejemplo
     suite: suite
   matchers:
-    be_equal: ser_igual_a
+    be:
+    eql:
+    equal:

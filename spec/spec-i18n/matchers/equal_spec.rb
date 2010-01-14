@@ -6,7 +6,7 @@ module Spec
       before(:each) do
         @expected_matcher = {'matchers' => {'equal' => 'igual|igual_a'}}
         portuguese_language(@expected_matcher)
-        Spec::Matchers.register_equal_matcher
+        Spec::Matchers.register_all_matchers
       end
       
       it 'should register the methods for the value equal matcher' do
