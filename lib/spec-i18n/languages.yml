@@ -49,7 +49,7 @@
     have_at_most: ter_no_maximo
     include: incluir
     match: corresponder
-    raise_error: mostrar_erro
+    raise_error: mostrar_erro|mostrar_excessao
     satisfy: satisfazer
 
 # Please put the right words for this language! =D

@@ -1,7 +1,8 @@
 module SpecI18n
   module Parser
     class NaturalLanguage
-      KEYWORDS_LANGUAGE = %w{ name native describe before after it should should_not}
+      KEYWORDS_LANGUAGE = %w{ name native describe before after it 
+                              should should_not hooks matchers}
 
       class << self
         def get(language)
@@ -32,7 +33,7 @@ module SpecI18n
       
       def initialize(language)
         @keywords = SpecI18n::SPEC_LANGUAGES[language]
-        raise(LanguageNotFound, "Language #{language} Not Supported") if @keywords.nil?
+        raise(LanguageNotFound, "Language #{language.to_s} Not Supported") if @keywords.nil?
       end
       
       def incomplete?

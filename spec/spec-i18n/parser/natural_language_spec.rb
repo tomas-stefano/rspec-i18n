@@ -89,7 +89,8 @@ module SpecI18n
 
       %w(describe before after it should name native).each do |keyword|
         it "should have the #{keyword} keyword" do
-          @pt.keywords.keys.should be_include(keyword)
+          portuguese_keys = @pt.keywords.keys          
+          portuguese_keys.should include(keyword)
         end
       end
 
