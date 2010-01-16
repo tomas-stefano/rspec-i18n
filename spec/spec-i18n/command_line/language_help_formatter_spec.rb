@@ -6,7 +6,7 @@ module SpecI18n
       
       before(:all) do
         @languages = SpecI18n::Parser::NaturalLanguage.list_languages
-        @portuguese = SpecI18n::Parser::NaturalLanguage.list_keywords("pt")
+        @portuguese = SpecI18n::Parser::NaturalLanguage.list_basic_keywords("pt")
         @io_stream = StringIO.new
       end
       
@@ -17,7 +17,7 @@ module SpecI18n
       end
       
       it "should list keywords" do
-        SpecI18n::Parser::NaturalLanguage.should_receive(:list_keywords).and_return(@portuguese)
+        SpecI18n::Parser::NaturalLanguage.should_receive(:list_basic_keywords).and_return(@portuguese)
         Kernel.should_receive(:exit)
         LanguageHelpFormatter.list_keywords_and_exit(@io_stream, 'pt')
       end

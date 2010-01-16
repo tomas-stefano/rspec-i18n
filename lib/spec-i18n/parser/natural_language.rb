@@ -1,9 +1,11 @@
 module SpecI18n
   module Parser
     class NaturalLanguage
-      KEYWORDS_LANGUAGE = %w{ name native describe before after it 
-                              should should_not hooks matchers}
-
+      BASIC_KEYWORDS = %w{ name native describe before after it 
+                              should should_not}
+                              
+      ADVANCED_KEYWORDS = %w{ hooks matchers}
+      
       class << self
         def get(language)
           new(language)
@@ -11,20 +13,30 @@ module SpecI18n
         
         def list_languages
           SpecI18n::SPEC_LANGUAGES.keys.sort.map do |lang|
-            [
-              lang, 
-              SpecI18n::SPEC_LANGUAGES[lang]['name'], 
-              SpecI18n::SPEC_LANGUAGES[lang]['native']
-            ]
+            [ lang, grep_value(lang, 'name'), grep_value(lang, 'native') ]
           end
         end
         
-        def list_keywords(language)
+        def grep_value(lang, key)
+          SpecI18n::SPEC_LANGUAGES[lang][key]
+        end
+        
+        def list_basic_keywords(language)
           language = NaturalLanguage.get(language)
-          
-          NaturalLanguage::KEYWORDS_LANGUAGE.map do |key|
-            [key, language.spec_keywords(key)[key].join(" / ")]
+          BASIC_KEYWORDS.map do |keyword|
+            words = language.keywords[keyword]            
+            [keyword, words.split('|').join(' / ')]
           end
+        end
+        
+        def list_advanced_keywords(language)
+          ADVANCED_KEYWORDS.map do |keyword|
+            [keyword, '']
+          end
+        end
+        
+        def grep_the_values(words)
+          words.collect { |k, v| "\n- :#{k} => #{v.split('|').join(' / ')} " }.to_s
         end
         
       end
@@ -37,7 +49,7 @@ module SpecI18n
       end
       
       def incomplete?
-        language_words = KEYWORDS_LANGUAGE.collect { |key| keywords[key].nil? }
+        language_words = BASIC_KEYWORDS.collect { |key| keywords[key].nil? }
         return false if language_words.include?(true)
         true
       end

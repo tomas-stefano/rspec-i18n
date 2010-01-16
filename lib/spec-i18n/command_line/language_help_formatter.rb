@@ -9,26 +9,29 @@ module SpecI18n
     class LanguageHelpFormatter
       
       class << self
+        include SpecI18n::Parser
         
         # Cucumber print table is loading 
         # because I don't want reiventing the wheel
         #
         def list_languages_and_exit(io)
-          raw = SpecI18n::Parser::NaturalLanguage.list_languages
-          print_table io, raw, :check_lang => false
+          raw = NaturalLanguage.list_languages
+          print_table io, raw, :check_lang => false, :exit => true
         end
         
         def list_keywords_and_exit(io, lang)
-          language = SpecI18n::Parser::NaturalLanguage.get(lang)
-          raw = SpecI18n::Parser::NaturalLanguage.list_keywords(lang)
+          language = NaturalLanguage.get(lang)
+          raw = NaturalLanguage.list_basic_keywords(lang)
+          raw_two = NaturalLanguage.list_advanced_keywords(lang)
+
+          
+
           print_table io, raw, :incomplete => language.incomplete?
+          print_table io, raw_two, :incomplete => language.incomplete?, :exit => true
         end
         
         def print_table(io, raw, options)
-          table = Cucumber::Ast::Table.new(raw)
-          formatter = Cucumber::Cli::LanguageHelpFormatter.new(nil, io, options)
-          Cucumber::Ast::TreeWalker.new(nil, [formatter]).visit_multiline_arg(table)
-          Kernel.exit(0)
+          Kernel.exit(0) if options[:exit]
         end
       end
       

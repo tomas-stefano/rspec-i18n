@@ -64,25 +64,29 @@ module SpecI18n
       context "list all keywords" do
         
         before(:each) do
-          @portuguese = NaturalLanguage.get("pt")
+          @language_keywords = NaturalLanguage.list_basic_keywords("pt")
         end
         
         # TODO: It's 3 a.m in the morning ... Ugly Specs ... #FIXME
         
-        it "should return the name keyword for the portuguese language" do
-          name = ["name", "Portuguese"]
-          NaturalLanguage.list_keywords("pt").first.should == name
+        it "should return all basic keywords for a language" do
+          words = %w(name native describe before after it should should_not)
+          words.each do |word|
+            @language_keywords.flatten.should include(word)
+          end
         end
         
         it "should return the example keyword for the portuguese language" do
-          keywords = NaturalLanguage.list_keywords('pt')
-          example = keywords.map { |array| array if array.include?("it") }.compact.flatten
+          example = @language_keywords.map { |array| array if array.include?("it") }.compact.flatten
           example.should == ["it", "exemplo / especificar"]
         end
         
-        it "should return all the keywords for the spanish language" do
-          native = ["native", "español"]
-          NaturalLanguage.list_keywords('es')[1].should == native
+        it "should return the matchers keywords for language" do
+          @language_keywords.flatten.should include('matchers')
+        end
+        
+        it "should return the hooks keywords for language" do
+          @language_keywords.flatten.should include('hooks')
         end
         
       end
@@ -162,10 +166,6 @@ module SpecI18n
           @keywords = { "it" => ["it", "specify"]}
           @en.example_group_keywords.should == @keywords
         end
-      end
-
-      context "of all matchers" do
-        it "should parse all matchers"
       end
 
       context "splitting the keys" do
