@@ -6,6 +6,9 @@
    have_at_most, include, match, raise_error(raise_exception), satisfy
   * refactoring Parser::NaturalLanguage.get(SpecI18n.spec_language) 
     duplications
+  * Add the matchers and hooks in executable list keywords
+  * Removing the cucumber dependency and add term-ansicolor and    
+    terminal-table dependency
 
 === Version 0.2.1
 

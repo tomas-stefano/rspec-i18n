@@ -30,10 +30,12 @@ begin
     gemspec.authors = ["Tomas D'Stefano"]
 
     gemspec.add_dependency('rspec', '>= 1.2.9')
-    gemspec.add_dependency('cucumber', '>= 0.5.3')
+    gemspec.add_development_dependency('terminal-table', '>= 1.4.2')
+    gemspec.add_development_dependency('term-ansicolor', '1.0.4')
 
     gemspec.add_development_dependency('rspec', '>= 1.2.9')
-    gemspec.add_development_dependency('cucumber', '>= 0.5.3')
+    gemspec.add_development_dependency('terminal-table', '>= 1.4.2')
+    gemspec.add_development_dependency('term-ansicolor', '1.0.4')
     
     gemspec.post_install_message = POST_MESSAGE
   end
