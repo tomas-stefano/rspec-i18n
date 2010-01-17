@@ -69,15 +69,22 @@ module SpecI18n
         describe 'the advanced keywords' do
         
           before(:each) do
-            @language_keywords = LanguageHelpFormatter.list_advanced_keywords(StringIO.new, 'pt')
+            @out = StringIO.new
+            @keywords = LanguageHelpFormatter.list_advanced_keywords(@out, @pt)
           end
         
           it "should return the matchers keywords for language" do
-            @language_keywords.flatten.should include('matchers')
+            @keywords.last.headings.should include('matchers')
           end
 
           it "should return the hooks keywords for language" do
-            @language_keywords.flatten.should include('hooks')
+            @keywords.first.headings.should include('hooks')
+          end
+          
+          it "should return some keywords for a empty language" do
+            @es = SpecI18n::Parser::NaturalLanguage.get('es')
+            @keywords = LanguageHelpFormatter.list_advanced_keywords(@out, @es)
+            @keywords.first.headings.should include('hooks')
           end
         end
       

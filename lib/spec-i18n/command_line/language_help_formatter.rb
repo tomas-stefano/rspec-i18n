@@ -64,7 +64,7 @@ module SpecI18n
           NaturalLanguage::ADVANCED_KEYWORDS.map do |keyword|
             language_keywords = [keyword]
             language.keywords[keyword].map do |key, values|
-              language_keywords << [key, values.split('|').join(' / ')]
+              language_keywords << [key, values.to_s.split('|').join(' / ')]
             end
             
             keywords_table = table do
