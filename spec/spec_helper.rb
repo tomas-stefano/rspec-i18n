@@ -11,9 +11,9 @@ def portuguese_language(expected)
   pt = Parser::NaturalLanguage.get("pt")
   SpecI18n.stub!(:natural_language).and_return(pt)
   
-  expected['matchers']['be'] = 'ser|estar'
+  expected['matchers']['be'] = 'ser|estar' unless expected['matchers'].nil?
   
-  predicade = pt.stub(:keywords).and_return(expected)
+  pt.stub(:keywords).and_return(expected)
 end
 
 def with_sandboxed_options
@@ -58,3 +58,16 @@ module Spec
   end
 end
 
+module Spec
+  module Example
+    class ExampleGroupDouble < ExampleGroup
+      ::Spec::Runner.options.remove_example_group self
+      def register_example_group(klass)
+        #ignore
+      end
+      def initialize(proxy=nil, &block)
+        super(proxy || ExampleProxy.new, &block)
+      end
+    end
+  end
+end
