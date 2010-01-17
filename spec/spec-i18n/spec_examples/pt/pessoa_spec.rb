@@ -43,11 +43,11 @@ descreva Pessoa do
     end
   
     exemplo "deve retornar o nome completo" do
-      @pessoa.nome_completo.deve == "Tomás D'Stefano"
+      @pessoa.nome_completo.deve ser_igual_a("Tomás D'Stefano")
     end
     
     exemplo 'nome completo não pode ser nulo' do
-      @pessoa.nome_completo.nao_deve be_nil
+      @pessoa.nome_completo.nao_deve igual_a(nil)
     end
     
   end
@@ -59,7 +59,7 @@ descreva Pessoa do
     end
 
     especificar "deve ser opcional" do
-      @pessoa.idade.deve == 20
+      @pessoa.idade.deve ser_igual_a(20)
     end
   end
   

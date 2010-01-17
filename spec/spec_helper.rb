@@ -49,3 +49,12 @@ def with_sandboxed_config
   
   yield
 end
+
+module Spec
+  module Matchers
+    def fail_with(message)
+      raise_error(Spec::Expectations::ExpectationNotMetError, message)
+    end
+  end
+end
+

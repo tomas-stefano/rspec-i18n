@@ -13,19 +13,30 @@ describe "should be_predicate" do
   end
   
   it "should fail when actual returns false for :predicate?" do
+    
+    
+    pending('verify rspec 1.3')
+    
     atual = stub("atual", :feliz? => false)
-    atual.should_not ser_feliz
+    lambda {
+      atual.should be_feliz
+    }.should fail_with("expected feliz? to return true, got false")
+  end
+  
+  it "should fail when actual returns false for :predicate?" do
+    
+    pending('verify rspec 1.3')
+    
+    atual = stub("atual", :feliz? => nil)
+    lambda {
+      atual.should be_feliz
+    }.should fail_with("expected feliz? to return true, got nil")
   end
   
   it 'should be true for the new :predicate' do
     atual = true
     pending("SHOULD translate true, false, nil, empty for the default MATCHERS")
     atual.should ser_true
-  end
-  
-  it "should raise error for the not expected :predicate?" do
-    atual = stub("atual", :feliz? => false)
-    lambda { atual.should ser_feliz }.should raise_error
   end
   
   it 'should convert be word to english with two parameters' do
