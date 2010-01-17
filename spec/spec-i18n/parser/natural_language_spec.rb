@@ -38,59 +38,6 @@ module SpecI18n
         
       end
       
-      context "list languages" do
-        
-        before(:each) do
-          @portuguese = ["pt", "Portuguese", "português"]
-          @spanish = ["es", "Spanish", "español"]
-        end
-        
-        it "should return the three keywords language for portuguese" do
-          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return("pt")
-          NaturalLanguage.list_languages.should == [@portuguese]
-        end
-        
-        it "should return the three keywords for spanish" do
-          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return("es")
-          NaturalLanguage.list_languages.should == [@spanish]
-        end
-        
-        it "should return the three keywords for spanish and portuguese" do
-          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return(["pt", "es"])
-          NaturalLanguage.list_languages.should == [@portuguese, @spanish].sort
-        end
-      end
-      
-      context "list all keywords" do
-        
-        before(:each) do
-          @language_keywords = NaturalLanguage.list_basic_keywords("pt")
-        end
-        
-        # TODO: It's 3 a.m in the morning ... Ugly Specs ... #FIXME
-        
-        it "should return all basic keywords for a language" do
-          words = %w(name native describe before after it should should_not)
-          words.each do |word|
-            @language_keywords.flatten.should include(word)
-          end
-        end
-        
-        it "should return the example keyword for the portuguese language" do
-          example = @language_keywords.map { |array| array if array.include?("it") }.compact.flatten
-          example.should == ["it", "exemplo / especificar"]
-        end
-        
-        it "should return the matchers keywords for language" do
-          @language_keywords.flatten.should include('matchers')
-        end
-        
-        it "should return the hooks keywords for language" do
-          @language_keywords.flatten.should include('hooks')
-        end
-        
-      end
-
       %w(describe before after it should name native).each do |keyword|
         it "should have the #{keyword} keyword" do
           portuguese_keys = @pt.keywords.keys          
