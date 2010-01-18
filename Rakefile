@@ -29,7 +29,7 @@ begin
     gemspec.homepage = "http://github.com/tomas-stefano/rspec-i18n"
     gemspec.authors = ["Tomas D'Stefano"]
 
-    gemspec.add_dependency('rspec', '>= 1.2.9')
+    gemspec.add_dependency('rspec', '>= 1.3.0')
     gemspec.add_dependency('terminal-table', '>= 1.4.2')
     gemspec.add_dependency('term-ansicolor', '1.0.4')
 

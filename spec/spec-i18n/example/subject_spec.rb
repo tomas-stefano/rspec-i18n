@@ -12,7 +12,8 @@ module Spec
         it "returns an instance of the class" do
           group = Class.new(ExampleGroupDouble).describe(Array)
           example = group.new(ExampleProxy.new)
-          example.assunto.should == []
+pending
+          example.subject.should == []
         end
       end
       
@@ -20,7 +21,8 @@ module Spec
         it "returns the Module" do
           group = Class.new(ExampleGroupDouble).describe(Enumerable)
           example = group.new(ExampleProxy.new)
-          example.assunto.should == Enumerable
+pending
+          example.subject.should == Enumerable
         end
       end
     end

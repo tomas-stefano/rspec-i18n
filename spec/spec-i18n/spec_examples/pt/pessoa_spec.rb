@@ -15,9 +15,18 @@ class Pessoa
   def nome_completo
     "#{@nome} #{@sobrenome}"
   end
+
+  def maior_de_idade?
+    return true if @idade >= 18
+    false
+  end
+
+  def pronto_para_votar?
+    maior_de_idade?
+  end
 end
 
-# Silly Tests
+# Silly Tests for specifying the library in portuguese language
 descreva Pessoa do
   
   antes(:de_todos) do
@@ -35,6 +44,36 @@ descreva Pessoa do
   depois(:de_cada) do
     @outras_pessoas = []
   end
+
+  depois(:suite) do
+    @pessoas = []
+  end
+
+  exemplo 'deve ser uma instancia da classe Pessoa' do
+    @pessoa.deve ser_instancia_de(Pessoa)
+  end
+
+  exemplo 'deve incluir uma pessoa' do
+    @pessoas.deve incluir(@pessoa)
+  end
+
+  exemplo 'deve ser do tipo Pessoa' do
+    @pessoa.deve ser_do_tipo(Pessoa)
+  end
+
+  exemplo 'deve ter pelo menos uma pessoa' do
+    @pessoas.deve ter_no_minimo(1).items
+  end
+
+  exemplo 'deve ter exatamente duas pessoas' do
+    @pessoas << @pessoa
+    @pessoas.deve ter_exatamente(2).items
+  end
+
+  exemplo 'deve ter no maximo tres pessoas' do
+    @pessoas = []
+    @pessoas.deve ter_no_maximo(3).items
+  end
   
   contexto "Nome completo" do
     
@@ -43,17 +82,17 @@ descreva Pessoa do
     end
   
     exemplo "deve retornar o nome completo" do
-      @pessoa.nome_completo.deve ser_igual_a("Tomás D'Stefano")
+      @pessoa.nome_completo.deve ==("Tomás D'Stefano")
     end
     
     exemplo 'nome completo não pode ser nulo' do
-      @pessoa.nome_completo.nao_deve igual_a(nil)
+      @pessoa.nome_completo.nao_deve ser_igual_a(nil)
     end
     
   end
 
   contexto "a idade" do
-    
+      
     antes(:de_todos_exemplos) do
       @pessoa = Pessoa.new("Aaromn", "Monkey", :idade => 20)
     end
@@ -67,11 +106,13 @@ descreva Pessoa do
     subject { Pessoa.new('Aaron', 'Monkey', :idade => 18) }
 
     exemplo "deve estar pronto para votar" do
-      deve estar_pronto_para_votar
+      pending 'should have the should translated in subject'      
+      should estar_pronto_para_votar
     end
 
     exemplo "deve ser maior de idade" do
-      deve ser_maior_de_idade
+      pending 'should have the should_not translated in subject'      
+      should ser_maior_de_idade
     end
   end
 
@@ -79,11 +120,14 @@ descreva Pessoa do
     subject { Pessoa.new('Aaron', 'Monkey', :idade => 17) }
 
     exemplo "nao deve estar pronto para votar" do
-      nao_deve estar_pronto_para_votar
+      pending 'should have the should_not translated in subject'      
+      should_not estar_pronto_para_votar
     end
 
     exemplo "nao deve ser maior de idade" do
-      nao_deve ser_maior_de_idade
+      pending 'should have the should_not trnaslated in subject'
+      should_not ser_maior_de_idade
     end
   end
+
 end
