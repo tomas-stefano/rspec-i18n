@@ -52,6 +52,10 @@ module SpecI18n
         spec_keywords("it")
       end
 
+      def subject_keywords
+        spec_keywords('subject')
+      end
+
       def spec_keywords(key, space=false)
         raise "No #{key} in #{@keywords.inspect}" if @keywords[key].nil?
         values = keywords[key].split('|')

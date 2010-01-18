@@ -14,19 +14,34 @@
   should_not: should_not
   before: before
   after: after
+  subject: subject
   hooks:
     each: each
     all: all
     suite: suite
   matchers:
     be: be
+    be_a_kind_of: be_a_kind_of
+    be_close: be_close
+    be_an_instance_of: be_an_instance_of
+    eql: eql
     equal: equal
+    exist: exist
+    have: have
+    have_exactly: have_exactly
+    have_at_least: have_at_least
+    have_at_most: have_at_most
+    include: include
+    match: match
+    raise_error: raise_exception
+    satisfy: satisfazer
 
 "pt":
   name: Portuguese
   native: português
   describe: descreva|contexto
   it: exemplo|especificar
+  subject: subject
   should: deve
   should_not: nao_deve
   before: antes
@@ -62,6 +77,7 @@
   should_not: no_debe
   before: antes
   after: despues
+  subject: asunto|tema
   hooks:
     each: de_cada_ejemplo
     all: de_todos_ejemplo

@@ -115,6 +115,19 @@ module SpecI18n
         end
       end
 
+      context 'of example subject keywords' do
+        
+        before(:each) do
+          @keywords = { "subject" => ["assunto", "asunto"] }
+        end
+
+        it 'should return the subject keywords' do
+          expectation_subject = {'subject' => 'assunto|tema'}
+          @pt.stub!(:keywords).and_return(expectation_subject)
+          @pt.subject_keywords.should == @keywords
+        end
+      end
+
       context "splitting the keys" do
         it "should raise no found key" do
           lambda {

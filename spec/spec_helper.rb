@@ -13,7 +13,18 @@ def portuguese_language(expected)
   
   expected['matchers']['be'] = 'ser|estar' unless expected['matchers'].nil?
   
-  pt.stub(:keywords).and_return(expected)
+  predicade = pt.stub(:keywords).and_return(expected)
+  expected
+end
+
+def spanish_language(expected)
+  es = Parser::NaturalLanguage.get("es")
+  SpecI18n.stub!(:natural_language).and_return(es)
+  
+  expected['matchers']['be'] = 'ser|estar' unless expected['matchers'].nil?
+  
+  predicade = es.stub(:keywords).and_return(expected)
+  expected
 end
 
 def with_sandboxed_options
