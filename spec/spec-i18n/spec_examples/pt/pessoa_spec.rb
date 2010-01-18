@@ -5,11 +5,11 @@ Spec::Runner.configure do |config|
 end
 
 class Pessoa
-  attr_reader :idade
-  def initialize(nome, sobrenome, idade=0)
+  attr_accessor :idade
+  def initialize(nome, sobrenome, opcoes={})
     @nome = nome
     @sobrenome = sobrenome
-    @idade = idade
+    @idade = opcoes[:idade]
   end
   
   def nome_completo
@@ -55,12 +55,35 @@ descreva Pessoa do
   contexto "a idade" do
     
     antes(:de_todos_exemplos) do
-      @pessoa = Pessoa.new("Aaromn", "Monkey", 20)
+      @pessoa = Pessoa.new("Aaromn", "Monkey", :idade => 20)
     end
 
     especificar "deve ser opcional" do
       @pessoa.idade.deve ser_igual_a(20)
     end
   end
-  
+
+  contexto 'maior de idade' do
+    subject { Pessoa.new('Aaron', 'Monkey', :idade => 18) }
+
+    exemplo "deve estar pronto para votar" do
+      deve estar_pronto_para_votar
+    end
+
+    exemplo "deve ser maior de idade" do
+      deve ser_maior_de_idade
+    end
+  end
+
+  contexto 'menor de idade' do
+    subject { Pessoa.new('Aaron', 'Monkey', :idade => 17) }
+
+    exemplo "nao deve estar pronto para votar" do
+      nao_deve estar_pronto_para_votar
+    end
+
+    exemplo "nao deve ser maior de idade" do
+      nao_deve ser_maior_de_idade
+    end
+  end
 end
