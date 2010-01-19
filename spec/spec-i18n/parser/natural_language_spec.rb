@@ -118,13 +118,18 @@ module SpecI18n
       context 'of example subject keywords' do
         
         before(:each) do
-          @keywords = { "subject" => ["assunto", "asunto"] }
+          @keywords = { "subject" => "assunto|tema" }
+          @spanish_keywords = { 'subject' => 'asunto|tema'}
         end
 
         it 'should return the subject keywords' do
-          expectation_subject = {'subject' => 'assunto|tema'}
-          @pt.stub!(:keywords).and_return(expectation_subject)
-          @pt.subject_keywords.should == @keywords
+          @pt.stub!(:keywords).and_return(@keywords)
+          @pt.subject_keywords.should == {'subject' => ["assunto", "tema"]}
+        end
+
+        it 'should return the subject keywords for spanish language' do
+          @spanish_keywords.stub!(:keywords).and_return(@spanish_keywords)
+          @es.subject_keywords.should == { 'subject' => ['asunto', 'tema']}
         end
       end
 
@@ -132,12 +137,13 @@ module SpecI18n
         it "should raise no found key" do
           lambda {
             @pt.spec_keywords("no_found")
+            @pt.spec_keywords("Oh_MY_this_words_is_not_found!")
           }.should raise_error(RuntimeError)
         end
 
         it "should split correctly the keys" do
          lang = { "describe" => "descreva|contexto" }
-         NaturalLanguage.instance_variable_set(:@keywords, lang["describe"])
+         @pt.stub!(:keywords).and_return(lang)
          @pt.spec_keywords("describe").should == { "describe" => ["descreva", "contexto"] }
         end
       end
