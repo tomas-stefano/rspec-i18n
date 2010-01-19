@@ -3,6 +3,7 @@
 * Simplified more and more tests!
 * Find the right module for the example group specs(it/example) (I think =>
   Spec::Example::ExampleGroupMethods but I think I was wrong)
+* Need better hints for the its word
 
 == Future
 

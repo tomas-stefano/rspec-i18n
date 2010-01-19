@@ -90,5 +90,31 @@ module Spec
       end
 
     end
+    
+    describe ".its (to access subject's attributes)" do
+      
+      before(:each) do
+        @its_examples = {'subject' => 'assunto', 'its' => 'exemplos', 'matchers' => {}}
+        @pt = portuguese_language(@its_examples)
+        Subject::ExampleGroupMethods.register_subjects
+        @es = spanish_language({'subject' => 'assunto', 'its' => 'ejemplos', 'matchers' => {}})
+        Subject::ExampleGroupMethods.register_subjects
+      end
+   
+     with_sandboxed_options do
+        it "passes when expectation should pass" do
+          group = Class.new(ExampleGroupDouble).describe(Array)
+          child = group.exemplos(:length) { should == 0 }
+          child.run(options).should == true
+        end
+        
+        it "fails when expectation should fail" do
+          group = Class.new(ExampleGroupDouble).describe(Array)
+          child = group.ejemplos(:length) { should == 1 }
+          child.run(options).should == false
+        end
+      end
+    end
+
   end
 end

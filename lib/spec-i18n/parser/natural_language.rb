@@ -53,7 +53,11 @@ module SpecI18n
       end
 
       def subject_keywords
-        spec_keywords('subject')
+        adverbs = spec_keywords('subject')
+      end
+
+      def its_keywords
+        spec_keywords("its")
       end
 
       def spec_keywords(key, space=false)

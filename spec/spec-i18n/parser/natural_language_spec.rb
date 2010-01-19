@@ -133,6 +133,23 @@ module SpecI18n
         end
       end
 
+      context 'of example its keywords' do
+        
+        before(:each) do
+          @keywords = { "its" => "exemplos" }
+          @spanish_keywords = { 'its' => 'ejemplos'}
+        end
+
+        it 'should return the its keywords' do
+          @pt.stub!(:keywords).and_return(@keywords)
+          @pt.its_keywords.should == {'its' => ["exemplos"]}
+        end
+
+        it 'should return the its keywords for spanish language' do
+          @es.stub!(:keywords).and_return(@spanish_keywords)
+          @es.its_keywords.should == { 'its' => ['ejemplos']}
+        end
+      end
       context "splitting the keys" do
         it "should raise no found key" do
           lambda {
