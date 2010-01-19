@@ -18,6 +18,8 @@ module Spec
         Spec::Example::ExampleGroupMethods.register_example_adverbs
         Spec::Example::BeforeAndAfterHooks.register_hooks
         Spec::Matchers.register_all_matchers
+        Spec::Example::Subject::ExampleGroupMethods.register_subjects
+        Spec::Example::Subject::ExampleMethods.register_subjects
       end
     end
     

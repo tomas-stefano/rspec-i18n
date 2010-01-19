@@ -24,6 +24,14 @@ class Pessoa
   def pronto_para_votar?
     maior_de_idade?
   end
+
+  def pronto_para_dirigir?
+    maior_de_idade?
+  end
+
+  def autorizado_a_beber?
+    maior_de_idade?
+  end
 end
 
 # Silly Tests for specifying the library in portuguese language
@@ -103,29 +111,33 @@ descreva Pessoa do
   end
 
   contexto 'maior de idade' do
-    subject { Pessoa.new('Aaron', 'Monkey', :idade => 18) }
+    assunto { Pessoa.new('Aaron', 'Monkey', :idade => 18) }
 
     exemplo "deve estar pronto para votar" do
-      pending 'should have the should translated in subject'      
       should estar_pronto_para_votar
     end
 
     exemplo "deve ser maior de idade" do
-      pending 'should have the should_not translated in subject'      
       should ser_maior_de_idade
+    end
+
+    exemplo "deve estar pronto para dirigir" do
+      assunto.deve estar_pronto_para_dirigir
+    end
+
+    exemplo "deve estar autorizado para beber(=D)" do
+      assunto.deve estar_autorizado_a_beber
     end
   end
 
   contexto 'menor de idade' do
-    subject { Pessoa.new('Aaron', 'Monkey', :idade => 17) }
+    assunto { Pessoa.new('Aaron', 'Monkey', :idade => 17) }
 
     exemplo "nao deve estar pronto para votar" do
-      pending 'should have the should_not translated in subject'      
       should_not estar_pronto_para_votar
     end
 
     exemplo "nao deve ser maior de idade" do
-      pending 'should have the should_not trnaslated in subject'
       should_not ser_maior_de_idade
     end
   end

@@ -41,7 +41,7 @@
   native: português
   describe: descreva|contexto
   it: exemplo|especificar
-  subject: subject
+  subject: assunto
   should: deve
   should_not: nao_deve
   before: antes
