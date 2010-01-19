@@ -25,15 +25,15 @@ module SpecI18n
 
       end
       
-      context "imcomplete languages" do
+      context "incomplete languages" do
         
-        it "should return true for the complete language" do
-          @pt.incomplete?.should be_true
+        it "should return false for the complete language" do
+          @pt.incomplete?.should be_false
         end
         
-        it "should return false for the imcomplete language" do
+        it "should return true for the incomplete language" do
           @pt.stub!(:keywords).and_return({ :name => []})
-          @pt.incomplete?.should be_false
+          @pt.incomplete?.should be_true
         end
         
       end

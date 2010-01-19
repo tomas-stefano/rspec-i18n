@@ -21,8 +21,8 @@ module SpecI18n
       
       def incomplete?
         language_words = BASIC_KEYWORDS.collect { |key| keywords[key].nil? }
-        return false if language_words.include?(true)
-        true
+        return true if language_words.include?(true)
+        false
       end
 
       def dsl_keywords
