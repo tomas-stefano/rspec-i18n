@@ -2,7 +2,7 @@ module SpecI18n
   module Parser
     class NaturalLanguage
       BASIC_KEYWORDS = %w{ name native describe before after it 
-                              should should_not}
+                           subject its should should_not}
                               
       ADVANCED_KEYWORDS = %w{ hooks matchers}
       
