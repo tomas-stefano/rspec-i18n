@@ -5,24 +5,29 @@ module Spec
     describe "implicit subject" do
       
       before(:each) do
-        @pt = portuguese_language({'subject' => 'assunto', 'matchers' => {}})
+        @pt = portuguese_language({'subject' => 'assunto', 'should' => 'deve',
+                                    'should_not' => 'nao_deve','matchers' => {}})
         Subject::ExampleMethods.register_subjects
-        @es = spanish_language({'subject' => 'asunto', 'matchers' => {}})
+        @es = spanish_language({'subject' => 'asunto', 'should' => 'deve',
+                                'should_not' => 'nao_deve', 'matchers' => {}})
         Subject::ExampleMethods.register_subjects
       end
 
       it 'should have the subject translated' do
         values = @pt['subject'].split('|')
-        values.each do |value_method|
+        values << @es['subject'].split('|')
+        values.flatten.each do |value_method|
           Subject::ExampleMethods.instance_methods.should be_include(value_method)
         end
       end
 
-      it 'should have the subject translated in spanish' do
-        values = @es['subject'].split('|')
-        values.each do |value_method|
+      it "should have the should and should_not method trasnlated" do
+        values = @pt['should'].split('|')
+        other_values = @pt['should_not'].split('|')
+        values << other_values
+        values.flatten.each do |value_method|
           Subject::ExampleMethods.instance_methods.should be_include(value_method)
-        end
+        end        
       end
       
       describe "with a class" do

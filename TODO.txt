@@ -7,7 +7,6 @@
 
 == Future
 
-* Translate subjects
 * Translate shared examples
 * Put a #language header in the spec_helper file (Cucumber Style) instead load from config(maintain the two options)
 * Create the directory features to test with Cucumber

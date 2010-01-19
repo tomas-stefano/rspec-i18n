@@ -114,11 +114,11 @@ descreva Pessoa do
     assunto { Pessoa.new('Aaron', 'Monkey', :idade => 18) }
 
     exemplo "deve estar pronto para votar" do
-      should estar_pronto_para_votar
+      deve estar_pronto_para_votar
     end
 
     exemplo "deve ser maior de idade" do
-      should ser_maior_de_idade
+      deve ser_maior_de_idade
     end
 
     exemplo "deve estar pronto para dirigir" do
@@ -134,11 +134,11 @@ descreva Pessoa do
     assunto { Pessoa.new('Aaron', 'Monkey', :idade => 17) }
 
     exemplo "nao deve estar pronto para votar" do
-      should_not estar_pronto_para_votar
+      nao_deve estar_pronto_para_votar
     end
 
     exemplo "nao deve ser maior de idade" do
-      should_not ser_maior_de_idade
+      nao_deve ser_maior_de_idade
     end
   end
 
