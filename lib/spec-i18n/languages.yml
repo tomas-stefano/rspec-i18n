@@ -10,11 +10,12 @@
   native: English
   describe: describe
   it: it|specify
+  its: exemplo_do_assunto # I don't know about this word
+  subject: subject
   should: should
   should_not: should_not
   before: before
   after: after
-  subject: subject
   hooks:
     each: each
     all: all
@@ -41,6 +42,7 @@
   native: português
   describe: descreva|contexto
   it: exemplo|especificar
+  its: exemplo_do_assunto # I don't know about this word
   subject: assunto
   should: deve
   should_not: nao_deve
@@ -73,11 +75,12 @@
   native: español
   describe: describir 
   it: ejemplo
+  its: ejemplo_asunto # I don't know about this word
+  subject: asunto|tema
   should: deberia
   should_not: no_debe
   before: antes
   after: despues
-  subject: asunto|tema
   hooks:
     each: de_cada_ejemplo
     all: de_todos_ejemplo
