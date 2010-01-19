@@ -1,13 +1,15 @@
 === development (in git)
 
 * enhancements
+  * Support for rspec 1.3
   * Add the translation of following matchers: be_close, be_instance_of, 
-    be_kind_of, eql,	equal, exist, have(have_exactly), have_at_least, 
+    be_kind_of, eql, equal, exist, have(have_exactly), have_at_least, 
     have_at_most, include, match, raise_error(raise_exception), satisfy
   * Add the translation of subject keywords(subject, its, should and should_not)
   * Add the matchers and hooks in executable list keywords
   * Removing the cucumber dependency and add term-ansicolor and    
     terminal-table dependency
+  * Add the be predicates for the rspec 1.3
   * Refactoring Parser::NaturalLanguage.get(SpecI18n.spec_language) 
     duplications
 

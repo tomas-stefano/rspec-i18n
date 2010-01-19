@@ -12,7 +12,7 @@ POST_MESSAGE = <<-POST_INSTALL_MESSAGE
 
 Thank you for installing rspec-i18n-#{SpecI18n::VERSION}
 Please be sure to read http://wiki.github.com/tomas-stefano/rspec-i18n/upgrading
-for important information about this release.
+for information about this release.
 
 Remember: 'TDD is a muscle. You have to exercise it.' =) (Brian Liles)
 
