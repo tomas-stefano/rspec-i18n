@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'spec'
 require 'spec-i18n'
 
 Spec::Runner.configure do |config|
@@ -7,18 +6,36 @@ Spec::Runner.configure do |config|
 end
 
 class Pessoa
-  attr_reader :idade
-  def initialize(nome, sobrenome, idade=0)
+  attr_accessor :idade
+  def initialize(nome, sobrenome, opcoes={})
     @nome = nome
     @sobrenome = sobrenome
-    @idade = idade
+    @idade = opcoes[:idade]
   end
   
   def nome_completo
     "#{@nome} #{@sobrenome}"
   end
+
+  def maior_de_idade?
+    return true if @idade >= 18
+    false
+  end
+
+  def pronto_para_votar?
+    maior_de_idade?
+  end
+
+  def pronto_para_dirigir?
+    maior_de_idade?
+  end
+
+  def autorizado_a_beber?
+    maior_de_idade?
+  end
 end
 
+# Silly Tests for show to you how to use this library in portuguese language
 descreva Pessoa do
   
   antes(:de_todos) do
@@ -36,6 +53,36 @@ descreva Pessoa do
   depois(:de_cada) do
     @outras_pessoas = []
   end
+
+  depois(:suite) do
+    @pessoas = []
+  end
+
+  exemplo 'deve ser uma instancia da classe Pessoa' do
+    @pessoa.deve ser_instancia_de(Pessoa)
+  end
+
+  exemplo 'deve incluir uma pessoa' do
+    @pessoas.deve incluir(@pessoa)
+  end
+
+  exemplo 'deve ser do tipo Pessoa' do
+    @pessoa.deve ser_do_tipo(Pessoa)
+  end
+
+  exemplo 'deve ter pelo menos uma pessoa' do
+    @pessoas.deve ter_no_minimo(1).items
+  end
+
+  exemplo 'deve ter exatamente duas pessoas' do
+    @pessoas << @pessoa
+    @pessoas.deve ter_exatamente(2).items
+  end
+
+  exemplo 'deve ter no maximo tres pessoas' do
+    @pessoas = []
+    @pessoas.deve ter_no_maximo(3).items
+  end
   
   contexto "Nome completo" do
     
@@ -44,24 +91,64 @@ descreva Pessoa do
     end
   
     exemplo "deve retornar o nome completo" do
-      @pessoa.nome_completo.deve == "Tomás D'Stefano"
+      @pessoa.nome_completo.deve ==("Tomás D'Stefano")
     end
     
     exemplo 'nome completo não pode ser nulo' do
-      @pessoa.nome_completo.nao_deve be_nil
+      @pessoa.nome_completo.nao_deve ser_igual_a(nil)
     end
     
   end
 
   contexto "a idade" do
-    
+      
     antes(:de_todos_exemplos) do
-      @pessoa = Pessoa.new("Aaromn", "Monkey", 20)
+      @pessoa = Pessoa.new("Aaromn", "Monkey", :idade => 20)
     end
 
     especificar "deve ser opcional" do
-      @pessoa.idade.deve == 20
+      @pessoa.idade.deve ser_igual_a(20)
     end
   end
-  
+
+  contexto 'maior de idade' do
+    assunto { Pessoa.new('Aaron', 'Monkey', :idade => 18) }
+
+    exemplo "deve estar pronto para votar" do
+      deve estar_pronto_para_votar
+    end
+
+    exemplo "deve ser maior de idade" do
+      deve ser_maior_de_idade
+    end
+
+    exemplo "deve estar pronto para dirigir" do
+      assunto.deve estar_pronto_para_dirigir
+    end
+
+    exemplo "deve estar autorizado para beber =D" do
+      assunto.deve estar_autorizado_a_beber
+    end
+  end
+
+  contexto 'menor de idade' do
+    assunto { Pessoa.new('Aaron', 'Monkey', :idade => 17) }
+
+    exemplo "nao deve estar pronto para votar" do
+      nao_deve estar_pronto_para_votar
+    end
+
+    exemplo "nao deve ser maior de idade" do
+      nao_deve ser_maior_de_idade
+    end
+    
+    exemplo "nao deve estar pronto para votar" do
+      assunto.nao_deve estar_pronto_para_votar
+    end
+    
+    exemplo "nao deve estar autorizado para beber =(" do
+      assunto.nao_deve estar_autorizado_a_beber
+    end
+  end
+
 end

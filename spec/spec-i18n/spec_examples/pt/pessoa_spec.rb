@@ -125,7 +125,7 @@ descreva Pessoa do
       assunto.deve estar_pronto_para_dirigir
     end
 
-    exemplo "deve estar autorizado para beber(=D)" do
+    exemplo "deve estar autorizado para beber =D" do
       assunto.deve estar_autorizado_a_beber
     end
   end
@@ -139,6 +139,14 @@ descreva Pessoa do
 
     exemplo "nao deve ser maior de idade" do
       nao_deve ser_maior_de_idade
+    end
+    
+    exemplo "nao deve estar pronto para votar" do
+      assunto.nao_deve estar_pronto_para_votar
+    end
+    
+    exemplo "nao deve estar autorizado para beber =(" do
+      assunto.nao_deve estar_autorizado_a_beber
     end
   end
 
