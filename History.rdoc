@@ -1,4 +1,4 @@
-=== development (in git)
+=== Version 1.0.0
 
 * enhancements
   * Support for rspec 1.3
