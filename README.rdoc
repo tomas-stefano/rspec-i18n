@@ -19,7 +19,6 @@ Rspec-i18n will supports any language you want
 (See http://github.com/tomas-stefano/rspec-i18n/blob/master/lib/spec-i18n/languages.yml file). 
 This is Portuguese(Brazil):
     
-    require 'spec'
     require 'spec-i18n'
 
     Spec::Runner.configure do |config|
@@ -34,14 +33,40 @@ This is Portuguese(Brazil):
     require 'spec_helper'
 	
     descreva Pessoa do
-      antes(:de_cada) do
-        @nome = "Tomas"
-        @pessoa = Pessoa.new(@nome)
+     
+      antes(:de_todos) do
+        @pessoa = Pessoa.new("Homer", "Simpson")
       end
 
-      exemplo "retornar o seu nome" do
-        @pessoa.nome.deve == @nome
+      antes(:de_cada) do
+        @pessoas = [@pessoa]
       end
+
+      contexto "a idade" do
+
+        antes(:de_todos_exemplos) do
+           @pessoa = Pessoa.new("Aaromn", "Monkey", :idade => 20)
+        end
+
+        # se voce quiser pode usar exemplo ou especificar - (it)
+        especificar "deve ser opcional" do
+          @pessoa.idade.deve ser_igual_a(20)
+        end
+      end
+
+      contexto 'maior de idade' do
+        assunto { Pessoa.new('Aaron', 'Monkey', :idade => 18) }
+
+        exemplo "deve estar pronto para votar" do
+          deve estar_pronto_para_votar
+        end
+
+        # voce pode colocar o assunto(subject) implicitamente ou explicitamente
+        exemplo "deve estar autorizado para beber =D" do
+          assunto.deve estar_autorizado_a_beber
+        end
+      end
+
     end
 
 == Examples
