@@ -10,7 +10,7 @@
   native: English
   describe: describe
   it: it|specify
-  its: exemplo_do_assunto # I don't know about this word
+  its: its
   subject: subject
   should: should
   should_not: should_not
@@ -34,8 +34,8 @@
     have_at_most: have_at_most
     include: include
     match: match
-    raise_error: raise_exception
-    satisfy: satisfazer
+    raise_error: raise_exception|raise_error
+    satisfy: satisfy
 
 "pt":
   name: Portuguese
