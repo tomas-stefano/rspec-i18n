@@ -10,9 +10,8 @@ The Rspec-i18n gem provide a easy way to write specs in any language you
 prefer(If don't have your language, please make a fork). 
 The Rspec-i18n was created for the purpose of teaching people who are
 starting to developing applications but also serves to Production use.
-I know that many people prefer to write code/specs in English =)
-
-But if you don't prefer that, you'll like the Rspec-i18n.
+I know that many people prefer to write code/specs in English.
+But if you don't prefer that, you'll like the Rspec-i18n. =)
 
 == Synopsis
   
