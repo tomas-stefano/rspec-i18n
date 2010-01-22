@@ -11,7 +11,7 @@
 * Translate nil, true, false and empty.
 * Put a #language header in the spec_helper file (Cucumber Style) instead load from config(maintain the two options)
 * Create the directory features to test with Cucumber
-* Verifying if it's possible to translate error and success messages
+* Verifying if it's possible to translate error and success messages and documentation
 * Make the describe/it i18n available from a class 
 	
 	Example:

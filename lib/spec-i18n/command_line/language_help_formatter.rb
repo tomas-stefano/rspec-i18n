@@ -14,9 +14,6 @@ module SpecI18n
           include Term::ANSIColor
         end
         
-        # Cucumber print table is loading 
-        # because I don't want reiventing the wheel
-        #
         def list_languages_and_exit(io)
           languages = list_languages
           

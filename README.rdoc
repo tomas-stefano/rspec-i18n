@@ -7,7 +7,8 @@
 == Description
 
 The Rspec-i18n gem provide a easy way to write specs in any language you
-prefer. The Rspec-i18n was created for the purpose of teaching people who are
+prefer(If don't have your language, please make a fork). 
+The Rspec-i18n was created for the purpose of teaching people who are
 starting to developing applications but also serves to Production use.
 I know that many people prefer to write code/specs in English =)
 
@@ -19,13 +20,15 @@ Rspec-i18n will supports any language you want
 (See http://github.com/tomas-stefano/rspec-i18n/blob/master/lib/spec-i18n/languages.yml file). 
 This is Portuguese(Brazil):
     
+    # In spec/spec_helper
+
     require 'spec-i18n'
 
     Spec::Runner.configure do |config|
       
       config.spec_language :pt
       
-      ...
+      # ...
     end
 
     # In spec/pessoa_spec.rb
@@ -49,7 +52,7 @@ This is Portuguese(Brazil):
         end
 
         # se voce quiser pode usar exemplo ou especificar - (it)
-        especificar "deve ser opcional" do
+        exemplo "deve ser opcional" do
           @pessoa.idade.deve ser_igual_a(20)
         end
       end
