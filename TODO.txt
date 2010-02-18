@@ -12,7 +12,7 @@
 * Put a #language header in the spec_helper file (Cucumber Style) instead load from config(maintain the two options)
 * Create the directory features to test with Cucumber
 * Verifying if it's possible to translate error and success messages and documentation
-* Make the describe/it i18n available from a class 
+* Make the describe/it i18n available from a class: 
 	
 	Example:
 	#	class PilhaSpec < Spec::ExampleGroup
@@ -28,5 +28,5 @@
 	#
 	#   end
 	
-* Check a better way to manipulating the mocks and stubs for i18n (What do you think?)
+* Check a better way to manipulating the mocks and stubs to i18n (What do you think?)
 * Verify the following matchers: simple_matcher, wrap_expectation, respond_to, change and match_unless_raises.

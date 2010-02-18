@@ -4,6 +4,14 @@
 * http://gemcutter.org/gems/rspec-i18n
 * http://rspec-i18n.lighthouseapp.com
 
+== Install
+
+  [sudo] gem install rspec-i18n
+
+Or if you use rvm(for example ruby 1.8.7):
+
+  rvm 1.8.7 gem install rspec-i18n
+
 == Description
 
 The Rspec-i18n gem provide a easy way to write specs in any language you
@@ -93,9 +101,11 @@ See more examples in http://github.com/tomas-stefano/rspec-i18n/blob/master/exam
 
 ** OBS: Hints for better words in languages.yml are Welcome =D.
 
-== Install
+== Tested Versions
 
-  [sudo] gem install rspec-i18n
+   Rspec:  1.2.7, 1.2.8, 1.2.9 and 1.3.0
+
+Support for rspec 2.0 come soon!
 
 == TODO
 
