@@ -28,5 +28,5 @@
 	#
 	#   end
 	
-* Check a better way to manipulating the mocks and stubs to i18n (What do you think?)
+* Check a better way to manipulating the mocks and stubs (What do you think?)
 * Verify the following matchers: simple_matcher, wrap_expectation, respond_to, change and match_unless_raises.

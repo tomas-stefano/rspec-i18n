@@ -13,8 +13,7 @@ describe "should be_predicate" do
   end
   
   it "should fail when actual returns false for :predicate?" do
-    
-    
+        
     pending('verify rspec 1.3')
     
     atual = stub("atual", :feliz? => false)
@@ -32,13 +31,7 @@ describe "should be_predicate" do
       atual.should be_feliz
     }.should fail_with("expected feliz? to return true, got nil")
   end
-  
-  it 'should be true for the new :predicate' do
-    atual = true
-    pending("SHOULD translate true, false, nil, empty for the default MATCHERS")
-    atual.should ser_true
-  end
-  
+    
   it 'should convert be word to english with two parameters' do
     be_to_english(:ser_feliz, 'ser|estar').should == :be_feliz
   end

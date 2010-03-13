@@ -52,20 +52,13 @@ module SpecI18n
           @language_keywords = LanguageHelpFormatter.list_basic_keywords(@pt)
         end
       
-        # TODO: It's 3 a.m in the morning ... Ugly Specs ... #FIXME
-      
         it "should return all basic keywords for a language" do
           words = %w(name native describe before after it should should_not)
           words.each do |word|
             @language_keywords.flatten.should include(word)
           end
         end
-      
-        it "should return the example keyword for the portuguese language" do
-          example = @language_keywords.map { |array| array if array.include?("it") }.compact.flatten
-          example.should == ["it", "exemplo / especificar"]
-        end
-      
+            
         describe 'the advanced keywords' do
         
           before(:each) do

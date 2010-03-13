@@ -47,10 +47,6 @@ module SpecI18n
 
       context "of dsl keywords" do
       
-        it "should return all the dsl keywords" do
-          @pt.dsl_keywords.should == {"describe" => [ "descreva", "contexto"] }
-        end
-
         it "should return the describe dsl keyword" do
           lang = { "describe" => "descreva", :before => "antes" }
           @pt.should_receive(:keywords).and_return(lang)
@@ -78,24 +74,38 @@ module SpecI18n
       
       context "of before and after keywords" do
         
+        before(:each) do
+          @language = { "before" => "before", "after" => "after"}
+        end
+        
         it "should return the hooks for the current language" do
+          @en.stub!(:keywords).and_return(@language)
           keywords = { "before" => ["before"], "after" => ["after"]}
           @en.before_and_after_keywords.should == keywords
         end
         
         it "should return the hooks for the language" do
+          language = {"before" => "antes", "after" => "depois"}
           keywords = { "before" => ["antes"], "after" => ["depois"]}
+          @pt.stub!(:keywords).and_return(language)
           @pt.before_and_after_keywords.should == keywords
         end
       end
       
       context "of hooks keywords" do
         
-        it "should return the hooks parameters for the current language" do
-          keywords = { "each" => ["de_cada", "de_cada_exemplo"], 
+        before(:each) do
+          @lang = { "hooks" => {"each" => "de_cada|de_cada_exemplo", 
+                    "all" => "de_todos|de_todos_exemplos",
+                    "suite" => "suite"}}
+          @keywords = { "each" => ["de_cada", "de_cada_exemplo"], 
                        "all" => ["de_todos", "de_todos_exemplos"],
                        "suite" => ["suite"]}
-          @pt.hooks_params_keywords.should == keywords                       
+        end
+        
+        it "should return the hooks parameters for the current language" do
+          @pt.stub!(:keywords).and_return(@lang)
+          @pt.hooks_params_keywords.should == @keywords                       
         end
       end
       
@@ -106,13 +116,11 @@ module SpecI18n
         end
         
         it "should return the example group keywords for the current language" do
+          lang = { "it" => "exemplo|especificar", "describe" => "descreva" }
+          @pt.stub!(:keywords).and_return(lang)
           @pt.example_group_keywords.should == @keywords
         end
         
-        it "should return the example group for the portuguese language" do
-          @keywords = { "it" => ["it", "specify"]}
-          @en.example_group_keywords.should == @keywords
-        end
       end
 
       context 'of example subject keywords' do
