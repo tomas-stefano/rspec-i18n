@@ -20,7 +20,11 @@ module Spec
     end      
   
     def translate_be_true
-
+      Spec::Matchers.define matcher_be_true do
+        match do |actual|
+          !!actual
+        end
+      end
     end
               
     def matcher_be_true

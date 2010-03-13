@@ -98,7 +98,7 @@ See more examples in http://github.com/tomas-stefano/rspec-i18n/blob/master/exam
 	
 	rspec-i18n --language es
 
-== Adding a new language or completing a existing one(based on Cucumber implementation)
+== Adding a new language or completing a existing one
 
   1. Make a fork of Rspec-i18n and pull it down
   2. Add your language keywords to languages.yml
