@@ -1,4 +1,4 @@
-require 'spec-i18n'
+require File.expand_path(File.join(__FILE__, "../../../../spec_helper"))
 
 Spec::Runner.configure do |config|
   config.spec_language :pt
@@ -15,10 +15,20 @@ class Pessoa
   def nome_completo
     "#{@nome} #{@sobrenome}"
   end
-
+  
+  def informacoes
+    return nil if nome_completo.strip.empty?
+    nome_completo
+  end
+  
   def maior_de_idade?
     return true if @idade >= 18
     false
+  end
+  
+  def menor_de_idade?
+    return false if maior_de_idade?
+    true 
   end
 
   def pronto_para_votar?
@@ -57,28 +67,28 @@ descreva Pessoa do
     @pessoas = []
   end
 
-  exemplo 'deve ser uma instancia da classe Pessoa' do
+  isto 'deve ser uma instancia da classe Pessoa' do
     @pessoa.deve ser_instancia_de(Pessoa)
   end
 
-  exemplo 'deve incluir uma pessoa' do
+  isto 'deve incluir uma pessoa' do
     @pessoas.deve incluir(@pessoa)
   end
 
-  exemplo 'deve ser do tipo Pessoa' do
+  isto 'deve ser do tipo Pessoa' do
     @pessoa.deve ser_do_tipo(Pessoa)
   end
 
-  exemplo 'deve ter pelo menos uma pessoa' do
+  isto 'deve ter pelo menos uma pessoa' do
     @pessoas.deve ter_no_minimo(1).items
   end
 
-  exemplo 'deve ter exatamente duas pessoas' do
+  isto 'deve ter exatamente duas pessoas' do
     @pessoas << @pessoa
     @pessoas.deve ter_exatamente(2).items
   end
 
-  exemplo 'deve ter no maximo tres pessoas' do
+  isto 'deve ter no maximo tres pessoas' do
     @pessoas = []
     @pessoas.deve ter_no_maximo(3).items
   end
@@ -89,11 +99,11 @@ descreva Pessoa do
       @pessoa = Pessoa.new("Tomás", "D'Stefano")
     end
   
-    exemplo "deve retornar o nome completo" do
+    isto "deve retornar o nome completo" do
       @pessoa.nome_completo.deve ==("Tomás D'Stefano")
     end
     
-    exemplo 'nome completo não pode ser nulo' do
+    isto 'nome completo não pode ser nulo' do
       @pessoa.nome_completo.nao_deve ser_igual_a(nil)
     end
     
@@ -108,6 +118,19 @@ descreva Pessoa do
     especificar "deve ser opcional" do
       @pessoa.idade.deve ser_igual_a(20)
     end
+    
+    exemplo "deve retornar verdadeiro se for maior de idade" do
+      @pessoa.maior_de_idade?.deve ser_verdadeiro
+    end
+    
+    exemplo "deve retornar falso se for menor de idade" do
+      @pessoa.menor_de_idade?.deve ser_falso
+    end
+    
+    exemplo "deve retornar nulo caso nao tenha informacao" do
+      Pessoa.new("", "").informacoes.deve ser_nulo
+    end
+    
   end
 
   contexto 'maior de idade' do
@@ -116,7 +139,7 @@ descreva Pessoa do
     exemplo "deve estar pronto para votar" do
       deve estar_pronto_para_votar
     end
-
+    
     exemplo "deve ser maior de idade" do
       deve ser_maior_de_idade
     end

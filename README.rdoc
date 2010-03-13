@@ -40,8 +40,9 @@ First your <b>spec_helper</b>:
       # ...
     end
 
-
-Start with a very very simple example:
+Then you have <b>Translated -> Matchers, Before Hooks, After Hooks ...(etc)</b>
+in Portuguese Language.
+Start with a very very simple example in Portuguese:
 
     # In spec/personagem_spec.rb
 

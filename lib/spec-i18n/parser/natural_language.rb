@@ -62,7 +62,7 @@ module SpecI18n
       
       def word_be(ruby_type)
         matchers_be = keywords['matchers']['be'].to_s.split("|")
-        matcher_ruby_type = keywords['matchers'][ruby_type].to_s.split("|")
+        matcher_ruby_type = keywords['matchers']["#{ruby_type}_word"].to_s.split("|")
         matchers_be.collect do |matcher_be|
           matcher_ruby_type.collect { |matcher| "#{matcher_be}_#{matcher}" }
         end.flatten
