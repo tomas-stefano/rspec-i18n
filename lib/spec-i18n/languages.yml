@@ -22,6 +22,9 @@
     suite: suite
   matchers:
     be: be
+    true:
+    false:
+    nil:
     be_a_kind_of: be_a_kind_of
     be_close: be_close
     be_an_instance_of: be_an_instance_of
@@ -54,6 +57,7 @@
     suite: suite
   matchers:
     be: ser|estar
+    true: ser_verdadeiro
     be_a_kind_of: ser_do_tipo
     be_close: estar_perto|estar_proximo
     be_an_instance_of: ser_instancia_de
@@ -86,6 +90,19 @@
     all: de_todos_ejemplo
     suite: suite
   matchers:
-    be:
-    eql:
-    equal:
+    be: 
+    true: 
+    be_a_kind_of: 
+    be_close: 
+    be_an_instance_of: 
+    eql: 
+    equal: 
+    exist: 
+    have: 
+    have_exactly: 
+    have_at_least: 
+    have_at_most: 
+    include: 
+    match: 
+    raise_error: 
+    satisfy: 

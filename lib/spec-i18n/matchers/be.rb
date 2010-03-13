@@ -20,17 +20,18 @@ module Spec
     end      
   
     def translate_be_true
-      Spec::Matchers.define matcher_be_true do
-        match do |actual|
-          !!actual
+      matcher_be_true.each do |matcher|
+        Spec::Matchers.define matcher do
+          match do |actual|
+            !!actual
+          end
         end
       end
     end
               
     def matcher_be_true
       language = SpecI18n.natural_language
-      be_true_matcher = language.keywords['matchers']['be_true']
-      be_true_matcher.to_sym
+      be_true_words = language.word_be("true").map { |word| word.to_sym}
     end
   
   end

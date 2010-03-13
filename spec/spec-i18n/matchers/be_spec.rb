@@ -45,31 +45,46 @@ describe "should be_predicate" do
       
       before(:each) do
         include Spec::Matchers
-        @pt_keywords = { "matchers" => {"be_true" => "ser_verdadeiro"}}
+        @pt_keywords = { "matchers" => {'be' => 'ser',"true" => "verdadeiro"}}
         @pt.stub!(:keywords).and_return(@pt_keywords)
-        @es_keywords = { "matchers" => {"be_true" => "ser_verdadero" }}
+        @es_keywords = { "matchers" => {'be' => 'ser',"true" => "verdadero" }}
         @es.stub!(:keywords).and_return(@es_keywords)
       end
     
       it "should translate true keyword for pt" do
         SpecI18n.stub!(:natural_language).and_return(@pt)
-        expected = "#{@pt_keywords['matchers']['be_true']}"
-        Be.matcher_be_true.should == expected.to_sym 
+        matcher_be = "#{@pt_keywords['matchers']['be']}"
+        matcher_true = "#{@pt_keywords['matchers']['true']}"
+        expected = "#{matcher_be}_#{matcher_true}"
+        Be.matcher_be_true.should == [expected.to_sym ]
       end
     
       it "should translate true keyword for es" do
         SpecI18n.stub!(:natural_language).and_return(@es) 
-        expected = "#{@es_keywords['matchers']['be_true']}"
-        Be.matcher_be_true.should == expected.to_sym
+        matcher_be = "#{@es_keywords['matchers']['be']}"
+        matcher_true = "#{@es_keywords['matchers']['true']}"
+        expected = "#{matcher_be}_#{matcher_true}"
+        Be.matcher_be_true.should == [expected.to_sym]
+      end
+      
+      it "should translate true keyword in | char" do
+        language = { 'matchers' => {'be' => 'ser', 'true' => 'verdadeiro|verdade'}}
+        SpecI18n.stub!(:natural_language).and_return(@es)
+        @es.stub!(:keywords).and_return(language)
+        expected = [:ser_verdadeiro, :ser_verdade]
+        Be.matcher_be_true.should == expected
       end
       
       it "should pass when actual equal?(true)" do
         [@pt, @es].each do |language|
           SpecI18n.stub!(:natural_language).and_return(language)
           Be.translate_be_true
-          eval <<-BE_TRUE
-            true.should #{matcher_be_true}
-          BE_TRUE
+          matcher_be_true.each do |word_be_true|
+              eval <<-BE_TRUE
+                true.should #{word_be_true}
+                1.should #{word_be_true}
+              BE_TRUE
+          end
         end
       end
       

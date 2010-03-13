@@ -10,6 +10,13 @@ module SpecI18n
         @en = NaturalLanguage.get('en')
       end
 
+      %w(describe before after it should name native).each do |keyword|
+         it "should have the #{keyword} keyword" do
+           portuguese_keys = @pt.keywords.keys          
+           portuguese_keys.should include(keyword)
+         end
+       end
+       
       context "get languages" do
         
         it "should get the default language" do
@@ -38,13 +45,6 @@ module SpecI18n
         
       end
       
-      %w(describe before after it should name native).each do |keyword|
-        it "should have the #{keyword} keyword" do
-          portuguese_keys = @pt.keywords.keys          
-          portuguese_keys.should include(keyword)
-        end
-      end
-
       context "of dsl keywords" do
       
         it "should return the describe dsl keyword" do
@@ -158,6 +158,7 @@ module SpecI18n
           @es.its_keywords.should == { 'its' => ['ejemplos']}
         end
       end
+      
       context "splitting the keys" do
         it "should raise no found key" do
           lambda {
@@ -172,6 +173,20 @@ module SpecI18n
          @pt.spec_keywords("describe").should == { "describe" => ["descreva", "contexto"] }
         end
       end
+    
+      context "be_true, be_false and be_nil" do
+        
+        it "should return all the be_true possibilities" do
+          lang = { "matchers" => { 'be' => 'ser|outro_ser', 'true' => 'verdade|verdadeiro'}}
+          expected_words = ["ser_verdadeiro", "ser_verdade", "outro_ser_verdade","outro_ser_verdadeiro"]
+          @pt.stub!(:keywords).and_return(lang)
+          expected_words.each do |expected|
+            @pt.word_be("true").should include expected
+          end
+        end
+        
+      end
+    
     end
   end
 end
