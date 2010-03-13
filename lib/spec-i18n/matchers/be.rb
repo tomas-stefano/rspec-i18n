@@ -20,7 +20,7 @@ module Spec
     end      
   
     def translate_be_true
-      matcher_be_true.each do |matcher|
+      matcher_be_some(:true => true).each do |matcher|
         Spec::Matchers.define matcher do
           match do |actual|
             !!actual
@@ -28,10 +28,24 @@ module Spec
         end
       end
     end
+    
+    def translate_be_false
+      matcher_be_some(:false => true).each do |matcher|
+        Spec::Matchers.define matcher do
+          match do |actual|
+            !actual
+          end
+        end
+      end
+    end
               
-    def matcher_be_true
-      language = SpecI18n.natural_language
-      be_true_words = language.word_be("true").map { |word| word.to_sym}
+    def matcher_be_some(options={})
+      option = options.keys.select { |key| options[key] != nil }
+      language.word_be(option.to_s).map { |word| word.to_sym}
+    end
+    
+    def language
+      SpecI18n.natural_language
     end
   
   end
