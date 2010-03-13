@@ -57,7 +57,7 @@
     suite: suite
   matchers:
     be: ser|estar
-    true: ser_verdadeiro
+    true: verdadeiro
     be_a_kind_of: ser_do_tipo
     be_close: estar_perto|estar_proximo
     be_an_instance_of: ser_instancia_de
