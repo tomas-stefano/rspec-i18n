@@ -1,3 +1,5 @@
+require 'spec/matchers/dsl'
+
 module Spec
   module Matchers
     class Be #:nodoc:
@@ -14,6 +16,18 @@ module Spec
           end
         end
       end
+      
+    end      
+  
+    def translate_be_true
+
     end
+              
+    def matcher_be_true
+      language = SpecI18n.natural_language
+      be_true_matcher = language.keywords['matchers']['be_true']
+      be_true_matcher.to_sym
+    end
+  
   end
 end
