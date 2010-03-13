@@ -41,14 +41,14 @@ describe "should be_predicate" do
       @es = Parser::NaturalLanguage.get("es")
       include Spec::Matchers
       @pt_keywords = { "matchers" => {'be' => 'ser',
-        "true" => "verdadeiro", "false" => "falso"}}
+        "true" => "verdadeiro", "false" => "falso", 'nil' => 'nulo'}}
       @pt.stub!(:keywords).and_return(@pt_keywords)
       @es_keywords = { "matchers" => {'be' => 'ser',
-        "true" => "verdadero", "false" => "falso"}}
+        "true" => "verdadero", "false" => "falso", 'nil' => 'nulo'}}
       @es.stub!(:keywords).and_return(@es_keywords)
     end
     
-    ['true', 'false'].each do |ruby_type|
+    ['true', 'false', 'nil'].each do |ruby_type|
       context "be #{ruby_type}" do
           
         it "should translate #{ruby_type} keyword for pt" do
@@ -57,7 +57,7 @@ describe "should be_predicate" do
           matcher = "#{@pt_keywords['matchers'][ruby_type]}"
           expected = "#{matcher_be}_#{matcher}"
           eval <<-MATCHER
-            Be.matcher_be_some(#{ruby_type} => true).should == [expected.to_sym ]
+            Be.matcher_be_some(:#{ruby_type} => true).should == [expected.to_sym ]
           MATCHER
         end
         
@@ -67,7 +67,7 @@ describe "should be_predicate" do
            matcher_true = "#{@es_keywords['matchers'][ruby_type]}"
            expected = "#{matcher_be}_#{matcher_true}"
            eval <<-MATCHER
-             Be.matcher_be_some(#{ruby_type} => true).should == [expected.to_sym ]
+             Be.matcher_be_some(:#{ruby_type} => true).should == [expected.to_sym ]
            MATCHER
          end
       end
@@ -122,6 +122,28 @@ describe "should be_predicate" do
         end
       
       
+    end
+    
+    context "be nil predicate" do
+      it "should translate true keyword in | char" do
+        language = { 'matchers' => {'be' => 'ser', 'nil' => 'nulo|muito_nulo'}}
+        SpecI18n.stub!(:natural_language).and_return(@es)
+        @es.stub!(:keywords).and_return(language)
+        expected = [:ser_nulo, :ser_muito_nulo]
+        Be.matcher_be_some(:nil => true).should == expected
+      end
+      
+      it "should pass when actual is nil" do
+        [@pt, @es].each do |language|
+          SpecI18n.stub!(:natural_language).and_return(language)
+          Be.translate_be_nil
+          matcher_be_some(:nil => true).each do |word_be_nil|
+              eval <<-BE_NIL                
+                nil.should #{word_be_nil}
+              BE_NIL
+          end
+        end
+      end
     end
     
   end

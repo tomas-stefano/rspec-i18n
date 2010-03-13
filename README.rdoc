@@ -50,7 +50,8 @@ Start with a very very simple example:
     descreva Personagem do
      
       antes(:de_cada) do
-        @homer = Pessoa.new("Homer Simpson", :desenho => :simpson)
+        @homer = Personagem.new("Homer Simpson", :desenho => :simpson)
+		@meggie = Personagem.new("Meggie Simpson", :desenho => :simpson)
       end
                                                                                   
       isto "deve retornar o desenho ao qual o personagem pertence" do             
@@ -66,8 +67,8 @@ Start with a very very simple example:
       end                                                                         
                                                                                   
       isto "deve beber cerveja Duffy" do                                          
-        @margie.bebe_cerveja_duffy?.deve ser_falso                                
-      end                                                                         
+        @meggie.bebe_cerveja_duffy?.deve ser_falso                                
+      end
                                                                                 
   end                                                                           
 
