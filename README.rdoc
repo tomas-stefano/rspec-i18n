@@ -27,7 +27,7 @@ Rspec-i18n will supports any language(If don't have your language, please make a
 (See http://github.com/tomas-stefano/rspec-i18n/blob/master/lib/spec-i18n/languages.yml file). 
 Here is a simple example of Portuguese(Brazil):
    
-First your spec_helper:
+First your <b>spec_helper</b>:
  
     # In spec/spec_helper
 
@@ -41,47 +41,34 @@ First your spec_helper:
     end
 
 
-Then your spec:
+Start with a very very simple example:
 
-    # In spec/pessoa_spec.rb
+    # In spec/personagem_spec.rb
 
     require 'spec_helper'
 	
-    descreva Pessoa do
+    descreva Personagem do
      
-      antes(:de_todos) do
-        @pessoa = Pessoa.new("Homer", "Simpson")
-      end
-
       antes(:de_cada) do
-        @pessoas = [@pessoa]
+        @homer = Pessoa.new("Homer Simpson", :desenho => :simpson)
       end
 
-      contexto "a idade" do
+	  isto "deve retornar o desenho ao qual o personagem pertence" do
+		@homer.desenho.deve ser_igual_a(:simpson)
+	  end
+	
+	  isto "deve ser personagem principal" do
+		@homer.deve ser_personagem_principal # look personagem_principal? method
+	  end
 
-        antes(:de_todos_exemplos) do
-           @pessoa = Pessoa.new("Aaromn", "Monkey", :idade => 20)
-        end
-
-        # se voce quiser pode usar exemplo ou especificar - (it)
-        exemplo "deve ser opcional" do
-          @pessoa.idade.deve ser_igual_a(20)
-        end
-      end
-
-      contexto 'maior de idade' do
-        assunto { Pessoa.new('Aaron', 'Monkey', :idade => 18) }
-
-        exemplo "deve estar pronto para votar" do
-          deve estar_pronto_para_votar
-        end
-
-        # voce pode colocar o assunto(subject) implicitamente ou explicitamente
-        exemplo "deve estar autorizado para beber =D" do
-          assunto.deve estar_autorizado_a_beber
-        end
-      end
-
+	  isto "deve beber cerveja Duffy" do
+		@homer.bebe_cerveja_duffy?.deve ser_verdadeiro
+	  end
+	
+	  isto "deve beber cerveja Duffy" do
+	    @margie.bebe_cerveja_duffy?.deve ser_falso
+	  end
+	
     end
 
 == Examples
@@ -117,4 +104,4 @@ The older versions supports this versions: Rspec:  1.2.7, 1.2.8, 1.2.9
 
 == TODO
 
-See the TODO.txt file and see more details
+See the <b>TODO.txt</b> file and see more details
