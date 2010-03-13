@@ -41,7 +41,7 @@
   name: Portuguese
   native: português
   describe: descreva|contexto
-  it: exemplo|especificar
+  it: isso|isto|especificar|exemplo
   its: exemplo_do_assunto # I don't know about this word
   subject: assunto
   should: deve
