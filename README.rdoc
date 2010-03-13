@@ -53,23 +53,23 @@ Start with a very very simple example:
         @homer = Pessoa.new("Homer Simpson", :desenho => :simpson)
       end
 
-	  isto "deve retornar o desenho ao qual o personagem pertence" do
-		@homer.desenho.deve ser_igual_a(:simpson)
-	  end
-	
-	  isto "deve ser personagem principal" do
-		@homer.deve ser_personagem_principal # look personagem_principal? method
-	  end
-
-	  isto "deve beber cerveja Duffy" do
-		@homer.bebe_cerveja_duffy?.deve ser_verdadeiro
-	  end
-	
-	  isto "deve beber cerveja Duffy" do
-	    @margie.bebe_cerveja_duffy?.deve ser_falso
-	  end
-	
-    end
+    isto "deve retornar o desenho ao qual o personagem pertence" do             
+      @homer.desenho.deve ser_igual_a(:simpson)                                 
+    end                                                                         
+                                                                                
+    isto "deve ser personagem principal" do                                     
+      @homer.deve ser_personagem_principal # look personagem_principal? method  
+    end                                                                         
+                                                                                
+    isto "deve beber cerveja Duffy" do                                          
+      @homer.bebe_cerveja_duffy?.deve ser_verdadeiro                            
+    end                                                                         
+                                                                                
+    isto "deve beber cerveja Duffy" do                                          
+      @margie.bebe_cerveja_duffy?.deve ser_falso                                
+    end                                                                         
+                                                                                
+  end                                                                           
 
 == Examples
 
