@@ -36,16 +36,24 @@ module Spec
 
           end
           
-          describe "load language" do
-            before(:each) do
-              config.spec_language(:pt)
-            end
-            it "should load all the modules" do
-              config.load_language.should be_true
-            end
-          end
         end
       end
     end
+  end
+end
+
+describe "load language" do
+  before(:each) do
+    @config = ::Spec::Runner::Configuration.new
+  end
+  it "should load all the modules" do
+    Spec::DSL::Main.should_receive(:register_adverbs)
+    Kernel.should_receive(:register_expectations_keywords)
+    Spec::Example::ExampleGroupMethods.should_receive(:register_example_adverbs)
+    Spec::Example::BeforeAndAfterHooks.should_receive(:register_hooks)
+    Spec::Matchers.should_receive(:register_all_matchers)
+    Spec::Example::Subject::ExampleGroupMethods.should_receive(:register_subjects)
+    Spec::Example::Subject::ExampleMethods.should_receive(:register_subjects)
+    @config.load_language
   end
 end

@@ -5,15 +5,25 @@ module Spec
     describe BeforeAndAfterHooks do
       
       before(:each) do
-        @languages = ["pt", "en", "es"]
+        @pt = SpecI18n::Parser::NaturalLanguage.get("pt")
+        @es = SpecI18n::Parser::NaturalLanguage.get("es")
+        @pt_keywords = {"before" => "antes", "after" => "antes",
+          "hooks" => {"each" => "cada", "all" => "todos", 
+                      "suite" => "suite"}}
+        @es_keywords = { "before" => "antes", "after" => "antes",
+          "hooks" => {"each" => "cada", "all" => "tudo",
+                      "suite" => "suite"}}
+        @pt.stub!(:keywords).and_return(@pt_keywords)
+        @es.stub!(:keywords).and_return(@es_keywords)
+        @languages = {"pt" => @pt, "es" => @es}
       end
       
       it "should include all i18n methods to Before and After Hooks" do
-        @languages.each do |language|
-          Spec::Runner.configuration.spec_language(language)
-          language = SpecI18n::Parser::NaturalLanguage.get(language)
+        @languages.each do |lang, language|
+          SpecI18n.stub!(:natural_language).and_return(language)
+          Spec::Example::BeforeAndAfterHooks.register_hooks
           language.before_and_after_keywords.keys.map do |keyword|
-            BeforeAndAfterHooks.methods.should be_include(keyword)
+            BeforeAndAfterHooks.methods.should include(keyword)
           end
         end
       end
@@ -21,9 +31,9 @@ module Spec
       context "the before hook" do
         
         it "should translate the :each parameters and parse options" do
-          @languages.each do |language|
-            Spec::Runner.configuration.spec_language(language)
-            language = SpecI18n::Parser::NaturalLanguage.get(language)
+          @languages.each do |lang, language|
+            SpecI18n.stub!(:spec_language).and_return(lang)            
+            SpecI18n.stub!(:natural_language).and_return(language)
             scope = language.hooks_params_keywords["each"].first
             self.should_receive(:before_each_parts)
             before_parts(scope)
@@ -31,9 +41,9 @@ module Spec
         end
     
         it "should translate the :all scope and call the right method" do
-          @languages.each do |language|
-            Spec::Runner.configuration.spec_language(language)
-            language = SpecI18n::Parser::NaturalLanguage.get(language)
+          @languages.each do |lang, language|
+            SpecI18n.stub!(:spec_language).and_return(lang)            
+            SpecI18n.stub!(:natural_language).and_return(language)
             scope = language.hooks_params_keywords["all"].first
             self.should_receive(:before_all_parts)
             before_parts(scope)
@@ -41,10 +51,10 @@ module Spec
         end
     
         it "should translate the :suite scope and call the right method" do
-          @languages.each do |language|
-            Spec::Runner.configuration.spec_language(language)
-            language = SpecI18n::Parser::NaturalLanguage.get(language)
-            scope = language.hooks_params_keywords["suite"].first.to_sym
+          @languages.each do |lang, language|
+            SpecI18n.stub!(:spec_language).and_return(lang)            
+            SpecI18n.stub!(:natural_language).and_return(language)
+            scope = language.hooks_params_keywords["suite"].first
             self.should_receive(:before_suite_parts)
             before_parts(scope)
           end
@@ -53,10 +63,10 @@ module Spec
       
       context "the after hook" do
         it "should translate the :all scope and call the right method" do
-          @languages.each do |language|
-            Spec::Runner.configuration.spec_language(language)
-            language = SpecI18n::Parser::NaturalLanguage.get(language)
-            scope = language.hooks_params_keywords["all"].first.to_sym
+          @languages.each do |lang, language|
+            SpecI18n.stub!(:spec_language).and_return(lang)            
+            SpecI18n.stub!(:natural_language).and_return(language)
+            scope = language.hooks_params_keywords["all"].first
             self.should_receive(:after_all_parts)
             after_parts(scope)
           end

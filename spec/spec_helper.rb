@@ -47,6 +47,7 @@ def with_sandboxed_config
   
   before(:each) do
     @config = ::Spec::Runner::Configuration.new
+    @config.should_receive(:load_language).at_least(:once).and_return(true)
     @original_configuration = ::Spec::Runner.configuration
     spec_configuration = @config
     ::Spec::Runner.instance_eval {@configuration = spec_configuration}

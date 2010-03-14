@@ -49,7 +49,7 @@ module SpecI18n
       
         it "should return the describe dsl keyword" do
           lang = { "describe" => "descreva", :before => "antes" }
-          @pt.should_receive(:keywords).and_return(lang)
+          @pt.should_receive(:keywords).at_least(:once).and_return(lang)
           @pt.dsl_keywords.should == { "describe" => [ lang["describe"] ] }
         end
       end
@@ -62,7 +62,7 @@ module SpecI18n
 
         it "should return the expectation keyword of the language" do
           lang = {"describe" => "descreva", "should" => "deve", "should_not" => "nao_deve"}
-          @pt.should_receive(:keywords).twice.and_return(lang)
+          @pt.should_receive(:keywords).at_least(:once).and_return(lang)
           @pt.expectation_keywords.should == @keywords
         end
         
@@ -79,7 +79,7 @@ module SpecI18n
         end
         
         it "should return the hooks for the current language" do
-          @en.stub!(:keywords).and_return(@language)
+          @en.should_receive(:keywords).at_least(:once).and_return(@language)
           keywords = { "before" => ["before"], "after" => ["after"]}
           @en.before_and_after_keywords.should == keywords
         end

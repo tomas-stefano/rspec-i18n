@@ -5,14 +5,16 @@ module Spec
       def register_hooks
         language = SpecI18n.natural_language
         language.before_and_after_keywords.each do |key, values|
-          values.map { |value| alias_method value, key }
+          values.map do |value| 
+            alias_method value, key
+          end
         end
       end
   
       def before_parts(scope)
-        
+
         scope = grep_language_and_scope(scope) || scope
-        
+
         case scope
         when :each; before_each_parts
         when :all; before_all_parts
@@ -43,7 +45,6 @@ module Spec
       def grep_the_scope(scope, hooks)
         scopes = [:each, :all, :suite]
         return scope if scopes.include?(scope)
-        
         hooks.each do |scope_in_english, language_hooks|
           return scope_in_english.to_sym if language_hooks.include?(scope.to_s)
         end

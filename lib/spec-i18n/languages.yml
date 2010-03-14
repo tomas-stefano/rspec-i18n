@@ -4,41 +4,41 @@
 # If you want several aliases for a keyword, just a separate them 
 # with a | character. Make sure there are no ambiguities in the keywords
 
-# The English language => Just for example
+# The English language => Just for example all the keywords
 "en":
-  name: English
-  native: English
-  describe: describe
-  it: it|specify
-  its: its
-  subject: subject
-  should: should
-  should_not: should_not
-  before: before
-  after: after
-  hooks:
-    each: each
-    all: all
-    suite: suite
-  matchers:
-    be: be
-    true:
-    false:
-    nil:
-    be_a_kind_of: be_a_kind_of
-    be_close: be_close
-    be_an_instance_of: be_an_instance_of
-    eql: eql
-    equal: equal
-    exist: exist
-    have: have
-    have_exactly: have_exactly
-    have_at_least: have_at_least
-    have_at_most: have_at_most
-    include: include
-    match: match
-    raise_error: raise_exception|raise_error
-    satisfy: satisfy
+  name: 
+  native: 
+  describe: 
+  it: 
+  its: 
+  subject: 
+  should: 
+  should_not:
+  before:
+  after:
+  hooks:                                                    
+    each:
+    all:
+    suite:
+  matchers:                                                 
+    be:
+    true_word:
+    false_word:
+    nil_word:
+    be_a_kind_of:
+    be_close:
+    be_an_instance_of:
+    eql:
+    equal:
+    exist:
+    have:
+    have_exactly:
+    have_at_least:
+    have_at_most:
+    include:
+    match:
+    raise_error:
+    satisfy:
 
 "pt":
   name: Portuguese

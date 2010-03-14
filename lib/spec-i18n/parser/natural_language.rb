@@ -69,7 +69,7 @@ module SpecI18n
       end
 
       def spec_keywords(key, space=false)
-        raise "No #{key} in #{@keywords.inspect}" if @keywords[key].nil?
+        raise "No #{key} in #{keywords.inspect}" if keywords[key].nil?
         values = keywords[key].split('|')
         { key => values }
       end

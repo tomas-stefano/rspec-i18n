@@ -23,7 +23,7 @@ But if you don't prefer that, you'll like the Rspec-i18n. =)
 
 == Synopsis
   
-Rspec-i18n will supports some speaking language(If don't have your language, please make a fork and send pull requests!)
+Rspec-i18n will supports some speaking language(If don't have your speaking language, please make a fork and send pull requests!)
 (See http://github.com/tomas-stefano/rspec-i18n/blob/master/lib/spec-i18n/languages.yml file). 
 Here is a simple example of Portuguese(Brazil):
    
