@@ -52,7 +52,7 @@ Start with a very very simple example in Portuguese:
      
       antes(:de_cada) do
         @homer = Personagem.new("Homer Simpson", :desenho => :simpson)
-		@meggie = Personagem.new("Meggie Simpson", :desenho => :simpson)
+        @meggie = Personagem.new("Meggie Simpson", :desenho => :simpson)
       end
                                                                                   
       isto "deve retornar o desenho ao qual o personagem pertence" do             
@@ -67,9 +67,17 @@ Start with a very very simple example in Portuguese:
         @homer.bebe_cerveja_duffy?.deve ser_verdadeiro                            
       end                                                                         
                                                                                   
-      isto "deve beber cerveja Duffy" do                                          
-        @meggie.bebe_cerveja_duffy?.deve ser_falso                                
+      isto "não deve beber cerveja Duffy" do                                          
+        @meggie.bebe_cerveja_duffy?.nao_deve ser_verdadeiro
       end
+
+      isto "deve ser menor de idade" do
+        @meggie.maior_de_idade?.deve ser_falso
+      end
+
+	  isto "deve ser nulo" do
+	    @margie.deve ser_nulo
+	  end
                                                                                 
   end                                                                           
 
