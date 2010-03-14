@@ -2,7 +2,7 @@
 
 * enhancements
   * Refactored internal code and specs
-  
+  * Translate nil, true, false and empty.
 
 === Version 1.0.0
 

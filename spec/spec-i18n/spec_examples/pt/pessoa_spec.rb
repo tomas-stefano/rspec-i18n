@@ -10,6 +10,7 @@ class Pessoa
     @nome = nome
     @sobrenome = sobrenome
     @idade = opcoes[:idade]
+    @filhos = opcoes[:filhos]
   end
   
   def nome_completo
@@ -19,6 +20,10 @@ class Pessoa
   def informacoes
     return nil if nome_completo.strip.empty?
     nome_completo
+  end
+  
+  def filhos
+    @filhos || []
   end
   
   def maior_de_idade?
@@ -129,6 +134,10 @@ descreva Pessoa do
     
     exemplo "deve retornar nulo caso nao tenha informacao" do
       Pessoa.new("", "").informacoes.deve ser_nulo
+    end
+    
+    exemplo "deve não ter nenhum filho" do
+      @pessoa.filhos.deve ser_vazio
     end
     
   end

@@ -35,20 +35,22 @@ describe "should be_predicate" do
     end
   end
   
-  context "be nil, true and false" do
+  context "be words" do
     before(:each) do
       @pt = Parser::NaturalLanguage.get("pt")
       @es = Parser::NaturalLanguage.get("es")
       include Spec::Matchers
       @pt_keywords = { "matchers" => {'be' => 'ser',
-        "true_word" => "verdadeiro", "false_word" => "falso", 'nil_word' => 'nulo'}}
+        "true_word" => "verdadeiro", "empty_word" => "vazio",
+        "false_word" => "falso", 'nil_word' => 'nulo'}}
       @pt.stub!(:keywords).and_return(@pt_keywords)
       @es_keywords = { "matchers" => {'be' => 'ser',
-        "true_word" => "verdadero", "false_word" => "falso", 'nil_word' => 'nulo'}}
+        "true_word" => "verdadero", "false_word" => "falso", 
+        'nil_word' => 'nulo', 'empty_word' => "vazio"}}
       @es.stub!(:keywords).and_return(@es_keywords)
     end
     
-    ['true', 'false', 'nil'].each do |ruby_type|
+    ['true', 'false', 'nil', 'empty'].each do |ruby_type|
       context "be #{ruby_type}" do
           
         it "should translate #{ruby_type} keyword for pt" do
@@ -118,6 +120,20 @@ describe "should be_predicate" do
               eval <<-BE_NIL                
                 nil.should #{word_be_nil}
               BE_NIL
+          end
+        end
+      end
+    end
+    
+    context "be empty predicate" do
+      it "should pass when actual is nil" do
+        [@pt, @es].each do |language|
+          SpecI18n.stub!(:natural_language).and_return(language)
+          Be.translate_be_empty
+          matcher_be_some(:empty => true).each do |word_be_nil|
+              eval <<-BE_EMPTY                
+                [].should #{word_be_nil}
+              BE_EMPTY
           end
         end
       end

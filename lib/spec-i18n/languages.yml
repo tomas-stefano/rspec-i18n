@@ -25,6 +25,7 @@
     true_word:
     false_word:
     nil_word:
+    empty_word:
     be_a_kind_of:
     be_close:
     be_an_instance_of:
@@ -60,6 +61,7 @@
     true_word: verdadeiro
     false_word: falso
     nil_word: nulo
+    empty_word: vazio
     be_a_kind_of: ser_do_tipo
     be_close: estar_perto|estar_proximo
     be_an_instance_of: ser_instancia_de

@@ -49,6 +49,16 @@ module Spec
       end
     end
     
+    def translate_be_empty
+      matcher_be_some(:empty => true).each do |matcher|
+        Spec::Matchers.define matcher do
+          match do |actual|
+            actual.empty?
+          end
+        end
+      end
+    end
+    
     def matcher_be_some(options={})
       option = options.keys.select { |key| options[key] != nil }
       language.word_be(option.to_s).map { |word| word.to_sym}
