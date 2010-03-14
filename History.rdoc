@@ -1,8 +1,12 @@
-==== development in git:
+==== Version 1.1.0
 
 * enhancements
   * Refactored internal code and specs
-  * Translate nil, true, false and empty.
+  * Translate be_nil
+  * Translate be_true
+  * Translate be_false
+  * Translate be_empty.
+  
 
 === Version 1.0.0
 
