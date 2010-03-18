@@ -78,6 +78,21 @@
     satisfy: satisfazer
 
 # Please put the right words for this language! =D
+"fr":
+  name: French
+  native: français
+      
+# Please put the right words for this language! =D
+"de":
+  name: German
+  native: Deutsch
+
+# Please put the right words for this language! =D
+"en-au":
+  name: Australian
+  native: Australian
+
+# Please put the right words for this language! =D
 "es":
   name: Spanish
   native: español
