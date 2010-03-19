@@ -103,7 +103,13 @@ See more examples in http://github.com/tomas-stefano/rspec-i18n/blob/master/exam
 
 <b>OBS.: The true, nil, false and empty word it's just a translation of that word.</b>
 
-<pre><code>Example:     be: ser     and    true_word: verdadeiro    ->   become like this:   ser_verdadeiro  </code></pre>
+Example:     
+	
+	be: ser     and    true_word: verdadeiro
+
+become like this:   
+
+	ser_verdadeiro
 
 
 <b> Ideas for better words in languages.yml are Welcome =D.</b>
