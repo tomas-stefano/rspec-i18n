@@ -11,7 +11,9 @@
   describe: 
   it: 
   its: 
-  subject: 
+  subject:
+  shared_examples_for:
+  it_should_behave_like: 
   should: 
   should_not:
   before:
@@ -48,6 +50,8 @@
   it: isso|isto|especificar|exemplo
   its: exemplo_do_assunto # I don't know about this word
   subject: assunto
+  shared_examples_for: # IN TODO LIST!
+  it_should_behave_like: # IN TODO LIST!
   should: deve
   should_not: nao_deve
   before: antes
@@ -100,6 +104,8 @@
   it: ejemplo
   its: ejemplo_asunto # I don't know about this word
   subject: asunto|tema
+  shared_examples_for:
+  it_should_behave_like:
   should: deberia
   should_not: no_debe
   before: antes

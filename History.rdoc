@@ -1,3 +1,8 @@
+=== development
+
+  * Simplified more and more tests!
+   
+
 ==== Version 1.1.0
 
 * enhancements

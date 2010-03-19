@@ -1,15 +1,14 @@
 == Refactoring
 
-* Simplified more and more tests!
-* Find the right module for the example group specs(it/example) (I think =>
-  Spec::Example::ExampleGroupMethods but I think I was wrong)
 * Need better hints for the 'its' word
 
 == Future
 
+* Support Ruby 1.9 !
+* Support Rspec 2.0 !
 * Translate shared examples
-* Create the directory features to test with Cucumber
 * Verifying if it's possible to translate error and success messages and documentation
+* Create the directory features to test with Cucumber
 * Make the describe/it i18n available from a class: 
 	
 	Example:
