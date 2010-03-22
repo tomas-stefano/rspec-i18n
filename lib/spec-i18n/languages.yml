@@ -106,7 +106,7 @@
     suite: suite
   matchers:
     be: sein*
-    true_word: wach
+    true_word: wahr
     false_word: falsch
     nil_word: null
     empty_word: leer
