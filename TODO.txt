@@ -4,7 +4,6 @@
 
 == Future
 
-* Support Ruby 1.9 !
 * Support Rspec 2.0 !
 * Translate shared examples
 * Verifying if it's possible to translate error and success messages and documentation
