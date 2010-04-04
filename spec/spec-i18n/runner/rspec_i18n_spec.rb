@@ -52,8 +52,9 @@ context "a warning" do
   end
   
   it "should show for the incomplete language" do
-    Kernel.should_receive(:warn)
-    Spec::Runner::Configuration.new.load_language
+    message = "\n Language Warning: Incomplete Keywords For The Language 'en-au' \n"
+    Kernel.should_receive(:warn).with(message)
+    Spec::Runner::Configuration.new.spec_language("en-au")
   end
 end
 
