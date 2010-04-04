@@ -90,6 +90,40 @@
 "de":
   name: German
   native: Deutsch
+  describe: beschreibe|kontext
+  it: es
+  its: # I don't know about this word
+  subject: subjekt
+  shared_examples_for: # IN TODO LIST!
+  it_should_behave_like: # IN TODO LIST!
+  should: sollte
+  should_not: sollte_nicht
+  before: vorher
+  after: nachher
+  hooks:
+    each: von_jeder
+    all: von_alle
+    suite: suite
+  matchers:
+    be: sein*
+    true_word: wahr
+    false_word: falsch
+    nil_word: null
+    empty_word: leer
+    be_a_kind_of: ein_typ_sein*
+    be_close: nahe_liegen*
+    be_an_instance_of: 
+    eql: glc
+    equal: gleich
+    exist: wesen
+    have: haben
+    have_exactly: genau_haben*
+    have_at_least: mindestens_haben*
+    have_at_most: maximal_haben*
+    include: beinhalten*
+    match: passen*
+    raise_error: 
+    satisfy: erfüllen*
 
 # Please put the right words for this language! =D
 "en-au":
