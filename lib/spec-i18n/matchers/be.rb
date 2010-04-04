@@ -61,7 +61,7 @@ module Spec
     
     def matcher_be_some(options={})
       option = options.keys.select { |key| options[key] != nil }
-      language.word_be(option.to_s).map { |word| word.to_sym}
+      language.word_be(option.join).map { |word| word.to_sym}
     end
     
     def language
