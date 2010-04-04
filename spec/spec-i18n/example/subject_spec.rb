@@ -17,7 +17,8 @@ module Spec
         values = @pt['subject'].split('|')
         values << @es['subject'].split('|')
         values.flatten.each do |value_method|
-          Subject::ExampleMethods.instance_methods.should be_include(value_method)
+          methods = Subject::ExampleMethods.instance_methods.all_to_symbols
+          methods.should be_include(value_method.to_sym)
         end
       end
 
@@ -26,7 +27,8 @@ module Spec
         other_values = @pt['should_not'].split('|')
         values << other_values
         values.flatten.each do |value_method|
-          Subject::ExampleMethods.instance_methods.should be_include(value_method)
+          methods= Subject::ExampleMethods.instance_methods.all_to_symbols
+          methods.should be_include(value_method.to_sym)
         end        
       end
       

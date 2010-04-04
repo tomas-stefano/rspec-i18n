@@ -13,7 +13,8 @@ module Spec
       it "should register the be_close matcher" do
         values = @expected_matcher['matchers']['be_close'].split('|')
         values.each do |value_method|
-          Object.instance_methods.should be_include(value_method)
+          methods = Object.instance_methods.all_to_symbols
+          methods.should be_include(value_method.to_sym)
         end
       end
       

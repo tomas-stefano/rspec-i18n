@@ -32,12 +32,12 @@ module SpecI18n
         end
       
         it "should return the three keywords language for portuguese" do
-          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return("pt")
+          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return(["pt"])
           LanguageHelpFormatter.list_languages.should == [@portuguese]
         end
       
         it "should return the three keywords for spanish" do
-          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return("es")
+          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return(["es"])
           LanguageHelpFormatter.list_languages.should == [@spanish]
         end
       

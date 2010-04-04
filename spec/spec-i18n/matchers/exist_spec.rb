@@ -27,7 +27,8 @@ module Spec
       it 'should register the exist method translated' do
         values = @expected_matcher['matchers']['exist'].split('|')
         values.each do |value_method|
-          Object.instance_methods.should be_include(value_method)
+          methods = Object.instance_methods.all_to_symbols
+          methods.should be_include(value_method.to_sym)
         end
       end
       

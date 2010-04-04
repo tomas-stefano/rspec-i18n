@@ -23,7 +23,8 @@ module Spec
           SpecI18n.stub!(:natural_language).and_return(language)
           Spec::Example::BeforeAndAfterHooks.register_hooks
           language.before_and_after_keywords.keys.map do |keyword|
-            BeforeAndAfterHooks.methods.should include(keyword)
+            methods = BeforeAndAfterHooks.methods.all_to_symbols
+            methods.should include(keyword.to_sym)
           end
         end
       end

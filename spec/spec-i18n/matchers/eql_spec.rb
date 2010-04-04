@@ -12,12 +12,12 @@ module Spec
       
       it "should have eql matchers translated" do
         eql_word = @expected_matcher['matchers']['eql']
-        1.methods.should be_include(eql_word)
+        1.methods.all_to_symbols.should be_include(eql_word.to_sym)
       end
       
       it "should have eql? matchers translated" do
         eql_word = @expected_matcher['matchers']['eql'] + '?'
-        1.methods.should be_include(eql_word)
+        1.methods.all_to_symbols.should be_include(eql_word.to_sym)
       end
       
       it "should match when actual.eql?(expected)" do

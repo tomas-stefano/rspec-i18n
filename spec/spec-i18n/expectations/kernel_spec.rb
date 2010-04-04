@@ -17,7 +17,7 @@ describe Object, "#should and #should_not" do
       SpecI18n.stub!(:natural_language).and_return(language)
       Kernel.register_expectations_keywords
       language.expectation_keywords.values.to_a.flatten.each do |keyword|
-        Kernel.methods.should include(keyword)
+        Kernel.methods.all_to_symbols.should include(keyword.to_sym)
       end
     end
   end

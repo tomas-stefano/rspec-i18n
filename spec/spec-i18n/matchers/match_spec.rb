@@ -10,7 +10,8 @@ describe "should match(expected)" do
   it "should translated the include matcher" do
     values = @expected_matcher['matchers']['match'].split('|')
     values.each do |value_method|
-      Object.instance_methods.should be_include(value_method)
+      methods = Object.instance_methods.all_to_symbols
+      methods.should be_include(value_method.to_sym)
     end
   end
   

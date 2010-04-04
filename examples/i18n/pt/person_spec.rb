@@ -19,6 +19,10 @@ class Pessoa
     @nome.downcase.to_sym
   end
   
+  def exist?
+    true unless self.nil?
+  end
+  
   def nome_completo
     "#{@nome} #{@sobrenome}"
   end
@@ -81,13 +85,25 @@ descreva Pessoa do
   isto 'deve ser uma instancia da classe Pessoa' do
     @pessoa.deve ser_instancia_de(Pessoa)
   end
+  
+  especificar 'deve existir' do
+    @pessoa.deve existir
+  end
 
-  isto 'deve incluir uma pessoa' do
+  especificar 'deve incluir uma pessoa' do
     @pessoas.deve incluir(@pessoa)
   end
 
-  isto 'deve ser do tipo Pessoa' do
+  especificar 'deve ser do tipo Pessoa' do
     @pessoa.deve ser_do_tipo(Pessoa)
+  end
+  
+  isto 'deve lançar uma excessão' do
+    lambda { @pessoa.isso_nao_existe }.deve mostrar_excessao
+  end
+  
+  isto 'deve satisfazer a condicao de maior de idade' do
+    @pessoa.deve satisfazer { |pessoa| pessoa == @pessoa}
   end
 
   isto 'deve ter pelo menos uma pessoa' do

@@ -10,7 +10,10 @@ describe "should raise_error" do
   
   it 'should register the methods for the value equal matcher' do
     values = @expected_matcher['matchers']['raise_error'].split('|') 
-    values.each { |method_name| Object.instance_methods.should be_include(method_name) }
+    values.each do |method_name| 
+      methods = Object.instance_methods.all_to_symbols
+      methods.should be_include(method_name.to_sym)
+    end
   end
   
   it "should pass if anything is raised" do

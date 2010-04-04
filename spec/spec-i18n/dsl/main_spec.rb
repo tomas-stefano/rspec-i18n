@@ -20,7 +20,7 @@ describe Main do
           SpecI18n.stub!(:natural_language).and_return(language)
           Spec::DSL::Main.register_adverbs
           language.dsl_keywords.values.flatten.each do |keyword|
-            Main.methods.should include(keyword)
+            Main.methods.all_to_symbols.should include(keyword.to_sym)
           end
         end
       end

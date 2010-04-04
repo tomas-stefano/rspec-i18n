@@ -13,7 +13,8 @@ module Spec
       it "register the be_an_instance_of method" do
         values = @expected_matcher['matchers']['be_a_kind_of'].split('|')
         values.each do |value_method|
-          Object.instance_methods.should be_include(value_method)
+          methods = Object.instance_methods.all_to_symbols
+          methods.should be_include(value_method.to_sym)
         end
       end
       

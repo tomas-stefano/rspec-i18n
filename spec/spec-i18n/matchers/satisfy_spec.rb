@@ -11,7 +11,8 @@ describe "should satisfy { block }" do
   it 'should trasnlate the satisfy matcher' do
     values = @expected_matcher['matchers']['satisfy'].split('|')
     values.each do |value_method|
-      Object.instance_methods.should be_include(value_method)
+      methods_list = Object.instance_methods.all_to_symbols
+      methods_list.should be_include(value_method.to_sym)
     end
   end
   
