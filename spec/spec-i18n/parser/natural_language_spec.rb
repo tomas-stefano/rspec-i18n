@@ -15,7 +15,7 @@ module SpecI18n
            portuguese_keys = @pt.keywords.keys          
            portuguese_keys.should include(keyword)
          end
-       end
+      end
        
       context "get languages" do
         
@@ -39,10 +39,10 @@ module SpecI18n
         end
         
         it "should return true for the incomplete language" do
-          @pt.stub!(:keywords).and_return({ :name => []})
+          @pt.stub!(:keywords).and_return({})
           @pt.incomplete?.should be_true
         end
-        
+                
       end
       
       context "of dsl keywords" do
@@ -165,6 +165,12 @@ module SpecI18n
             @pt.spec_keywords("no_found")
             @pt.spec_keywords("Oh_MY_this_words_is_not_found!")
           }.should raise_error(RuntimeError)
+        end
+        
+        it "should not raise error for key found but key is nil" do
+          lang = { 'describe' => nil}
+          @pt.stub!(:keywords).and_return(lang)
+          @pt.spec_keywords("describe").should == { 'describe' => []}
         end
 
         it "should split correctly the keys" do

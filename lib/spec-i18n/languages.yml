@@ -81,12 +81,10 @@
     raise_error: mostrar_erro|mostrar_excessao
     satisfy: satisfazer
 
-# Please put the right words for this language! =D
 "fr":
   name: French
   native: français
-      
-# Please put the right words for this language! =D
+
 "de":
   name: German
   native: Deutsch
@@ -125,10 +123,43 @@
     raise_error: 
     satisfy: erfüllen*
 
-# Please put the right words for this language! =D
 "en-au":
-  name: Australian
-  native: Australian
+  name: 
+  native: 
+  describe: 
+  it: 
+  its: 
+  subject:
+  shared_examples_for:
+  it_should_behave_like: 
+  should: 
+  should_not:
+  before:
+  after:
+  hooks:                                                    
+    each:
+    all:
+    suite:
+  matchers:                                                 
+    be:
+    true_word:
+    false_word:
+    nil_word:
+    empty_word:
+    be_a_kind_of:
+    be_close:
+    be_an_instance_of:
+    eql:
+    equal:
+    exist:
+    have:
+    have_exactly:
+    have_at_least:
+    have_at_most:
+    include:
+    match:
+    raise_error:
+    satisfy:
 
 # Please put the right words for this language! =D
 "es":

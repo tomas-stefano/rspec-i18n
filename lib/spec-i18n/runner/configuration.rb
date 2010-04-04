@@ -13,6 +13,8 @@ module Spec
       
       # Load all Modules and Classes for the language specified
       def load_language
+        language = SpecI18n.natural_language
+        Kernel.warn("Incomplete Keywords For The Language") if language.incomplete?
         Spec::DSL::Main.register_adverbs
         Kernel.register_expectations_keywords
         Spec::Example::ExampleGroupMethods.register_example_adverbs

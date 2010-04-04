@@ -6,17 +6,19 @@ module SpecI18n
                               
       ADVANCED_KEYWORDS = %w{ hooks matchers}
       
-      class << self
-        def get(language)
-          new(language)
-        end        
+      def self.get(language)
+        new(language)
       end
 
       attr_reader :keywords
       
       def initialize(language)
-        @keywords = SpecI18n::SPEC_LANGUAGES[language]
+        @keywords = NaturalLanguage.find_language(language)
         raise(LanguageNotFound, "Language #{language.to_s} Not Supported") if @keywords.nil?
+      end
+      
+      def self.find_language(language)
+        SpecI18n::SPEC_LANGUAGES[language]
       end
       
       def incomplete?
@@ -68,8 +70,11 @@ module SpecI18n
         end.flatten
       end
 
-      def spec_keywords(key, space=false)
-        raise "No #{key} in #{keywords.inspect}" if keywords[key].nil?
+      def spec_keywords(key)
+        raise "No #{key} in #{keywords.inspect}" unless keywords.include?(key)
+        unless keywords[key]
+          return { key => [] }
+        end
         values = keywords[key].split('|')
         { key => values }
       end
