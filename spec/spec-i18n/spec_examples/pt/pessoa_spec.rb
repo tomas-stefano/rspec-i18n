@@ -1,3 +1,4 @@
+# coding: UTF-8
 require File.expand_path(File.join(__FILE__, "../../../../spec_helper"))
 
 Spec::Runner.configure do |config|
