@@ -1,3 +1,4 @@
+# coding: UTF-8
 require 'rubygems'
 require 'spec-i18n'
 
@@ -6,12 +7,16 @@ Spec::Runner.configure do |config|
 end
 
 class Pessoa
-  attr_accessor :idade
+  attr_accessor :idade, :nome
   def initialize(nome, sobrenome, opcoes={})
     @nome = nome
     @sobrenome = sobrenome
     @idade = opcoes[:idade]
     @filhos = opcoes[:filhos]
+  end
+  
+  def nome
+    @nome.downcase.to_sym
   end
   
   def nome_completo
@@ -109,8 +114,12 @@ descreva Pessoa do
       @pessoa.nome_completo.deve ==("Tomás D'Stefano")
     end
     
-    isto 'nome completo não pode ser nulo' do
-      @pessoa.nome_completo.nao_deve ser_igual_a(nil)
+    isto 'deve retornar nome completo em simbolo' do
+      @pessoa.nome.deve ser_igual_a(:tomás)
+    end
+    
+    isto 'nome completo nao pode ser nulo' do
+      @pessoa.nome_completo.nao_deve ser_nulo
     end
     
   end

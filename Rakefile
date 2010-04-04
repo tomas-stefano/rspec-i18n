@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'rubygems'
 require 'rake'
-require File.join("lib", "spec-i18n", "platform")
+require "./lib/spec-i18n/platform"
 
 $:.unshift(File.dirname(__FILE__) + '/lib')
 
@@ -45,4 +45,31 @@ rescue LoadError
   puts "Jeweler not available. Install it with:
   [sudo] gem install jeweler"
   puts("-" * 80)
+end
+
+INTEGRATION_TASKS = %w(
+spec_all_ruby_versions
+github:push
+)
+
+task :spec_all_ruby_versions do
+  sh("rvm 1.8.6,1.8.7,1.9.1,1.9.2 specs")
+  puts
+end
+
+namespace :github do
+  task :push do
+    `git push origin master`
+  end
+end
+
+task :integrate do
+  INTEGRATION_TASKS.each do |integrate_task|
+    puts("-" * 80)
+    Rake::Task[integrate_task].invoke
+  end
+end
+
+task :spec do
+  sh("spec spec --diff --color")
 end

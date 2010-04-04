@@ -75,9 +75,9 @@ Start with a very very simple example in Portuguese:
         @meggie.maior_de_idade?.deve ser_falso
       end
 
-	  isto "deve ser nulo" do
-	    @margie.deve ser_nulo
-	  end
+      isto "deve ser nulo" do
+        @margie.deve ser_nulo
+      end
                                                                                 
   end                                                                           
 

@@ -15,7 +15,7 @@ module Spec
     end
     
     # :ser_matcher == :be_matcher
-    # :be_true == :be_true
+    # 
     def be_to_english(sym, be_word)
       be_word = be_word || 'be'
       
