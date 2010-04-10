@@ -7,6 +7,10 @@ $:.unshift(File.dirname(__FILE__), '../lib')
 
 include SpecI18n
 
+def mock_natural_language(language)
+  SpecI18n.stub!(:natural_language).and_return(language)
+end
+
 def portuguese_language(expected)
   pt = Parser::NaturalLanguage.get("pt")
   SpecI18n.stub!(:natural_language).and_return(pt)
