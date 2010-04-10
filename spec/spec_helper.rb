@@ -88,10 +88,6 @@ end
 #
 class Array
   def all_to_symbols
-    array_of_symbols = []
-    self.each do |method_name|
-      array_of_symbols << method_name.to_sym
-    end
-    array_of_symbols
+    self.collect! { |a| a.to_sym }
   end
 end
