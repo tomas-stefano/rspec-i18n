@@ -1,7 +1,7 @@
 module SpecI18n
   
   def natural_language
-    Parser::NaturalLanguage.get(spec_language)
+    Parser::NaturalLanguage.new(spec_language)
   end
   
   def spec_language

@@ -1,6 +1,7 @@
 module Spec
   module Runner
     class Configuration
+      
       def spec_language(language)
         @spec_language = language ? language.to_s : "en"
         load_language

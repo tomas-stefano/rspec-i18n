@@ -8,13 +8,19 @@ module Spec
       # 
       # Register alias for the language specified
       def register_adverbs
-        language = SpecI18n.natural_language
-        @adverbs = language.dsl_keywords
-        @adverbs.each do |key, values|
+        natural_language.dsl_keywords.each do |key, values|
           values.map { |value| alias_method value, key }
         end
       end
 
+      # Register adverbs for the shared_examples_for keyword
+      #
+      # { "shared_examples_for" => ['exemplos_distribuidos_para']}
+      #
+      def translate_shared_examples_for
+        
+      end
+      
     end
   end
 end

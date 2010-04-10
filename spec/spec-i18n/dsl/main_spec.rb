@@ -39,12 +39,17 @@ describe Main do
   describe "the manipulation of shared examples for"  do
     
     before(:each) do
-      @pt_keywords = { "shared_examples_for" => "exemplos_distribuidos|exemplos_distribuidos" } 
+      @pt_keywords = { "shared_examples_for" => "exemplos_distribuidos|exemplos_distribuidos_para" } 
       @pt.stub!(:keywords).and_return(@pt_keywords)
     end
     
     it "should register all the keywords for the shared examples for" do
       pending
+      mock_natural_language(@pt)
+      Main.translate_shared_examples_for
+      [:exemplos_distribuidos, :exemplos_distribuidos_para].each do |keyword|
+        Main.methods.all_to_symbols.should include(keyword)
+      end
     end
     
   end
