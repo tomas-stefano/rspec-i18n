@@ -2,7 +2,6 @@
 require 'rubygems'
 require 'spec'
 require 'spec-i18n'
-require "ruby-debug"
 
 $:.unshift(File.dirname(__FILE__), '../lib')
 
@@ -10,6 +9,10 @@ include SpecI18n
 
 def mock_natural_language(natural_language)
   Parser::NaturalLanguage.should_receive(:new).and_return(natural_language)
+end
+
+def stub_keywords!(natural_language, keywords)
+  natural_language.stub!(:keywords).and_return(keywords)
 end
 
 def portuguese_language(expected)

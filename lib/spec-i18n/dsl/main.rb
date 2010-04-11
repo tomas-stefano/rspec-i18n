@@ -18,7 +18,7 @@ module Spec
       # { "shared_examples_for" => ['exemplos_distribuidos_para']}
       #
       def translate_shared_examples_for
-        
+        natural_language.shared_examples_for_keywords
       end
       
     end

@@ -2,8 +2,7 @@ module Spec
   module Matchers
 
     def self.register_all_matchers
-      Spec::Matchers::Be.register_be_matcher
-      ["true", "false", "nil", "empty"].each do |matcher|
+      ["true", "false", "nil", "empty", "matcher"].each do |matcher|
         class_eval <<-BE_WORD
           translate_be_#{matcher}
         BE_WORD

@@ -1,6 +1,7 @@
 module SpecI18n
   module Parser
     class NaturalLanguage
+      
       BASIC_KEYWORDS = %w{ name native describe before after it 
                            subject its should should_not}
                               
@@ -13,6 +14,7 @@ module SpecI18n
       attr_reader :keywords
       
       def initialize(language)
+        raise(LanguageNilNotFound, "Language -> nil Not Found") unless language
         @keywords = NaturalLanguage.find_language(language)
         raise(LanguageNotFound, "Language #{language.to_s} Not Supported") if @keywords.nil?
       end
@@ -62,19 +64,26 @@ module SpecI18n
         spec_keywords("its")
       end
       
+      def matchers
+        keywords["matchers"]
+      end
+      
       def word_be(ruby_type)
-        matchers_be = keywords['matchers']['be'].to_s.split("|")
+        matchers_be = keywords_of_be_word
         matcher_ruby_type = keywords['matchers']["#{ruby_type}_word"].to_s.split("|")
         matchers_be.collect do |matcher_be|
           matcher_ruby_type.collect { |matcher| "#{matcher_be}_#{matcher}" }
         end.flatten
       end
+      
+      def keywords_of_be_word
+        return matchers['be'].to_s.split("|") if matchers
+        []
+      end
 
       def spec_keywords(key)
         raise "No #{key} in #{keywords.inspect}" unless keywords.include?(key)
-        unless keywords[key]
-          return { key => [] }
-        end
+        return { key => [] } unless keywords[key]
         values = keywords[key].split('|')
         { key => values }
       end
@@ -82,6 +91,9 @@ module SpecI18n
     end
 
     class LanguageNotFound < StandardError
+    end
+    
+    class LanguageNilNotFound < StandardError      
     end
 
   end

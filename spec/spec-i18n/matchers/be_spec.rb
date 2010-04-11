@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe "should be_predicate" do
   
-  before(:each) do
-    portuguese_language({"matchers" => {"be" => "ser"}, "true" => "verdadeiro"})
-    Spec::Matchers.register_all_matchers
-  end
-  
   context "be predicate" do
+    
+    before(:each) do
+      portuguese_language({"matchers" => {"be" => "ser",  "true_word" => "verdadeiro"}})
+      Spec::Matchers.translate_be_matcher
+    end
 
     it "should pass with be language translated" do
       atual = stub("atual", :feliz? => true)
@@ -15,22 +15,16 @@ describe "should be_predicate" do
     end
   
     it "should fail when actual returns false for :predicate?" do
-        
-      pending('verify rspec 1.3')
-    
       atual = stub("atual", :feliz? => false)
       lambda {
-        atual.should be_feliz
+        atual.should ser_feliz
       }.should fail_with("expected feliz? to return true, got false")
     end
   
     it "should fail when actual returns false for :predicate?" do
-    
-      pending('verify rspec 1.3')
-    
       atual = stub("atual", :feliz? => nil)
       lambda {
-        atual.should be_feliz
+        atual.should ser_feliz
       }.should fail_with("expected feliz? to return true, got nil")
     end
   end
@@ -39,104 +33,124 @@ describe "should be_predicate" do
     before(:each) do
       @pt = Parser::NaturalLanguage.get("pt")
       @es = Parser::NaturalLanguage.get("es")
-      include Spec::Matchers
-      @pt_keywords = { "matchers" => {'be' => 'ser',
-        "true_word" => "verdadeiro", "empty_word" => "vazio",
-        "false_word" => "falso", 'nil_word' => 'nulo'}}
-      @pt.stub!(:keywords).and_return(@pt_keywords)
-      @es_keywords = { "matchers" => {'be' => 'ser',
-        "true_word" => "verdadero", "false_word" => "falso", 
-        'nil_word' => 'nulo', 'empty_word' => "vazio"}}
-      @es.stub!(:keywords).and_return(@es_keywords)
     end
     
-    ['true', 'false', 'nil', 'empty'].each do |ruby_type|
-      context "be #{ruby_type}" do
-          
-        it "should translate #{ruby_type} keyword for pt" do
-          SpecI18n.stub!(:natural_language).and_return(@pt)
-          matcher_be = "#{@pt_keywords['matchers']['be']}"
-          matcher = @pt_keywords['matchers']["#{ruby_type}_word"]
-          expected = "#{matcher_be}_#{matcher}"
-          eval <<-MATCHER
-            Be.matcher_be_some(:#{ruby_type} => true).should == [expected.to_sym ]
-          MATCHER
-        end
-        
-         it "should translate #{ruby_type} keyword for es" do
-           SpecI18n.stub!(:natural_language).and_return(@es) 
-           matcher_be = "#{@es_keywords['matchers']['be']}"
-           matcher = @es_keywords['matchers']["#{ruby_type}_word"]
-           expected = "#{matcher_be}_#{matcher}"
-           eval <<-MATCHER
-             Be.matcher_be_some(:#{ruby_type} => true).should == [expected.to_sym ]
-           MATCHER
-         end
+    describe "when matcher be some word(true, false,nil or empty)" do
+            
+      before(:each) do
+        @pt_keywords = { "matchers" => {'be' => 'ser|estar', 
+          "true_word" => "verdadeiro|verdade", 
+          "false_word" => "falso|muito_falso",
+          "empty_word" => "vazio|sem_elemento",
+          "nil_word" => "nulo|null" }}
+        stub_keywords!(@pt, @pt_keywords)
+        mock_natural_language(@pt)
       end
+      
+      it "should translate true word for languages" do
+        expected = [:ser_verdadeiro, :ser_verdade, :estar_verdadeiro, :estar_verdade]
+        Spec::Matchers.matcher_be_some(:true => true).should == expected
+      end
+      
+      it "should translate false word for languages" do
+        expected = [:ser_falso, :ser_muito_falso, :estar_falso, :estar_muito_falso]
+        Spec::Matchers.matcher_be_some(:false => true).should == expected
+      end
+      
+      it "should translate false word for languages" do
+        expected = [:ser_vazio, :ser_sem_elemento, :estar_vazio, :estar_sem_elemento]
+        Spec::Matchers.matcher_be_some(:empty => true).should == expected
+      end
+      
+      it "should translate nil word for languages" do
+        expected = [:ser_nulo, :ser_null, :estar_nulo, :estar_null]
+        Spec::Matchers.matcher_be_some(:nil => true).should == expected
+      end
+      
     end
     
     context "be true predicate" do
-         
-      it "should pass when actual equal?(true)" do
-          [@pt, @es].each do |language|
-            SpecI18n.stub!(:natural_language).and_return(language)
-            Be.translate_be_true
-            matcher_be_some(:true => true).each do |word_be_true|
-                eval <<-BE_TRUE
-                  true.should #{word_be_true}
-                  1.should #{word_be_true}
-                BE_TRUE
-            end
-          end
-        end
+      
+      before(:each) do
+        @pt_keywords = { "matchers" => {'be' => 'ser', "true_word" => "verdadeiro|verdade" }}
+        stub_keywords!(@pt, @pt_keywords)
+        mock_natural_language(@pt)
+        Spec::Matchers.translate_be_true
+      end
+               
+      it "should pass when actual equal?(true) for language" do
+        true.should ser_verdadeiro
+        true.should ser_verdade
+      end
+      
+      it "should pass when actual is 1" do
+        1.should ser_verdadeiro
+        1.should ser_verdade
+      end
       
     end
 
     context "be false predicate" do
       
-      it "should pass when actual equal?(true)" do
-          [@pt, @es].each do |language|
-            SpecI18n.stub!(:natural_language).and_return(language)
-            Be.translate_be_false
-            matcher_be_some(:false => true).each do |word_be_false|
-                eval <<-BE_FALSE
-                  false.should #{word_be_false}
-                  nil.should #{word_be_false}
-                BE_FALSE
-            end
-          end
-        end
+      before(:each) do
+        @pt_keywords = { "matchers" => {'be' => 'ser', "false_word" => "falso|muito_falso" }}
+        stub_keywords!(@pt, @pt_keywords)
+        mock_natural_language(@pt)
+        Spec::Matchers.translate_be_false
+      end
       
+      it "should pass when actual equal?(false) for language" do
+        false.should ser_falso
+        false.should ser_muito_falso 
+      end
+      
+      it "should pass when actual equal?(nil) for language" do
+        nil.should ser_falso
+        nil.should ser_muito_falso
+      end
       
     end
     
     context "be nil predicate" do
+      
+      before(:each) do
+        @pt_keywords = { "matchers" => {'be' => 'ser', "nil_word" => "nulo|null" }}
+        stub_keywords!(@pt, @pt_keywords)
+        mock_natural_language(@pt)
+        Spec::Matchers.translate_be_nil
+      end
         
       it "should pass when actual is nil" do
-        [@pt, @es].each do |language|
-          SpecI18n.stub!(:natural_language).and_return(language)
-          Be.translate_be_nil
-          matcher_be_some(:nil => true).each do |word_be_nil|
-              eval <<-BE_NIL                
-                nil.should #{word_be_nil}
-              BE_NIL
-          end
-        end
+        nil.should ser_nulo
+        nil.should ser_null
       end
+      
+      it "should pass when not be nil and actual is not nil" do
+        :not_nil.should_not ser_nulo
+        :not_nil.should_not ser_null
+      end
+      
     end
     
     context "be empty predicate" do
-      it "should pass when actual is nil" do
-        [@pt, @es].each do |language|
-          SpecI18n.stub!(:natural_language).and_return(language)
-          Be.translate_be_empty
-          matcher_be_some(:empty => true).each do |word_be_nil|
-              eval <<-BE_EMPTY                
-                [].should #{word_be_nil}
-              BE_EMPTY
-          end
-        end
+      
+      before(:each) do
+        @pt_keywords = { "matchers" => {'be' => 'ser', "empty_word" => "vazio|sem_elemento" }}
+        stub_keywords!(@pt, @pt_keywords)
+        mock_natural_language(@pt)
+        Spec::Matchers.translate_be_empty
       end
+      
+      it "should pass when actual is empty" do
+        [].should ser_vazio
+        [].should ser_sem_elemento
+      end
+      
+      it "should pass when not is empty and actual is not empty" do
+        [:not_empty].should_not ser_vazio
+        [:not_empty].should_not ser_sem_elemento
+      end
+      
     end
     
   end

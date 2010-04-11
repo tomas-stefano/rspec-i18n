@@ -31,8 +31,7 @@ describe Main do
       [:descreba, :describir].each do |keyword|
         Main.methods.all_to_symbols.should include(keyword)
       end
-    end
-    
+    end    
     
   end
 
@@ -44,7 +43,6 @@ describe Main do
     end
     
     it "should register all the keywords for the shared examples for" do
-      pending
       mock_natural_language(@pt)
       Main.translate_shared_examples_for
       [:exemplos_distribuidos, :exemplos_distribuidos_para].each do |keyword|

@@ -5,9 +5,9 @@ module SpecI18n
     describe NaturalLanguage do
 
       before(:each) do
-        @pt = NaturalLanguage.get('pt')
-        @es = NaturalLanguage.get('es')
-        @en = NaturalLanguage.get('en')
+        @pt = NaturalLanguage.new('pt')
+        @es = NaturalLanguage.new('es')
+        @en = NaturalLanguage.new('en')
       end
 
       %w(describe before after it should name native).each do |keyword|
@@ -27,7 +27,13 @@ module SpecI18n
           language = "non_existing"
           lambda {  
             NaturalLanguage.new(language) 
-          }.should raise_error(LanguageNotFound, "Language #{language} Not Supported")
+          }.should raise_exception(LanguageNotFound, "Language #{language} Not Supported")
+        end
+        
+        it "should raise a error for the NIL language" do
+          lambda {
+            NaturalLanguage.new(nil)
+          }.should raise_exception(LanguageNilNotFound, "Language -> nil Not Found")
         end
 
       end
@@ -159,7 +165,38 @@ module SpecI18n
         end
       end
       
+      context 'matchers' do
+        
+        before(:each) do
+          @keywords = { "matchers" => { "be" => "ser", "include" => "incluir"}}
+        end
+        
+        it "does something" do
+          stub_keywords!(@pt, @keywords)
+          @pt.matchers.should == @keywords["matchers"]
+        end
+        
+      end
+      
+      context "be keyword" do
+        before(:each) do
+          @keywords = { "matchers" => { "be" => "ser|estar" }}
+        end
+        
+        it "should return an array with values of be word" do
+          stub_keywords!(@pt, @keywords)
+          @pt.keywords_of_be_word.should == ["ser", "estar"]
+        end
+        
+        it "should return a empty array for non found keyword" do
+          stub_keywords!(@pt, {})
+          @pt.keywords_of_be_word.should == []
+        end
+        
+      end
+      
       context "splitting the keys" do
+        
         it "should raise no found key" do
           lambda {
             @pt.spec_keywords("no_found")
