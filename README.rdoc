@@ -112,7 +112,7 @@ become like this:
 
 == Tested Versions
 
-<b>TESTS -> ONLY Ruby 1.8</b>
+<b>TESTS -> ONLY Ruby 1.8 (The Edge Version Supports Ruby 1.9!)</b>
 
 <b>Rspec-i18n >= 1.0.0</b> supports <b>ONLY Rspec 1.3</b>
 
