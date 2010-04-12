@@ -7,7 +7,7 @@ describe 'have, have_exactly, have_at_least and have_at_most matcher' do
                 'have_exactly' => 'ter_exatamente', 
                 'have_at_most' => 'ter_no_maximo'}
     @expected_matcher = {'matchers' => matchers}
-    portuguese_language(@expected_matcher)
+    stub_language!("pt", @expected_matcher)
     Spec::Matchers.register_all_matchers
   end
   

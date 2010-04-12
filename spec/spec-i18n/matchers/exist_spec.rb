@@ -17,18 +17,16 @@ module Spec
     describe "exist matcher" do
       
       before(:each) do
-        @expected_matcher = {'matchers' => {'exist' => 'existir'}}
-        portuguese_language(@expected_matcher)
+        @keywords = {'matchers' => {'exist' => 'existir|existe'}}
+        stub_language!("pt", @keywords)
         Spec::Matchers.register_all_matchers
         @real = Substance.new true, 'something real'
         @imaginary = Substance.new false, 'something imaginary'
       end
       
       it 'should register the exist method translated' do
-        values = @expected_matcher['matchers']['exist'].split('|')
-        values.each do |value_method|
-          methods = Object.instance_methods.all_to_symbols
-          methods.should be_include(value_method.to_sym)
+        [:existir, :existe].each do |translated_matcher|
+          methods.to_symbols.should include(translated_matcher)
         end
       end
       

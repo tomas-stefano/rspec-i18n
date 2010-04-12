@@ -3,16 +3,14 @@ require 'spec_helper'
 describe "should raise_error" do
   
   before(:each) do
-    @expected_matcher = {'matchers' => {'raise_error' => 'mostrar_erro'}}
-    portuguese_language(@expected_matcher)
+    @expected_matcher = {'matchers' => {'raise_error' => 'mostrar_erro|mostrar_excessao'}}
+    stub_language!("pt", @expected_matcher)
     Spec::Matchers.register_all_matchers
   end
   
   it 'should register the methods for the value equal matcher' do
-    values = @expected_matcher['matchers']['raise_error'].split('|') 
-    values.each do |method_name| 
-      methods = Object.instance_methods.all_to_symbols
-      methods.should be_include(method_name.to_sym)
+    [:mostrar_erro, :mostrar_excessao].each do |translated_matcher|
+      methods.to_symbols.should include(translated_matcher)
     end
   end
   

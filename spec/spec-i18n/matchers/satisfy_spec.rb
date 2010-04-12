@@ -3,16 +3,14 @@ require 'spec_helper'
 describe "should satisfy { block }" do
   
   before(:each) do
-    @expected_matcher = { 'matchers' => { 'satisfy' => 'satisfazer'} }
-    portuguese_language(@expected_matcher)
+    @keywords = { 'matchers' => { 'satisfy' => 'satisfazer|satisfaz'} }
+    stub_language!("pt", @keywords)
     Spec::Matchers.register_all_matchers
   end
   
   it 'should trasnlate the satisfy matcher' do
-    values = @expected_matcher['matchers']['satisfy'].split('|')
-    values.each do |value_method|
-      methods_list = Object.instance_methods.all_to_symbols
-      methods_list.should be_include(value_method.to_sym)
+    [:satisfazer, :satisfazer].each do |translated_matcher|
+      methods.to_symbols.should include(translated_matcher)
     end
   end
   

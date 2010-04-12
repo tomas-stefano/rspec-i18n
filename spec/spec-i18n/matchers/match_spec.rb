@@ -2,16 +2,14 @@ require 'spec_helper'
 
 describe "should match(expected)" do
   before(:each) do
-    @expected_matcher = {'matchers' => { 'match' => 'corresponder'} }
-    portuguese_language(@expected_matcher)
+    @expected_matcher = {'matchers' => { 'match' => 'corresponder|corresponde'} }
+    stub_language!("pt", @expected_matcher)
     Spec::Matchers.register_all_matchers
   end
   
   it "should translated the include matcher" do
-    values = @expected_matcher['matchers']['match'].split('|')
-    values.each do |value_method|
-      methods = Object.instance_methods.all_to_symbols
-      methods.should be_include(value_method.to_sym)
+    [:corresponder, :corresponde].each do |translated_matcher|
+      methods.to_symbols.should include(translated_matcher)
     end
   end
   
