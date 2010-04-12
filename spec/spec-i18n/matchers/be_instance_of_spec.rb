@@ -5,16 +5,14 @@ module Spec
     describe 'the be_instance_of method' do
       
       before(:each) do
-        @expected_matcher = { 'matchers' => { 'be_an_instance_of' => 'ser_instancia_de'} }
-        portuguese_language(@expected_matcher)
+        @keywords = { 'matchers' => { 'be_an_instance_of' => 'ser_instancia_de|ser_instancia'} }
+        stub_language!("pt", @keywords)
         Spec::Matchers.register_all_matchers
       end
       
       it "register the be_an_instance_of method" do
-        values = @expected_matcher['matchers']['be_an_instance_of'].split('|')
-        values.each do |value_method|
-          methods = Object.instance_methods.all_to_symbols
-          methods.should be_include(value_method.to_sym)
+        [:ser_instancia_de, :ser_instancia].each do |translated_matcher|
+          methods.to_symbols.should include(translated_matcher)
         end
       end
       

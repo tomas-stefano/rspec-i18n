@@ -5,19 +5,17 @@ module Spec
     describe "eql" do
       
       before(:each) do
-        @expected_matcher = {'matchers' => {'eql' => 'igl'}}
-        portuguese_language(@expected_matcher)
+        @keywords = {'matchers' => {'eql' => 'igl'}}
+        stub_language!("pt", @keywords)
         Spec::Matchers.register_all_matchers
       end
       
       it "should have eql matchers translated" do
-        eql_word = @expected_matcher['matchers']['eql']
-        1.methods.all_to_symbols.should be_include(eql_word.to_sym)
+        methods.to_symbols.should include(:igl)
       end
       
       it "should have eql? matchers translated" do
-        eql_word = @expected_matcher['matchers']['eql'] + '?'
-        1.methods.all_to_symbols.should be_include(eql_word.to_sym)
+        methods.to_symbols.should include(:igl?)
       end
       
       it "should match when actual.eql?(expected)" do

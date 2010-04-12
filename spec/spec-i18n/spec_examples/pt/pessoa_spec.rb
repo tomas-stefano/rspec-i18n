@@ -6,12 +6,20 @@ Spec::Runner.configure do |config|
 end
 
 class Pessoa
-  attr_accessor :idade
+  attr_accessor :idade, :nome
   def initialize(nome, sobrenome, opcoes={})
     @nome = nome
     @sobrenome = sobrenome
     @idade = opcoes[:idade]
     @filhos = opcoes[:filhos]
+  end
+  
+  def nome
+    @nome.downcase.to_sym
+  end
+  
+  def exist?
+    true unless self.nil?
   end
   
   def nome_completo
@@ -76,13 +84,25 @@ descreva Pessoa do
   isto 'deve ser uma instancia da classe Pessoa' do
     @pessoa.deve ser_instancia_de(Pessoa)
   end
+  
+  especificar 'deve existir' do
+    @pessoa.deve existir
+  end
 
-  isto 'deve incluir uma pessoa' do
+  especificar 'deve incluir uma pessoa' do
     @pessoas.deve incluir(@pessoa)
   end
 
-  isto 'deve ser do tipo Pessoa' do
+  especificar 'deve ser do tipo Pessoa' do
     @pessoa.deve ser_do_tipo(Pessoa)
+  end
+  
+  isto 'deve lançar uma excessão' do
+    lambda { @pessoa.isso_nao_existe }.deve mostrar_excessao
+  end
+  
+  isto 'deve satisfazer a condicao de maior de idade' do
+    @pessoa.deve satisfazer { |pessoa| pessoa == @pessoa}
   end
 
   isto 'deve ter pelo menos uma pessoa' do
@@ -109,8 +129,12 @@ descreva Pessoa do
       @pessoa.nome_completo.deve ==("Tomás D'Stefano")
     end
     
-    isto 'nome completo não pode ser nulo' do
-      @pessoa.nome_completo.nao_deve ser_igual_a(nil)
+    isto 'deve retornar nome completo em simbolo' do
+      @pessoa.nome.deve ser_igual_a(:tomás)
+    end
+    
+    isto 'nome completo nao pode ser nulo' do
+      @pessoa.nome_completo.nao_deve ser_nulo
     end
     
   end
@@ -121,10 +145,12 @@ descreva Pessoa do
       @pessoa = Pessoa.new("Aaromn", "Monkey", :idade => 20)
     end
 
+    # Voce tambem pode usar a palavra especificar
     especificar "deve ser opcional" do
       @pessoa.idade.deve ser_igual_a(20)
     end
     
+    # Voce tambem pode usar a palavra exemplo
     exemplo "deve retornar verdadeiro se for maior de idade" do
       @pessoa.maior_de_idade?.deve ser_verdadeiro
     end

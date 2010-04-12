@@ -168,12 +168,23 @@ module SpecI18n
       context 'matchers' do
         
         before(:each) do
-          @keywords = { "matchers" => { "be" => "ser", "include" => "incluir"}}
+          @keywords = { "matchers" => { "be" => "ser", 
+            "include" => "incluir|incluso", "be_close" => nil}}
         end
         
-        it "does something" do
+        it "should return an hash of matchers" do
           stub_keywords!(@pt, @keywords)
           @pt.matchers.should == @keywords["matchers"]
+        end
+        
+        it "should find a matcher that exist" do
+          stub_keywords!(@pt, @keywords)
+          @pt.find_matcher(:include).should == { "include" => ["incluir", "incluso"]}
+        end
+        
+        it "should return a hash with empty value for the empty value of matcher" do
+          stub_keywords!(@pt, @keywords)
+          @pt.find_matcher(:be_close).should == {"be_close" => []}
         end
         
       end

@@ -1,20 +1,17 @@
 require 'spec_helper'
 
 describe "should include(expected)" do
+  
   before(:each) do
-    @expected_matcher = {'matchers' => { 'include' => 'incluir'} }
-    portuguese_language(@expected_matcher)
-    Spec::Matchers.register_all_matchers
+    @keywords = { 'matchers' => {'include' => 'incluir|incluso'} }
+    stub_language!("pt", @keywords)
+    Spec::Matchers.translate_basic_matchers
   end
   
   it "should translated the include matcher" do
-    values = @expected_matcher['matchers']['include'].split('|')
-    
-    values.each do |value_method|
-      methods = Object.instance_methods.all_to_symbols
-      methods.should be_include(value_method.to_sym)
+    ["incluir", "incluso"].each do |value_method|
+      methods.all_to_symbols.should be_include(value_method.to_sym)
     end
-    
   end
   
   it "should pass if target includes expected" do

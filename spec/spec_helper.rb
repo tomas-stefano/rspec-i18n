@@ -8,7 +8,14 @@ $:.unshift(File.dirname(__FILE__), '../lib')
 include SpecI18n
 
 def mock_natural_language(natural_language)
-  Parser::NaturalLanguage.should_receive(:new).and_return(natural_language)
+  Parser::NaturalLanguage.should_receive(:new).at_least(:once).and_return(natural_language)
+end
+
+def stub_language!(natural_language, keywords)
+  language = Parser::NaturalLanguage.new(natural_language)
+  mock_natural_language(language)
+  stub_keywords!(language, keywords)
+  language
 end
 
 def stub_keywords!(natural_language, keywords)
@@ -98,4 +105,5 @@ class Array
   def all_to_symbols
     self.collect! { |a| a.to_sym }
   end
+  alias :to_symbols :all_to_symbols
 end

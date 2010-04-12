@@ -68,6 +68,13 @@ module SpecI18n
         keywords["matchers"]
       end
       
+      def find_matcher(matcher)
+        matcher = matcher.to_s
+        matcher_and_values = {}        
+        matcher_and_values[matcher] = split_word(matchers[matcher])
+        matcher_and_values
+      end
+      
       def word_be(ruby_type)
         matchers_be = keywords_of_be_word
         matcher_ruby_type = keywords['matchers']["#{ruby_type}_word"].to_s.split("|")
@@ -77,7 +84,7 @@ module SpecI18n
       end
       
       def keywords_of_be_word
-        return matchers['be'].to_s.split("|") if matchers
+        return split_word(matchers['be']) if matchers
         []
       end
 
@@ -86,6 +93,12 @@ module SpecI18n
         return { key => [] } unless keywords[key]
         values = keywords[key].split('|')
         { key => values }
+      end
+      
+      private
+      
+      def split_word(word)
+        word.to_s.split("|")
       end
 
     end

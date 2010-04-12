@@ -5,21 +5,20 @@ module Spec
     describe "[actual.should] be_close(expected, delta)" do
       
       before(:each) do
-        @expected_matcher = {'matchers' => { 'be_close' => 'estar_perto'} }
-        portuguese_language(@expected_matcher)
+        @keywords = {'matchers' => { 'be_close' => 'estar_perto|estar_proximo'} }
+        stub_language!("pt", @keywords)
         Spec::Matchers.register_all_matchers
       end
       
       it "should register the be_close matcher" do
-        values = @expected_matcher['matchers']['be_close'].split('|')
-        values.each do |value_method|
-          methods = Object.instance_methods.all_to_symbols
-          methods.should be_include(value_method.to_sym)
+        [:estar_perto, :estar_proximo].each do |translate_matcher|
+          methods.to_symbols.should include translate_matcher          
         end
       end
       
       it "matches when actual == expected" do
         estar_perto(5.0, 0.5).matches?(5.0).should be_true
+        estar_proximo(5.0, 0.5).matches?(5.0).should be_true
       end
       
       it "matches when actual < (expected + delta)" do
@@ -29,9 +28,11 @@ module Spec
       it "does not match when actual == (expected - delta)" do
         estar_perto(5.0, 0.5).matches?(4.5).should be_false
       end
+      
       it "does not match when actual < (expected - delta)" do
         estar_perto(5.0, 0.5).matches?(4.49).should be_false
       end
+      
       it "does not match when actual == (expected + delta)" do
         estar_perto(5.0, 0.5).matches?(5.5).should be_false
       end
