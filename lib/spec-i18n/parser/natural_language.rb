@@ -72,6 +72,10 @@ module SpecI18n
         spec_keywords('shared_examples_for')
       end
       
+      def share_as_keywords
+        spec_keywords('share_as')
+      end
+      
       def it_should_behave_like_keywords
         spec_keywords('it_should_behave_like')
       end

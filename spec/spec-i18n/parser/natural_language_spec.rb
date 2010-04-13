@@ -192,7 +192,9 @@ module SpecI18n
       context 'shared examples keywords' do
         
         before(:each) do
-          @keywords = { 'shared_examples_for' => 'exemplos_distribuidos|distribuido', 'it_should_behave_like' => 'deve_se_comportar_como|deve_se_comportar' }
+          @keywords = { 'shared_examples_for' => 'exemplos_distribuidos|distribuido',
+          'it_should_behave_like' => 'deve_se_comportar_como|deve_se_comportar',
+          'share_as' => 'distribua|distribua_como' }
           stub_keywords!(@pt, @keywords)
         end
         
@@ -204,6 +206,11 @@ module SpecI18n
         it "should return the words for it should behave like keyword" do
           expected = {"it_should_behave_like" => ['deve_se_comportar_como', 'deve_se_comportar']}
           @pt.it_should_behave_like_keywords.should ==(expected)
+        end
+        
+        it "should return the words for shares as keyword" do
+          expected = { 'share_as' => ['distribua', 'distribua_como']}
+          @pt.share_as_keywords.should == expected
         end
         
       end

@@ -23,6 +23,12 @@ module Spec
         end
       end
       
+      def translate_share_as_keywords
+        natural_language.share_as_keywords.each do |share_as_method, share_as_keywords|
+          share_as_keywords.each { |keyword| alias_method keyword, share_as_method }
+        end
+      end
+      
     end
   end
 end

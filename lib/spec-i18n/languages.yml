@@ -51,7 +51,7 @@
   its: exemplo_do_assunto # I don't know about this word
   subject: assunto
   shared_examples_for: exemplos_distribuidos|exemplo_distribuido
-  shares_as: # TODO
+  share_as: distribua_como
   it_should_behave_like: deve_se_comportar_como
   should: deve
   should_not: nao_deve
@@ -93,8 +93,9 @@
   it: es
   its: # I don't know about this word
   subject: subjekt
-  shared_examples_for: # IN TODO LIST!
-  it_should_behave_like: # IN TODO LIST!
+  share_as:
+  shared_examples_for: 
+  it_should_behave_like:
   should: sollte
   should_not: sollte_nicht
   before: vorher
@@ -131,6 +132,7 @@
   it: 
   its: 
   subject:
+  share_as:
   shared_examples_for:
   it_should_behave_like: 
   should: 
@@ -170,6 +172,7 @@
   it: ejemplo
   its: ejemplo_asunto # I don't know about this word
   subject: asunto|tema
+  share_as:
   shared_examples_for:
   it_should_behave_like:
   should: deberia

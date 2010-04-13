@@ -38,15 +38,31 @@ describe Main do
   describe "the manipulation of shared examples for"  do
     
     before(:each) do
-      @pt_keywords = { "shared_examples_for" => "exemplos_distribuidos|exemplos_distribuidos_para" } 
-      @pt.stub!(:keywords).and_return(@pt_keywords)
+      @keywords = { "shared_examples_for" => "exemplos_distribuidos|exemplos_distribuidos_para" } 
+      stub_language!("pt", @keywords)
+      Main.translate_shared_examples_for
     end
     
     it "should register all the keywords for the shared examples for" do
-      mock_natural_language(@pt)
-      Main.translate_shared_examples_for
       [:exemplos_distribuidos, :exemplos_distribuidos_para].each do |keyword|
         Main.methods.to_symbols.should include(keyword)
+      end
+    end
+    
+  end
+
+  describe "when translate share_as" do
+    
+    before(:each) do
+      @keywords = { "share_as" => 'distribua|distribua_como' }
+      stub_language!('pt', @keywords)
+      Main.translate_share_as_keywords
+    end
+    
+    it "should include the translate methods" do
+      main_methods = Main.methods.to_symbols
+      [:distribua, :distribua_como].each do |method_name|
+        main_methods.should include(method_name)
       end
     end
     
