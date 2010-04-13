@@ -25,6 +25,7 @@ module Spec
         Spec::Matchers.register_all_matchers
         Spec::Example::Subject::ExampleGroupMethods.register_subjects
         Spec::Example::Subject::ExampleMethods.register_subjects
+        Spec::Example::ExampleGroupMethods.translate_it_should_behave_like
       end
     end
     

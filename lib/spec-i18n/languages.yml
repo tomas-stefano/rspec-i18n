@@ -52,7 +52,7 @@
   subject: assunto
   shared_examples_for: exemplos_distribuidos|exemplo_distribuido
   shares_as: # TODO
-  it_should_behave_like: # IN TODO LIST!
+  it_should_behave_like: deve_se_comportar_como
   should: deve
   should_not: nao_deve
   before: antes

@@ -66,6 +66,7 @@ exemplos_distribuidos "Todas Pessoas" do
 end
 
 descreva Pessoa do
+  deve_se_comportar_como "Todas Pessoas"
   
   antes(:de_todos) do
     @pessoa = Pessoa.new("Homer", "Simpson")
