@@ -198,12 +198,12 @@ module SpecI18n
         
         it "should return the words for shared examples for separated by '|'" do
           expected = {"shared_examples_for" => ['exemplos_distribuidos', 'distribuido']}
-          @pt.shared_examples_for_keywords.should eql(expected)
+          @pt.shared_examples_for_keywords.should ==(expected)
         end
         
         it "should return the words for it should behave like keyword" do
           expected = {"it_should_behave_like" => ['deve_se_comportar_como', 'deve_se_comportar']}
-          @pt.it_should_behave_like_keywords.should eql(expected)
+          @pt.it_should_behave_like_keywords.should ==(expected)
         end
         
       end
