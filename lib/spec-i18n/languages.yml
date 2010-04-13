@@ -49,6 +49,7 @@
   describe: descreva|contexto
   it: isso|isto|especificar|exemplo
   its: exemplo_do_assunto # I don't know about this word
+  pending: pendente
   subject: assunto
   shared_examples_for: exemplos_distribuidos|exemplo_distribuido
   share_as: distribua_como
@@ -91,11 +92,12 @@
   native: Deutsch
   describe: beschreibe|kontext
   it: es
-  its: # I don't know about this word
+  its: 
   subject: subjekt
   share_as:
   shared_examples_for: 
   it_should_behave_like:
+  pending:
   should: sollte
   should_not: sollte_nicht
   before: vorher
@@ -124,45 +126,6 @@
     match: passen*
     raise_error: 
     satisfy: erfüllen*
-
-"en-au":
-  name: 
-  native: 
-  describe: 
-  it: 
-  its: 
-  subject:
-  share_as:
-  shared_examples_for:
-  it_should_behave_like: 
-  should: 
-  should_not:
-  before:
-  after:
-  hooks:                                                    
-    each:
-    all:
-    suite:
-  matchers:                                                 
-    be:
-    true_word:
-    false_word:
-    nil_word:
-    empty_word:
-    be_a_kind_of:
-    be_close:
-    be_an_instance_of:
-    eql:
-    equal:
-    exist:
-    have:
-    have_exactly:
-    have_at_least:
-    have_at_most:
-    include:
-    match:
-    raise_error:
-    satisfy:
 
 # Please put the right words for this language! =D
 "es":
@@ -200,3 +163,39 @@
     match: 
     raise_error: 
     satisfy: 
+
+"en-au":
+    name:
+    native:
+    describe: 
+    it:
+    its:
+    subject:
+    share_as:
+    shared_examples_for:
+    it_should_behave_like:
+    should:
+    should_not:
+    before:
+    after:
+    hooks:
+      each:
+      all:
+      suite:
+    matchers:
+      be: 
+      true: 
+      be_a_kind_of: 
+      be_close: 
+      be_an_instance_of: 
+      eql: 
+      equal: 
+      exist: 
+      have: 
+      have_exactly: 
+      have_at_least: 
+      have_at_most: 
+      include: 
+      match: 
+      raise_error: 
+      satisfy:

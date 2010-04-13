@@ -215,6 +215,22 @@ module SpecI18n
         
       end
       
+      context 'when pending keywords' do
+        
+        it "should return the pending keywords" do
+          @keywords = { 'pending' => 'pendente|pendencia' }
+          stub_keywords!(@pt, @keywords)
+          @pt.pending_keywords.should == { 'pending' => ['pendente', 'pendencia']}
+        end
+        
+        it "should return the pending keywords for languages" do
+          @keywords = { 'pending' => 'spec_pendente'}
+          stub_keywords!(@es, @keywords)
+          @es.pending_keywords.should == { 'pending' => ['spec_pendente']}
+        end
+        
+      end
+      
       context "be keyword" do
         before(:each) do
           @keywords = { "matchers" => { "be" => "ser|estar" }}

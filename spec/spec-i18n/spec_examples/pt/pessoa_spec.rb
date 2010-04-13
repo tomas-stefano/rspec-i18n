@@ -132,6 +132,10 @@ descreva Pessoa do
     @pessoas.deve ter_no_maximo(3).items
   end
   
+# isto 'deve estar pendente' do
+#   pendente
+# end
+  
   contexto "Nome completo" do
     
     antes(:de_cada_exemplo) do

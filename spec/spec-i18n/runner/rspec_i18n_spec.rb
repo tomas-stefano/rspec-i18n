@@ -48,7 +48,7 @@ context "a warning" do
   before(:each) do
     @en_au = SpecI18n::Parser::NaturalLanguage.get("en-au")
     @en_au.stub!(:incomplete?).and_return(true)
-    SpecI18n.stub!(:natural_language).and_return(@en_au)          
+    SpecI18n.stub!(:natural_language).and_return(@en_au)        
   end
   
   it "should show for the incomplete language" do

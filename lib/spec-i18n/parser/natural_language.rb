@@ -80,6 +80,10 @@ module SpecI18n
         spec_keywords('it_should_behave_like')
       end
       
+      def pending_keywords
+        spec_keywords('pending')
+      end
+      
       def find_matcher(matcher)
         matcher = matcher.to_s
         matcher_and_values = {}        
