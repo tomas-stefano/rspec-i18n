@@ -7,10 +7,6 @@ $:.unshift(File.dirname(__FILE__), '../lib')
 
 include SpecI18n
 
-def mock_natural_language(natural_language)
-  Parser::NaturalLanguage.should_receive(:new).at_least(:once).and_return(natural_language)
-end
-
 def stub_language!(natural_language, keywords)
   language = Parser::NaturalLanguage.new(natural_language)
   mock_natural_language(language)
@@ -18,28 +14,12 @@ def stub_language!(natural_language, keywords)
   language
 end
 
+def mock_natural_language(natural_language)
+  Parser::NaturalLanguage.should_receive(:new).at_least(:once).and_return(natural_language)
+end
+
 def stub_keywords!(natural_language, keywords)
   natural_language.stub!(:keywords).and_return(keywords)
-end
-
-def portuguese_language(expected)
-  pt = Parser::NaturalLanguage.get("pt")
-  SpecI18n.stub!(:natural_language).and_return(pt)
-  
-  expected['matchers']['be'] = 'ser|estar' unless expected['matchers'].nil?
-  
-  predicade = pt.stub(:keywords).and_return(expected)
-  expected
-end
-
-def spanish_language(expected)
-  es = Parser::NaturalLanguage.get("es")
-  SpecI18n.stub!(:natural_language).and_return(es)
-  
-  expected['matchers']['be'] = 'ser|estar' unless expected['matchers'].nil?
-  
-  predicade = es.stub(:keywords).and_return(expected)
-  expected
 end
 
 def with_sandboxed_options

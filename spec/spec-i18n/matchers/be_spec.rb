@@ -5,7 +5,8 @@ describe "should be_predicate" do
   context "be predicate" do
     
     before(:each) do
-      portuguese_language({"matchers" => {"be" => "ser",  "true_word" => "verdadeiro"}})
+      @keywords = {"matchers" => {"be" => "ser",  "true_word" => "verdadeiro"}}
+      stub_language!("pt", @keywords)
       Spec::Matchers.translate_be_matcher
     end
 

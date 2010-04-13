@@ -5,31 +5,30 @@ module Spec
     describe "implicit subject" do
       
       before(:each) do
-        @pt = portuguese_language({'subject' => 'assunto', 'should' => 'deve',
-                                    'should_not' => 'nao_deve','matchers' => {}})
+        @keywords = {'subject' => 'assunto|asunto', 
+          'should' => 'deve|deveria',
+          'should_not' => 'nao_deve|nao_deveria','matchers' => {}}
+        stub_language!("pt", @keywords)
         Subject::ExampleMethods.register_subjects
-        @es = spanish_language({'subject' => 'asunto', 'should' => 'deve',
-                                'should_not' => 'nao_deve', 'matchers' => {}})
-        Subject::ExampleMethods.register_subjects
+        @name_methods = Subject::ExampleMethods.instance_methods.to_symbols
       end
 
       it 'should have the subject translated' do
-        values = @pt['subject'].split('|')
-        values << @es['subject'].split('|')
-        values.flatten.each do |value_method|
-          methods = Subject::ExampleMethods.instance_methods.all_to_symbols
-          methods.should be_include(value_method.to_sym)
+        [:assunto, :asunto].each do |translated_subject|
+          @name_methods.should include(translated_subject)
+        end
+      end
+      
+      it "should have the 'should' method translated in subject" do
+        [:deve, :deveria].each do |should_method|
+          @name_methods.should include(should_method)
         end
       end
 
       it "should have the should and should_not method trasnlated" do
-        values = @pt['should'].split('|')
-        other_values = @pt['should_not'].split('|')
-        values << other_values
-        values.flatten.each do |value_method|
-          methods= Subject::ExampleMethods.instance_methods.all_to_symbols
-          methods.should be_include(value_method.to_sym)
-        end        
+        [:nao_deve, :nao_deveria].each do |should_not_method|
+          @name_methods.should include(should_not_method)
+        end
       end
       
       describe "with a class" do
@@ -93,7 +92,7 @@ module Spec
         doubly_nested_group = Class.new(nested_group)
 
         example = doubly_nested_group.new
-        example.subject.should == [1,2,3]
+        example.asunto.should == [1,2,3]
       end
 
     end
@@ -101,26 +100,19 @@ module Spec
     describe ".its (to access subject's attributes)" do
       
       before(:each) do
-        @its_examples = {'subject' => 'assunto', 'its' => 'exemplos', 'matchers' => {}}
-        @pt = portuguese_language(@its_examples)
-        Subject::ExampleGroupMethods.register_subjects
-        @es = spanish_language({'subject' => 'assunto', 'its' => 'ejemplos', 'matchers' => {}})
+        @keywords = {'subject' => 'assunto', 'its' => 'exemplos', 'matchers' => {}}
+        stub_language!("pt", @keywords)
         Subject::ExampleGroupMethods.register_subjects
       end
    
-     with_sandboxed_options do
-        it "passes when expectation should pass" do
-          group = Class.new(ExampleGroupDouble).describe(Array)
-          child = group.exemplos(:length) { should == 0 }
-          child.run(options).should == true
-        end
-        
-        it "fails when expectation should fail" do
-          group = Class.new(ExampleGroupDouble).describe(Array)
-          child = group.ejemplos(:length) { should == 1 }
-          child.run(options).should == false
-        end
+      with_sandboxed_options do
+         it "passes when expectation should pass" do
+           group = Class.new(ExampleGroupDouble).describe(Array)
+           child = group.exemplos(:length) { should == 0 }
+           child.run(options).should == true
+         end
       end
+    
     end
 
   end

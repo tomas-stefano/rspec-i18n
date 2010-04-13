@@ -5,8 +5,7 @@ module Spec
         # TODO: Removing Duplications
         class << self
           def register_subjects
-            language = SpecI18n.natural_language
-            subject_and_its_keywords = language.subject_keywords.merge(language.its_keywords)
+            subject_and_its_keywords = natural_language.subject_keywords.merge(natural_language.its_keywords)
             subject_and_its_keywords.each do |key, values|
               values.map { |value| alias_method value, key }
             end
@@ -16,8 +15,7 @@ module Spec
       module ExampleMethods
         class << self
           def register_subjects
-            language = SpecI18n.natural_language
-            subject_and_expectation_keywords = language.subject_keywords.merge(language.expectation_keywords)
+            subject_and_expectation_keywords = natural_language.subject_keywords.merge(natural_language.expectation_keywords)
             subject_and_expectation_keywords.each do |key, values|
               values.map { |value| alias_method value, key }
             end
