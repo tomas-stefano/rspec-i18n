@@ -14,20 +14,36 @@ module SpecI18n
         @args = args
         @args.extend(::OptionParser::Arguable)
         @args.options do |opts|
-          opts.banner = [ "Usage: rspec-i18n [options] [LANGUAGE]", "", "Examples:",
-            "rspec-i18n --language help", "rspec-i18n --language pt"].join("\n")            
-          opts.on("-l LANGUAGE", "--language LANGUAGE", "List keywords for a particular language",
-            %{Run with "--language help" to see all languages}) do |language|
-            print_languages(language)
-          end
-          opts.on_tail("-v", "--version", "Show version.") do
-            print_and_exit(SpecI18n::VERSION)
-          end
-          opts.on_tail("-h", "--help", "You're looking at it.") do
-            print_and_exit(opts.help)
-          end
+          banner(opts)
+          show_language_and_keywords(opts)
+          show_version(opts)
+          show_help(opts)
         end.parse!
         self
+      end
+      
+      def banner(opts)
+        opts.banner = [ "Usage: rspec-i18n [options] [LANGUAGE]", "", "Examples:",
+          "rspec-i18n --language help", "rspec-i18n --language pt"].join("\n")
+      end
+      
+      def show_language_and_keywords(opts)
+        opts.on("-l LANGUAGE", "--language LANGUAGE", "List keywords for a particular language",
+          %{Run with "--language help" to see all languages}) do |language|
+          print_languages(language)
+        end
+      end
+      
+      def show_version(opts)
+        opts.on_tail("-v", "--version", "Show version.") do
+          print_and_exit(SpecI18n::VERSION)
+        end
+      end
+      
+      def show_help(opts)
+        opts.on_tail("-h", "--help", "You're looking at it.") do
+          print_and_exit(opts.help)
+        end
       end
       
       def print_languages(language)

@@ -8,6 +8,7 @@
 * Translate shared examples
 * Verifying if it's possible to translate error and success messages and documentation
 * Create the directory features to test with Cucumber
+* Put Comments in the methods (For Rspec-i18n rdoc)
 * Make the describe/it i18n available from a class: 
 	
 	Example:
