@@ -18,6 +18,7 @@ module Spec
         message = "\n Language Warning: Incomplete Keywords For The Language '#{language}' \n"
         Kernel.warn(message) if natural_language.incomplete?
         Spec::DSL::Main.register_adverbs
+        Spec::DSL::Main.translate_shared_examples_for
         Kernel.register_expectations_keywords
         Spec::Example::ExampleGroupMethods.register_example_adverbs
         Spec::Example::BeforeAndAfterHooks.register_hooks

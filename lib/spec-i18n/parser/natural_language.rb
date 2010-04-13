@@ -68,6 +68,14 @@ module SpecI18n
         keywords["matchers"]
       end
       
+      def shared_examples_for_keywords
+        spec_keywords('shared_examples_for')
+      end
+      
+      def it_should_behave_like_keywords
+        spec_keywords('it_should_behave_like')
+      end
+      
       def find_matcher(matcher)
         matcher = matcher.to_s
         matcher_and_values = {}        
@@ -91,7 +99,7 @@ module SpecI18n
       def spec_keywords(key)
         raise "No #{key} in #{keywords.inspect}" unless keywords.include?(key)
         return { key => [] } unless keywords[key]
-        values = keywords[key].split('|')
+        values = split_word(keywords[key])
         { key => values }
       end
       

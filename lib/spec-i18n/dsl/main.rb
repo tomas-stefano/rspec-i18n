@@ -18,7 +18,9 @@ module Spec
       # { "shared_examples_for" => ['exemplos_distribuidos_para']}
       #
       def translate_shared_examples_for
-        #natural_language.shared_examples_for_keywords
+        natural_language.shared_examples_for_keywords.each do |shared_examples_method, shared_example_keywords|
+          shared_example_keywords.each { |keyword| alias_method keyword, shared_examples_method }
+        end
       end
       
     end

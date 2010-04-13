@@ -50,7 +50,7 @@
   it: isso|isto|especificar|exemplo
   its: exemplo_do_assunto # I don't know about this word
   subject: assunto
-  shared_examples_for: # IN TODO LIST!
+  shared_examples_for: exemplos_distribuidos|exemplo_distribuido
   shares_as: # TODO
   it_should_behave_like: # IN TODO LIST!
   should: deve

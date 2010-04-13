@@ -59,6 +59,12 @@ class Pessoa
 end
 
 # Silly Tests for specifying the library in portuguese language
+
+exemplos_distribuidos "Todas Pessoas" do
+  isto "deve se comportar como todas pessoas" do
+  end
+end
+
 descreva Pessoa do
   
   antes(:de_todos) do

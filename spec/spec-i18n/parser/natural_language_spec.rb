@@ -189,6 +189,25 @@ module SpecI18n
         
       end
       
+      context 'shared examples keywords' do
+        
+        before(:each) do
+          @keywords = { 'shared_examples_for' => 'exemplos_distribuidos|distribuido', 'it_should_behave_like' => 'deve_se_comportar_como|deve_se_comportar' }
+          stub_keywords!(@pt, @keywords)
+        end
+        
+        it "should return the words for shared examples for separated by '|'" do
+          expected = {"shared_examples_for" => ['exemplos_distribuidos', 'distribuido']}
+          @pt.shared_examples_for_keywords.should eql(expected)
+        end
+        
+        it "should return the words for it should behave like keyword" do
+          expected = {"it_should_behave_like" => ['deve_se_comportar_como', 'deve_se_comportar']}
+          @pt.it_should_behave_like_keywords.should eql(expected)
+        end
+        
+      end
+      
       context "be keyword" do
         before(:each) do
           @keywords = { "matchers" => { "be" => "ser|estar" }}
