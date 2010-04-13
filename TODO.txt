@@ -8,7 +8,6 @@
 * Verifying if it's possible to translate error and success messages and documentation
 * Create the directory features to test with Cucumber
 * Put Comments in the methods (For Rspec-i18n rdoc)
-* Translate pending word
 * Change the order of predicates and verbs for other languages
 * Make the describe/it i18n available from a class: 
 	
