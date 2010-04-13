@@ -2,6 +2,7 @@
 
   * Simplified more and more tests!
   * Support Ruby 1.9! 
+  * Translated shared examples( translated: shared_examples_for, share_as, it_should_behave_like)
 
 ==== Version 1.1.0
 
