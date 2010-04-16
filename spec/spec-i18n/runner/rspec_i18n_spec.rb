@@ -7,8 +7,8 @@ module Spec
         with_sandboxed_config do
           describe "#spec_language" do
 
-            it "should default a english language for nil" do
-              config.spec_language(nil).should == "en"
+            it "should raise a error for language nil" do
+              lambda {config.spec_language(nil)}.should raise_exception(UndefinedLanguageError)
             end
 
             it "should return a pt language" do
@@ -19,11 +19,6 @@ module Spec
               config.spec_language(:es).should == "es"
             end
             
-            it "should return a en language for the nil parameter" do
-              config.spec_language(nil)
-              config.language.should == "en"
-            end
-
             it "should set the portuguese language" do
               config.spec_language(:pt)
               config.language.should == "pt"
@@ -48,7 +43,7 @@ context "a warning" do
   before(:each) do
     @en_au = SpecI18n::Parser::NaturalLanguage.get("en-au")
     @en_au.stub!(:incomplete?).and_return(true)
-    SpecI18n.stub!(:natural_language).and_return(@en_au)        
+    mock_natural_language(@en_au)       
   end
   
   it "should show for the incomplete language" do
@@ -59,11 +54,13 @@ context "a warning" do
 end
 
 describe "load language" do
+  
   before(:each) do
     @pt = SpecI18n::Parser::NaturalLanguage.get("pt")
     @config = ::Spec::Runner::Configuration.new
-    SpecI18n.stub!(:natural_language).and_return(@pt)
+    mock_natural_language(@pt)
   end
+  
   it "should load all the modules" do
     Spec::DSL::Main.should_receive(:register_adverbs)
     Kernel.should_receive(:register_expectations_keywords)

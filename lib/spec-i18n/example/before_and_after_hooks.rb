@@ -2,15 +2,16 @@ module Spec
   module Example
     module BeforeAndAfterHooks
       
+      # Translate hooks(before and after) keywords
+      #
       def register_hooks
-        language = SpecI18n.natural_language
-        language.before_and_after_keywords.each do |key, values|
-          values.map do |value| 
-            alias_method value, key
-          end
+        natural_language.before_and_after_keywords.each do |key, values|
+          values.collect { |value| alias_method value, key }
         end
       end
   
+      # OverWriting a methor for rspec to work with hooks parameters
+      #
       def before_parts(scope)
 
         scope = grep_language_and_scope(scope) || scope
@@ -22,9 +23,11 @@ module Spec
         end
       end
       
+      # OverWriting a methor for rspec to work with hooks parameters
+      #
       def after_parts(scope)
         
-        scope = grep_language_and_scope(scope) || scope
+        scope = grep_language_and_scope(scope)
         
         case scope
         when :each; after_each_parts
@@ -35,8 +38,10 @@ module Spec
       
       def grep_language_and_scope(scope)
         if SpecI18n.spec_language
-          language = SpecI18n.natural_language
-          scope = grep_the_scope(scope, language.hooks_params_keywords)
+          hooks = natural_language.hooks_params_keywords
+          scope = grep_the_scope(scope, hooks)
+        else
+          scope
         end
       end
 

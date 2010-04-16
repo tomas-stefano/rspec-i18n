@@ -6,16 +6,17 @@ require 'spec-i18n'
 $:.unshift(File.dirname(__FILE__), '../lib')
 
 include SpecI18n
+include SpecI18n::Parser
 
 def stub_language!(natural_language, keywords)
-  language = Parser::NaturalLanguage.new(natural_language)
+  language = NaturalLanguage.new(natural_language)
   mock_natural_language(language)
   stub_keywords!(language, keywords)
   language
 end
 
 def mock_natural_language(natural_language)
-  Parser::NaturalLanguage.should_receive(:new).at_least(:once).and_return(natural_language)
+  NaturalLanguage.should_receive(:new).at_least(:once).and_return(natural_language)
 end
 
 def stub_keywords!(natural_language, keywords)
@@ -42,7 +43,7 @@ def with_sandboxed_config
   
   before(:each) do
     @config = ::Spec::Runner::Configuration.new
-    @config.should_receive(:load_language).at_least(:once).and_return(true)
+    @config.stub!(:load_language).and_return(true)
     @original_configuration = ::Spec::Runner.configuration
     spec_configuration = @config
     ::Spec::Runner.instance_eval {@configuration = spec_configuration}
