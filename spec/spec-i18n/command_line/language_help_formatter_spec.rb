@@ -7,7 +7,6 @@ module SpecI18n
       
       before(:all) do
         @pt = SpecI18n::Parser::NaturalLanguage.get('pt')
-        mock_natural_language(@pt)
         @languages = LanguageHelpFormatter.list_languages
         @portuguese = LanguageHelpFormatter.list_basic_keywords(@pt)
         @io_stream = StringIO.new

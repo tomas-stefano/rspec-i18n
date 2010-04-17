@@ -32,26 +32,46 @@ module Spec
             
       end
       
-      context "the before hook" do
-        
-        before(:each) do
-          @pt = NaturalLanguage.new('pt')
-          @keywords = { 'hooks' => { 'each' => 'cada|de_cada', 'all' => 'todos|de_todos', 'suite' => 'suite|da_suite'}}
-          SpecI18n.should_receive(:spec_language).and_return('pt')
-          stub_keywords!(@pt, @keywords)
-        end
-        
-        it "should translate the :each parameters and parse options" do
-          scopes = [:cada, :de_cada]
-          BeforeAndAfterHooks.should_receive(:before_each_parts)
-          scopes.each do |scope|
-            BeforeAndAfterHooks.before_parts(scope)
-          end
-        end
-        
-      end
+      describe 'when hooks' do
       
-      context "the after hook" do
+        describe "the before hook" do
+          
+          context 'when portuguese language' do
+            
+            before(:each) do
+              SpecI18n.stub!(:spec_language).and_return('pt')
+              @keywords = { 'hooks' => { 'each' => 'cada|de_cada', 'all' => 'todos|de_todos', 'suite' => 'suite|da_suite'}}
+              stub_language!('pt', @keywords)
+            end
+        
+            it "should translate the :each parameters and parse options" do
+              [:cada, :de_cada].each do |scope|
+                BeforeAndAfterHooks.should_receive(:before_each_parts)
+                BeforeAndAfterHooks.before_parts(scope)
+              end
+            end
+            
+            it "should not call the :all parameters for :each hook" do
+              [:cada, :de_cada].each do |scope|
+                BeforeAndAfterHooks.should_not_receive(:before_all_parts)
+                BeforeAndAfterHooks.before_parts(scope)              
+              end
+            end
+            
+            it "should not call the :suite parameters for :suite hook" do
+              [:cada, :de_cada].each do |scope|
+                BeforeAndAfterHooks.should_not_receive(:before_suite_parts)
+                BeforeAndAfterHooks.before_parts(scope)
+              end
+            end
+            
+          end
+          
+        end
+      
+        context "the after hook" do
+        
+        end
         
       end
       

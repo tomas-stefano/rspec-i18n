@@ -27,7 +27,7 @@ module SpecI18n
       # Return true if the language don't have the basic keywords
       # to work with rspec-i18n
       #
-      # portuguese = NaturalLanguage.new('pt') # Have all the keywords
+      # portuguese = NaturalLanguage.new('pt') # Assuming Have all the keywords
       #
       # portuguese.incomplete? # => false
       #
