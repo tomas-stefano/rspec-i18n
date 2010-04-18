@@ -6,5 +6,4 @@ module SpecI18n
   VERSION            = [version[:major], version[:minor], version[:patch]].compact.join(".")
   SPEC_LANGUAGE_FILE = File.expand_path(File.dirname(__FILE__) + '/languages.yml')
   SPEC_LANGUAGES     = YAML.load_file(SPEC_LANGUAGE_FILE)
-  WINDOWS            = Config::CONFIG['host_os'] =~ /mswin|mingw/
 end

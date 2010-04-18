@@ -1,9 +1,11 @@
 module Kernel
+  
+  # Translate the <b>should</b> and <b>should_not</b> method
+  #
   def register_expectations_keywords
-    language = SpecI18n.natural_language
-    @adverbs = language.expectation_keywords
-    @adverbs.each do |key, values|
-      values.map { |value| alias_method value, key }
+    natural_language.expectation_keywords.each do |key, values|
+      values.collect { |value| alias_method value, key }
     end
   end
+  
 end

@@ -157,8 +157,13 @@ describe "should be_predicate" do
   end
   
   context "convert the be word" do
+    
     it 'should convert be word to english with two parameters' do
       be_to_english(:ser_feliz, 'ser|estar').should == :be_feliz
+    end
+    
+    it "should convert be words to english" do
+      be_to_english(:estar_feliz, 'ser|estar').should == :be_feliz
     end
   
     it "should convert be word to english" do
@@ -176,6 +181,7 @@ describe "should be_predicate" do
     it "should keep the same word for the nil be word" do
       be_to_english(:be_include, nil).should == :be_include
     end
+        
   end
   
 end

@@ -87,4 +87,5 @@ class Array
     self.collect! { |a| a.to_sym }
   end
   alias :to_symbols :all_to_symbols
+  alias :to_sym :all_to_symbols
 end

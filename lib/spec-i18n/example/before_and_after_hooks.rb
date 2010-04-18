@@ -36,6 +36,15 @@ module Spec
         end
       end
       
+      # Grep the tranlated scope
+      #
+      # pt:
+      #   hooks:
+      #     each: cada
+      #
+      #  grep_language_and_scope(:cada) # => :each
+      #  grep_language_and_scope(:each) # => :each
+      #
       def grep_language_and_scope(scope)
         if SpecI18n.spec_language
           hooks = natural_language.hooks_params_keywords
@@ -47,6 +56,10 @@ module Spec
 
       # Receive a String Scope and return the scope in english for
       # the rspec run the right method
+      #
+      # grep_the_scope(:cada, { 'each' => [ 'cada' ] }) # => :each
+      # 
+      #
       def grep_the_scope(scope, hooks)
         scopes = [:each, :all, :suite]
         return scope if scopes.include?(scope)
