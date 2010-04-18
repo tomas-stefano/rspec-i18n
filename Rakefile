@@ -49,7 +49,7 @@ end
 
 INTEGRATION_TASKS = %w(
 spec_all_ruby_versions
-github:push
+git:push
 )
 
 task :spec_all_ruby_versions do
@@ -57,7 +57,7 @@ task :spec_all_ruby_versions do
   puts
 end
 
-namespace :github do
+namespace :git do
   task :push do
     `git push origin master`
   end
@@ -71,5 +71,18 @@ task :integrate do
 end
 
 task :spec do
-  sh("spec spec --diff --color")
+ sh('spec spec --diff --color')
 end
+
+require 'spec/rake/spectask'
+
+Spec::Rake::SpecTask.new(:rcov) do |spec|
+  spec.libs << 'lib' << 'spec'
+  spec.pattern = 'spec/**/*_spec.rb'
+  spec.rcov = true
+  spec.rcov_opts = ['--exclude', 'gems']
+end
+
+require 'spec/rake/verify_rcov'
+RCov::VerifyTask.new(:verify_rcov) { |t| t.threshold = 100.0 }
+
