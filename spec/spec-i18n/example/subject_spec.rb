@@ -65,15 +65,7 @@ module Spec
           @group = Class.new do
             extend  Spec::Example::Subject::ExampleGroupMethods
             include Spec::Example::Subject::ExampleMethods
-            class << self
-              def described_class
-                Array
-              end
-            end
-            def described_class
-              self.class.described_class
-            end
-            
+                        
             subject {
               [1,2,3]
             }

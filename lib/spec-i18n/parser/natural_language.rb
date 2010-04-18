@@ -143,9 +143,10 @@ module SpecI18n
       def word_be(ruby_type)
         matchers_be = keywords_of_be_word
         matcher_ruby_type = split_word(keywords['matchers']["#{ruby_type}_word"])
-        matchers_be.collect do |matcher_be|
+        matchers_be.collect! do |matcher_be|
           matcher_ruby_type.collect { |matcher| "#{matcher_be}_#{matcher}" }
-        end.flatten
+        end
+        matchers_be.flatten
       end
       
       # Return the be words in the languages.yml
