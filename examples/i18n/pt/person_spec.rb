@@ -1,6 +1,5 @@
 # coding: UTF-8
-require 'rubygems'
-require 'spec-i18n'
+require 'lib/spec-i18n'
 
 Spec::Runner.configure do |config|
   config.spec_language :pt
@@ -118,6 +117,14 @@ descreva Pessoa do
   isto 'deve ter no maximo tres pessoas' do
     @pessoas = []
     @pessoas.deve ter_no_maximo(3).items
+  end
+  
+  contexto 'Pronto para Se Casar' do
+    
+    isto 'deve estar pendente' do
+      pendente
+    end
+    
   end
   
   contexto "Nome completo" do

@@ -49,6 +49,8 @@ end
 
 INTEGRATION_TASKS = %w(
 spec_all_ruby_versions
+rcov
+verify_rcov
 git:push
 )
 

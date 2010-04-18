@@ -49,7 +49,7 @@ module Spec
       end
       
       def load_dsl_keywords
-        Spec::DSL::Main.register_adverbs        
+        Spec::DSL::Main.register_adverbs       
       end
       
       def load_expectation_keywords
@@ -58,6 +58,7 @@ module Spec
       
       def load_example_keywords
         Spec::Example::ExampleGroupMethods.register_example_adverbs
+        Spec::Example::Pending.translate_pending_keywords
       end
       
       def load_hooks_keywords

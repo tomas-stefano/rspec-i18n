@@ -252,9 +252,14 @@ module SpecI18n
         
         it "should raise no found key" do
           lambda {
-            @pt.spec_keywords("no_found")
+            @pt.spec_keywords("no_found")            
+          }.should raise_exception(RuntimeError)
+        end
+        
+        it "should raise exception for not found key" do
+          lambda {
             @pt.spec_keywords("Oh_MY_this_words_is_not_found!")
-          }.should raise_error(RuntimeError)
+          }.should raise_exception(RuntimeError)
         end
         
         it "should not raise error for key found but key is nil" do

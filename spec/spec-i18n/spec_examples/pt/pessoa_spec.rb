@@ -132,10 +132,6 @@ descreva Pessoa do
     @pessoas.deve ter_no_maximo(3).items
   end
   
-# isto 'deve estar pendente' do
-#   pendente
-# end
-  
   contexto "Nome completo" do
     
     antes(:de_cada_exemplo) do
@@ -180,6 +176,10 @@ descreva Pessoa do
       Pessoa.new("", "").informacoes.deve ser_nulo
     end
     
+    exemplo 'deve retornar seu nome completo caso tenha informacoes' do
+      Pessoa.new('Homer', 'Simpson').informacoes.deve igl('Homer Simpson')
+    end
+    
     exemplo "deve não ter nenhum filho" do
       @pessoa.filhos.deve ser_vazio
     end
@@ -211,6 +211,10 @@ descreva Pessoa do
 
     exemplo "nao deve estar pronto para votar" do
       nao_deve estar_pronto_para_votar
+    end
+    
+    exemplo 'deve ser menor de idade' do
+      deve ser_menor_de_idade
     end
 
     exemplo "nao deve ser maior de idade" do

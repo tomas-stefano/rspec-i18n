@@ -42,6 +42,15 @@ module SpecI18n
             
           end
         end
+      
+        context '--help' do
+          it "should parse the option" do
+            when_parsing('--help') do
+              options.should_receive(:print_and_exit)
+            end
+          end
+        end
+      
       end
     
     end

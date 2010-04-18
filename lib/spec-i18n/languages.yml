@@ -6,41 +6,43 @@
 
 # The English language => Just for example all the keywords
 "en":
-  name: 
-  native: 
-  describe: 
-  it: 
-  its: 
+  name:
+  native:
+  describe:
+  it:
+  its:
+  pending:
   subject:
   shared_examples_for:
-  it_should_behave_like: 
-  should: 
+  share_as:
+  it_should_behave_like:
+  should:
   should_not:
   before:
   after:
-  hooks:                                                    
+  hooks:
     each:
     all:
     suite:
-  matchers:                                                 
+  matchers:
     be:
-    true_word:
+    true_word: 
     false_word:
     nil_word:
     empty_word:
-    be_a_kind_of:
+    be_a_kind_of: 
     be_close:
     be_an_instance_of:
     eql:
     equal:
-    exist:
+    exist: 
     have:
-    have_exactly:
+    have_exactly: 
     have_at_least:
-    have_at_most:
+    have_at_most: 
     include:
     match:
-    raise_error:
+    raise_error: 
     satisfy:
 
 "pt":
@@ -134,6 +136,7 @@
   describe: describir 
   it: ejemplo
   its: ejemplo_asunto # I don't know about this word
+  pending:
   subject: asunto|tema
   share_as:
   shared_examples_for:
@@ -171,6 +174,7 @@
     it:
     its:
     subject:
+    pending:
     share_as:
     shared_examples_for:
     it_should_behave_like:
