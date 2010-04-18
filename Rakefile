@@ -72,6 +72,8 @@ task :integrate do
   end
 end
 
+# I don't wanna use the Spec::Rake::SpecTask
+#
 task :spec do
  sh('spec spec --diff --color')
 end

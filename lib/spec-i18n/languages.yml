@@ -6,8 +6,8 @@
 
 # The English language => Just for example all the keywords
 "en":
-  name:
-  native:
+  name: English
+  native: English
   describe:
   it:
   its:
@@ -45,9 +45,76 @@
     raise_error: 
     satisfy:
 
+"ar":
+  name: Arabic
+  native: العربية
+
+"de":
+  name: German
+  native: Deutsch
+  describe: beschreibe|kontext
+  it: es
+  its:
+  pending:
+  subject: subjekt
+  share_as:
+  shared_examples_for: 
+  it_should_behave_like:
+  should: sollte
+  should_not: sollte_nicht
+  before: vorher
+  after: nachher
+  hooks:
+    each: von_jeder
+    all: von_alle
+    suite: suite
+  matchers:
+    be: sein*
+    true_word: wahr
+    false_word: falsch
+    nil_word: null
+    empty_word: leer
+    be_a_kind_of: ein_typ_sein*
+    be_close: nahe_liegen*
+    be_an_instance_of: 
+    eql: glc
+    equal: gleich
+    exist: wesen
+    have: haben
+    have_exactly: genau_haben*
+    have_at_least: mindestens_haben*
+    have_at_most: maximal_haben*
+    include: beinhalten*
+    match: passen*
+    raise_error: 
+    satisfy: erfüllen*
+
+# Please put the right words for this languages! =D
+
+"es":
+  name: Spanish
+  native: Español
+
+"en-au":
+    name: Australian
+    native: Australian
+
+"fr":
+  name: French
+  native: français
+
+
+"ja":
+  name: Japanese
+  native: 日 本 語
+
+"ko":
+  name: Korean
+  native: 한국어
+
 "pt":
   name: Portuguese
-  native: português
+  native: Português
   describe: descreva|contexto
   it: isso|isto|especificar|exemplo
   its: exemplo_do_assunto # I don't know about this word
@@ -84,122 +151,3 @@
     match: corresponder
     raise_error: mostrar_erro|mostrar_excessao
     satisfy: satisfazer
-
-"fr":
-  name: French
-  native: français
-
-"de":
-  name: German
-  native: Deutsch
-  describe: beschreibe|kontext
-  it: es
-  its: 
-  subject: subjekt
-  share_as:
-  shared_examples_for: 
-  it_should_behave_like:
-  pending:
-  should: sollte
-  should_not: sollte_nicht
-  before: vorher
-  after: nachher
-  hooks:
-    each: von_jeder
-    all: von_alle
-    suite: suite
-  matchers:
-    be: sein*
-    true_word: wahr
-    false_word: falsch
-    nil_word: null
-    empty_word: leer
-    be_a_kind_of: ein_typ_sein*
-    be_close: nahe_liegen*
-    be_an_instance_of: 
-    eql: glc
-    equal: gleich
-    exist: wesen
-    have: haben
-    have_exactly: genau_haben*
-    have_at_least: mindestens_haben*
-    have_at_most: maximal_haben*
-    include: beinhalten*
-    match: passen*
-    raise_error: 
-    satisfy: erfüllen*
-
-# Please put the right words for this language! =D
-"es":
-  name: Spanish
-  native: español
-  describe: describir 
-  it: ejemplo
-  its: ejemplo_asunto # I don't know about this word
-  pending:
-  subject: asunto|tema
-  share_as:
-  shared_examples_for:
-  it_should_behave_like:
-  should: deberia
-  should_not: no_debe
-  before: antes
-  after: despues
-  hooks:
-    each: de_cada_ejemplo
-    all: de_todos_ejemplo
-    suite: suite
-  matchers:
-    be: 
-    true: 
-    be_a_kind_of: 
-    be_close: 
-    be_an_instance_of: 
-    eql: 
-    equal: 
-    exist: 
-    have: 
-    have_exactly: 
-    have_at_least: 
-    have_at_most: 
-    include: 
-    match: 
-    raise_error: 
-    satisfy: 
-
-"en-au":
-    name:
-    native:
-    describe: 
-    it:
-    its:
-    subject:
-    pending:
-    share_as:
-    shared_examples_for:
-    it_should_behave_like:
-    should:
-    should_not:
-    before:
-    after:
-    hooks:
-      each:
-      all:
-      suite:
-    matchers:
-      be: 
-      true: 
-      be_a_kind_of: 
-      be_close: 
-      be_an_instance_of: 
-      eql: 
-      equal: 
-      exist: 
-      have: 
-      have_exactly: 
-      have_at_least: 
-      have_at_most: 
-      include: 
-      match: 
-      raise_error: 
-      satisfy:

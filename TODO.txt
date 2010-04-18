@@ -4,8 +4,8 @@
 
 == Future
 
-* Support Rspec 2.0 !
-* Verifying if it's possible to translate error and success messages and documentation
+* Support Rspec 2.0!
+* Verifying if it's possible to translate error and success messages,documentation and output feedback
 * Create the directory features to test with Cucumber
 * Change the order of predicates and verbs for other languages	
 * Check a better way to manipulating the mocks and stubs (need think more about that)
