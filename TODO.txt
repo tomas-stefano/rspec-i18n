@@ -7,23 +7,6 @@
 * Support Rspec 2.0 !
 * Verifying if it's possible to translate error and success messages and documentation
 * Create the directory features to test with Cucumber
-* Put Comments in the methods (For Rspec-i18n rdoc)
-* Change the order of predicates and verbs for other languages
-* Make the describe/it i18n available from a class: 
-	
-	Example:
-	#	class PilhaSpec < Spec::ExampleGroup
-	#     descreva Pilha, "sem nenhum elemento"
-	#
-	#     antes do
-	#       @pilha = Pilha.new
-	#     end
-	#
-	#     exemplo "deve lançar um erro no momento do pop" do
-	#       lambda { @pilha.pop }.deve mostrar_erro
-	#     end
-	#
-	#   end
-	
+* Change the order of predicates and verbs for other languages	
 * Check a better way to manipulating the mocks and stubs (need think more about that)
 * Verify the following matchers: simple_matcher, wrap_expectation, respond_to, change and match_unless_raises.

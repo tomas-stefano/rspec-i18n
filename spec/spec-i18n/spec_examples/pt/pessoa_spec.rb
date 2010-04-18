@@ -231,3 +231,13 @@ descreva Pessoa do
   end
 
 end
+
+class PessoaSpec < Spec::ExampleGroup
+  descreva 'deve mostrar erro' do
+    
+    it "deve mostrar erro se não passar o sobrenome" do
+      lambda { Pessoa.new('Homer') }.deve mostrar_excessao
+    end
+    
+  end
+end
