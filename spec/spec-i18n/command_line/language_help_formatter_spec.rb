@@ -61,7 +61,7 @@ module SpecI18n
         
         it "should return blank keywords" do
           @pt.should_receive(:keywords).at_least(:once).and_return(@portuguese_keywords)
-          esperado = [["name", "Portuguese"], ["native", "Português"], ["describe", ""], ["before", ""], ["after", ""], ["it", ""], ["pending", ""], ["subject", ""], ["its", ""], ["should", ""], ["should_not", ""]]
+          esperado = [["name", "Portuguese"], ["native", "Português"], ["describe", ""], ["before", ""], ["after", ""], ["it", ""], ["pending", ""], ["subject", ""], ["shared_examples_for", ""], ["share_as", ""], ["it_should_behave_like", ""], ["its", ""], ["should", ""], ["should_not", ""]]
           LanguageHelpFormatter.list_basic_keywords(@pt).should == esperado
         end
         
