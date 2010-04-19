@@ -70,6 +70,7 @@ module SpecI18n
           @es.should_receive(:keywords).at_least(:once).and_return(keywords)
           @es.expectation_keywords.should == { 'should' => ['deberia'], 'should_not' => ['no_debe']}
         end
+        
       end
       
       context "of before and after keywords" do
