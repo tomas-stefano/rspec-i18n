@@ -66,9 +66,9 @@ module SpecI18n
         end
         
         it "should return the expectation keywords of the current language" do
-          keywords = { "should" => ["deberia"], "should_not" => ["no_debe"]}
+          keywords = { "should" => "deberia", "should_not" => "no_debe"}
           @es.should_receive(:keywords).at_least(:once).and_return(keywords)
-          @es.expectation_keywords.should == keywords
+          @es.expectation_keywords.should == { 'should' => ['deberia'], 'should_not' => ['no_debe']}
         end
       end
       
