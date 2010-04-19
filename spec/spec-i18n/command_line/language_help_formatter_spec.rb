@@ -79,7 +79,7 @@ module SpecI18n
           
           it "should return a Hash with key and empty value" do
             @pt.should_receive(:keywords).at_least(:once).and_return(@blank_keywords)
-            LanguageHelpFormatter.values_from_keywords(@pt, 'matchers').should eql({})
+            LanguageHelpFormatter.values_from_keywords(@pt, 'matchers').should ==({})
           end
           
         end
