@@ -1,4 +1,3 @@
-require 'rbconfig'
 require 'yaml'
 
 module SpecI18n
