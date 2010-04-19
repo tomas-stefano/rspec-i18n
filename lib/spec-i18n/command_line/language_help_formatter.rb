@@ -1,5 +1,6 @@
 require 'term/ansicolor'
 require 'terminal-table/import'
+require 'spec-i18n/spec_language'
 require 'spec-i18n/parser'
   
 module SpecI18n
@@ -40,27 +41,30 @@ module SpecI18n
           print_table io, advanced_keywords, :exit => true
         end
         
+        # List all languages available in the languages.yml
+        #
         def list_languages
-          languages = SpecI18n::SPEC_LANGUAGES.keys.sort.map do |lang|
+          languages = all_languages.keys.sort.collect do |lang|
             [ lang, grep_value(lang, 'name'), grep_value(lang, 'native') ]
           end
         end
         
+        # Grep the value 
         def grep_value(lang, key)
           SpecI18n::SPEC_LANGUAGES[lang][key]
         end
         
         def list_basic_keywords(language)
-          NaturalLanguage::BASIC_KEYWORDS.map do |keyword|
-            words = language.keywords[keyword]            
-            [ keyword, words.split('|').join(' / ')] 
+          NaturalLanguage::BASIC_KEYWORDS.collect do |keyword|
+            words = language.keywords[keyword].to_s.split('|').join(' / ')
+            [ keyword, words ] 
           end
         end
         
         def list_advanced_keywords(io, language)
-          NaturalLanguage::ADVANCED_KEYWORDS.map do |keyword|
+          NaturalLanguage::ADVANCED_KEYWORDS.collect do |keyword|
             language_keywords = [keyword]
-            language.keywords[keyword].map do |key, values|
+            language.keywords[keyword].to_s.split.collect do |key, values|
               language_keywords << [key, values.to_s.split('|').join(' / ')]
             end
             
@@ -77,7 +81,12 @@ module SpecI18n
         end
         
         def print_table(io, raw, options={})
-          io.puts raw.to_s.send(options[:color] || :green).bold
+          begin
+            io.puts raw.to_s.send(options[:color] || :green).bold
+          rescue Terminal::Table::Error
+            io.puts("Empty Keywords(hooks or matchers) - See http://github.com/tomas-stefano/rspec-i18n/blob/master/lib/spec-i18n/languages.yml file")
+            io.puts
+          end
           Kernel.exit(0) if options[:exit]
         end
       end

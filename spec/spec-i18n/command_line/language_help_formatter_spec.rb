@@ -6,7 +6,8 @@ module SpecI18n
     describe LanguageHelpFormatter do
       
       before(:all) do
-        @pt = SpecI18n::Parser::NaturalLanguage.get('pt')
+        @es = SpecI18n::Parser::NaturalLanguage.new('es')
+        @pt = SpecI18n::Parser::NaturalLanguage.new('pt')
         @languages = LanguageHelpFormatter.list_languages
         @portuguese = LanguageHelpFormatter.list_basic_keywords(@pt)
         @io_stream = StringIO.new
@@ -23,63 +24,64 @@ module SpecI18n
         Kernel.should_receive(:exit)
         LanguageHelpFormatter.list_keywords_and_exit(@io_stream, 'pt')
       end
+      
+      it "should list all keywords and exit" do
+        Kernel.should_receive(:exit)
+        LanguageHelpFormatter.list_keywords_and_exit(@io_stream, 'es')
+      end
     
       context "list languages" do
       
         before(:each) do
-          @portuguese = ["pt", "Portuguese", "português"]
-          @spanish = ["es", "Spanish", "español"]
+          @portuguese = { 'pt' => { 'name' => 'Portuguese', 'native' => 'Português'} }
+          @spanish = { 'es' => { 'name' => 'Spanish', 'native' => 'Español' } }
         end
       
         it "should return the three keywords language for portuguese" do
-          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return(["pt"])
-          LanguageHelpFormatter.list_languages.should == [@portuguese]
+          LanguageHelpFormatter.should_receive(:all_languages).and_return(@portuguese)
+          LanguageHelpFormatter.list_languages.should eql [['pt', 'Portuguese', 'Português']]
         end
       
         it "should return the three keywords for spanish" do
-          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return(["es"])
-          LanguageHelpFormatter.list_languages.should == [@spanish]
+          LanguageHelpFormatter.should_receive(:all_languages).and_return(@spanish)
+          LanguageHelpFormatter.list_languages.should eql [["es", "Spanish", "Español"]]
         end
       
         it "should return the three keywords for spanish and portuguese" do
-          SpecI18n::SPEC_LANGUAGES.should_receive(:keys).and_return(["pt", "es"])
-          LanguageHelpFormatter.list_languages.should == [@portuguese, @spanish].sort
+          LanguageHelpFormatter.should_receive(:all_languages).and_return(@portuguese.merge(@spanish))
+          LanguageHelpFormatter.list_languages.should eql [["es", "Spanish", "Español"], ['pt', 'Portuguese', 'Português']]
         end
       end
     
       context "list all keywords" do
       
         before(:each) do
-          @language_keywords = LanguageHelpFormatter.list_basic_keywords(@pt)
+          @portuguese_keywords = { 'name' => 'Portuguese', 'native' => 'Português'}
         end
-      
-        it "should return all basic keywords for a language" do
-          words = %w(name native describe before after it should should_not)
-          words.each do |word|
-            @language_keywords.flatten.should include(word)
-          end
+        
+        it "should return blank keywords" do
+          @pt.should_receive(:keywords).at_least(:once).and_return(@portuguese_keywords)
+          esperado = [["name", "Portuguese"], ["native", "Português"], ["describe", ""], ["before", ""], ["after", ""], ["it", ""], ["subject", ""], ["its", ""], ["should", ""], ["should_not", ""]]
+          LanguageHelpFormatter.list_basic_keywords(@pt).should == esperado
         end
-            
+                    
         describe 'the advanced keywords' do
         
           before(:each) do
-            @out = StringIO.new
-            @keywords = LanguageHelpFormatter.list_advanced_keywords(@out, @pt)
+            @io = StringIO.new
+            @blank_keywords = { 'name' => 'Spanish', 'native' => 'Español'}
           end
         
-          it "should return the matchers keywords for language" do
-            @keywords.last.headings.should include('matchers')
-          end
-
-          it "should return the hooks keywords for language" do
-            @keywords.first.headings.should include('hooks')
+          it "should return empty hooks for empty keywords" do
+            @es.should_receive(:keywords).at_least(:once).and_return(@blank_keywords)
+            LanguageHelpFormatter.list_advanced_keywords(@io, @es).first.headings.should == ['hooks']
           end
           
-          it "should return some keywords for a empty language" do
-            @es = SpecI18n::Parser::NaturalLanguage.get('es')
-            @keywords = LanguageHelpFormatter.list_advanced_keywords(@out, @es)
-            @keywords.first.headings.should include('hooks')
+          it "should return a empty matcher for empty keywords" do
+            @es.should_receive(:keywords).at_least(:once).and_return(@blank_keywords)
+            LanguageHelpFormatter.list_advanced_keywords(@io, @es).last.headings.should == ['matchers']
           end
+
         end
       
       end

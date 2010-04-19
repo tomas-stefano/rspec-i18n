@@ -6,6 +6,10 @@ module Spec
       with_sandboxed_options do
         with_sandboxed_config do
           describe "#spec_language" do
+            
+            before(:each) do
+              config.stub!(:warning_messages_for_incomplete_languages!).and_return(true)
+            end
 
             it "should raise a error for language nil" do
               lambda {config.spec_language(nil)}.should raise_exception(UndefinedLanguageError)
@@ -49,7 +53,9 @@ context "a warning" do
   it "should show for the incomplete language" do
     message = "\n Language Warning: Incomplete Keywords For The Language 'en-au' \n"
     Kernel.should_receive(:warn).with(message)
-    Spec::Runner::Configuration.new.spec_language("en-au")
+    config = Spec::Runner::Configuration.new
+    config.should_receive(:load_language).and_return(true)
+    config.spec_language("en-au")
   end
 end
 

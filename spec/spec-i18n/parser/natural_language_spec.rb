@@ -9,14 +9,7 @@ module SpecI18n
         @es = NaturalLanguage.new('es')
         @en = NaturalLanguage.new('en')
       end
-
-      %w(describe before after it should name native).each do |keyword|
-         it "should have the #{keyword} keyword" do
-           portuguese_keys = @pt.keywords.keys          
-           portuguese_keys.should include(keyword)
-         end
-      end
-       
+      
       context "get languages" do
         
         it "should get the default language" do
@@ -74,6 +67,7 @@ module SpecI18n
         
         it "should return the expectation keywords of the current language" do
           keywords = { "should" => ["deberia"], "should_not" => ["no_debe"]}
+          @es.should_receive(:keywords).at_least(:once).and_return(keywords)
           @es.expectation_keywords.should == keywords
         end
       end
@@ -137,12 +131,12 @@ module SpecI18n
         end
 
         it 'should return the subject keywords' do
-          @pt.stub!(:keywords).and_return(@keywords)
+          @pt.should_receive(:keywords).at_least(:once).and_return(@keywords)
           @pt.subject_keywords.should == {'subject' => ["assunto", "tema"]}
         end
 
         it 'should return the subject keywords for spanish language' do
-          @spanish_keywords.stub!(:keywords).and_return(@spanish_keywords)
+          @es.should_receive(:keywords).at_least(:once).and_return(@spanish_keywords)
           @es.subject_keywords.should == { 'subject' => ['asunto', 'tema']}
         end
       end

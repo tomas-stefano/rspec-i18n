@@ -12,6 +12,12 @@ module SpecI18n
     Spec::Runner.configuration.language
   end
   
+  # Return all the languages in languages.yml
+  #
+  def all_languages
+    SpecI18n::SPEC_LANGUAGES
+  end
+  
 end
 
 include SpecI18n

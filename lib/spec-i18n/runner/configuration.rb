@@ -14,6 +14,7 @@ module Spec
       #
       def spec_language(language_for_translated)
         @rspec_language = language_for_translated ? language_for_translated.to_s : raise(UndefinedLanguageError, 'Language #{language_for_translated.class}')
+        warning_messages_for_incomplete_languages!(SpecI18n.natural_language)
         load_language
         rspec_language
       end
@@ -27,8 +28,6 @@ module Spec
       # Translate all the keywords for the language specified
       #
       def load_language
-        natural_language = SpecI18n.natural_language
-        warning_messages_for_incomplete_languages!(natural_language)
         load_dsl_keywords
         load_expectation_keywords
         load_example_keywords
