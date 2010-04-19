@@ -64,8 +64,11 @@ module SpecI18n
         def list_advanced_keywords(io, language)
           NaturalLanguage::ADVANCED_KEYWORDS.collect do |keyword|
             language_keywords = [keyword]
-            language.keywords[keyword].to_s.split.collect do |key, values|
-              language_keywords << [key, values.to_s.split('|').join(' / ')]
+                        
+            values = values_from_keywords(language, keyword)
+            
+            values.keys.sort.collect do |key|
+              language_keywords << [key, values[key].to_s.split('|').join(' / ')]
             end
             
             keywords_table = table do
@@ -77,6 +80,18 @@ module SpecI18n
             
             keywords_table
             
+          end
+        end
+        
+        # Return the values from keywords
+        #
+        # values_from_keywords(@portuguese, 'hooks') # => {'all'=>'todos','each'=>'cada'}
+        #
+        def values_from_keywords(language, keyword)
+          unless language.keywords[keyword]
+            {}
+          else
+            language.keywords[keyword]
           end
         end
         

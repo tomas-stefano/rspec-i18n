@@ -64,6 +64,25 @@ module SpecI18n
           esperado = [["name", "Portuguese"], ["native", "Português"], ["describe", ""], ["before", ""], ["after", ""], ["it", ""], ["pending", ""], ["subject", ""], ["its", ""], ["should", ""], ["should_not", ""]]
           LanguageHelpFormatter.list_basic_keywords(@pt).should == esperado
         end
+        
+        context 'when values from keywords' do
+          
+          before(:each) do
+            @blank_keywords = { 'name' => 'Portuguese'}
+            @keywords = { 'hooks' => { 'all' => 'todos', 'each' => 'cada'}}
+          end
+          
+          it "should return the hooks keywords for list" do
+            @pt.should_receive(:keywords).at_least(:once).and_return(@keywords)
+            LanguageHelpFormatter.values_from_keywords(@pt, 'hooks').should eql(@keywords['hooks'])
+          end
+          
+          it "should return a Hash with key and empty value" do
+            @pt.should_receive(:keywords).at_least(:once).and_return(@blank_keywords)
+            LanguageHelpFormatter.values_from_keywords(@pt, 'matchers').should eql({})
+          end
+          
+        end
                     
         describe 'the advanced keywords' do
         
