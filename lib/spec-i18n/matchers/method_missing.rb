@@ -6,10 +6,18 @@ module Spec
       be_word = language.keywords['matchers']['be']      
       sym = be_to_english(sym, be_word)
       
-      return Matchers::BePredicate.new(sym, *args, &block) if sym.to_s =~ /^be_/
-      return Matchers::Has.new(sym, *args, &block) if sym.to_s =~ /^have_/
+      return Matchers::BePredicate.new(sym, *args, &block) if be_predicate?(sym)
+      return Matchers::Has.new(sym, *args, &block) if have?(sym)
       
       super
+    end
+    
+    def be_predicate?(sym)
+      sym.to_s =~ /^be_/
+    end
+    
+    def have?(sym)
+      sym.to_s =~ /^have_/
     end
     
     # Transform the word in be for rspec work properly
