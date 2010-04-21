@@ -2,7 +2,103 @@ require 'spec_helper'
 
 describe "should be_predicate" do
   
-  context "be predicate" do
+  context 'when method missing' do
+    
+    before(:each) do
+      include Spec::Matchers
+      @keywords = { 'matchers' => { 'be' => 'ser' } }
+      stub_language!('pt', @keywords)
+    end
+    
+    it "should return a Be Predicate" do
+      Spec::Matchers::BePredicate.should_receive(:new).with(:be_something)
+      method_missing(:be_something)
+    end
+    
+    it "should not return a Be Predicate" do
+      Spec::Matchers::BePredicate.should_not_receive(:new)
+      method_missing(:have_something)
+    end
+    
+    it "should return a Has Predicate" do
+      Spec::Matchers::Has.should_receive(:new).with(:have_something)
+      method_missing(:have_something)
+    end
+    
+    it "should not return a Has Predicate" do
+      Spec::Matchers::Has.should_not_receive(:new)
+      method_missing(:be_something)
+    end
+    
+    it "when don't have the be word in the language should return a Be Predicate" do
+      stub_language!('es', {'name' => 'Spanish', 'native' => 'Español'})
+      Spec::Matchers::BePredicate.should_receive(:new).with(:be_something)
+      method_missing(:be_something)
+    end
+    
+  end
+  
+  context 'when have? in method missing' do
+    
+    before(:each) do
+      include Spec::Matchers
+    end
+        
+    it "should return true(0 or anything) for string match" do
+      have_predicate?(:have_exactly).should be_true
+    end
+    
+    it "should return true for have at least method" do
+      have_predicate?(:have_at_least).should be_true
+    end
+    
+    it "should return true for have at most method" do
+      have_predicate?(:have_at_most).should be_true
+    end
+    
+    it "should return false(false or nil) for not string match" do
+      have_predicate?(:be_true).should be_false
+    end
+    
+    it "should return nil for not string match" do
+      have_predicate?(:be_false).should be_false
+    end
+    
+  end
+  
+  context 'when be_predicate? in method missing' do
+    
+    before(:each) do
+      include Spec::Matchers
+    end
+    
+    it "should return true for be true string match" do
+      be_predicate?(:be_true).should be_true
+    end
+    
+    it "should return true for the be false string match" do
+      be_predicate?(:be_false).should be_true
+    end
+    
+    it "should return true for the be_something string match" do
+      be_predicate?(:be_something).should be_true
+    end
+    
+    it "should return false for the have string match" do
+      be_predicate?(:have).should be_false
+    end
+    
+    it "should return true for the have something string match" do
+      be_predicate?(:have_something).should be_false
+    end
+    
+    it "should return true for the have exactly string match" do
+      be_predicate?(:have_exactly).should be_false
+    end
+    
+  end
+  
+  context 'when be predicate' do
     
     before(:each) do
       @keywords = {"matchers" => {"be" => "ser",  "true_word" => "verdadeiro"}}
@@ -30,7 +126,8 @@ describe "should be_predicate" do
     end
   end
   
-  context "be words" do
+  context 'when be words' do
+    
     before(:each) do
       @pt = Parser::NaturalLanguage.get("pt")
       @es = Parser::NaturalLanguage.get("es")
@@ -156,7 +253,7 @@ describe "should be_predicate" do
     
   end
   
-  context "convert the be word" do
+  context 'when be to english' do
     
     it 'should convert be word to english with two parameters' do
       be_to_english(:ser_feliz, 'ser|estar').should == :be_feliz
