@@ -69,12 +69,12 @@
     all: von_alle
     suite: suite
   matchers:
-    be: sein*
-    true_word: wahr
-    false_word: falsch
-    nil_word: null
-    empty_word: leer
-    be_a_kind_of: ein_typ_sein*
+    be: sein
+    true_word: wahr*
+    false_word: falsch*
+    nil_word: null*
+    empty_word: leer*
+    be_a_kind_of: ein_typ*sein
     be_close: nahe_liegen*
     be_an_instance_of: 
     eql: glc
@@ -151,6 +151,6 @@
     match: corresponder
     raise_error: mostrar_erro|mostrar_excessao
     satisfy: satisfazer
-  messages:
+      
     
     

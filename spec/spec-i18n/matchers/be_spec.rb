@@ -3,6 +3,21 @@ require 'spec_helper'
 
 describe "should be_predicate" do
   
+  context 'when translate the be matcher' do
+    
+    it "should have the translate method" do
+      stub_language!('pt', {'matchers' => {'be' => 'ser'}})
+      Spec::Matchers.translate_be_matcher
+      methods.sort.to_sym.should include(:ser)          
+    end
+    
+    it "should not raise exception for the be empty keyword" do
+      stub_language!('pt', { 'name' => 'Portuguese', 'native' => 'Português'})
+      lambda { Spec::Matchers.translate_be_matcher }.should_not raise_exception
+    end
+    
+  end
+  
   context 'when method missing' do
     
     before(:each) do
