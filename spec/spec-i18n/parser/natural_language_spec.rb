@@ -270,33 +270,36 @@ module SpecI18n
         end
       end
     
-      context "be_true, be_false and be_nil" do
+      describe "when word be" do
         
-        it "should return all the be_true possibilities" do
-          lang = { "matchers" => { 'be' => 'ser|outro_ser', 'true_word' => 'verdade|verdadeiro'}}
-          expected_words = ["ser_verdadeiro", "ser_verdade", "outro_ser_verdade","outro_ser_verdadeiro"]
-          @pt.stub!(:keywords).and_return(lang)
-          expected_words.each do |expected|
-            @pt.word_be("true").should include expected
+        context 'when be true keyword' do
+                    
+          it "should return all the be_true possibilities" do
+            @keywords = { "matchers" => { 'be' => 'ser|outro_ser', 'true_word' => 'verdade|verdadeiro'} }
+            stub_keywords!(@pt, @keywords)
+            @pt.word_be("true").should eql(["ser_verdade", "ser_verdadeiro", "outro_ser_verdade","outro_ser_verdadeiro"])
           end
+          
         end
         
-        it "should return all the be_nil possibilities" do
-          lang = { "matchers" => { 'be' => 'ser|outro_ser', 'nil_word' => 'nulo|muito_nulo'}}
-          expected_words = ["ser_nulo", "ser_muito_nulo"]
-          @pt.stub!(:keywords).and_return(lang)
-          expected_words.each do |expected|
-            @pt.word_be("nil").should include expected
+        context 'when be nil keyword' do
+          
+          it "should return all the be_nil possibilities" do
+            @pt_keywords = { "matchers" => { 'be' => 'ser|outro_ser', 'nil_word' => 'nulo|muito_nulo'}}
+            stub_keywords!(@pt, @pt_keywords)
+            @pt.word_be("nil").should eql(["ser_nulo", "ser_muito_nulo", "outro_ser_nulo", "outro_ser_muito_nulo"])
           end
+
         end
         
-        it "should return all the be_false possibilities" do
-          lang = { "matchers" => { 'be' => 'ser|outro_ser', 'false_word' => 'falso|muito_falso'}}
-          expected_words = ["ser_falso", "ser_muito_falso"]
-          @pt.stub!(:keywords).and_return(lang)
-          expected_words.each do |expected|
-            @pt.word_be("false").should include expected
+        context 'when be false keyword' do
+          
+          it "should return all the be_false possibilities" do
+            @pt_keywords = { 'matchers' => { 'be' => 'ser|outro_ser', 'false_word' => 'falso|muito_falso'}}
+            stub_keywords!(@pt, @pt_keywords)
+            @pt.word_be("false").should eql(["ser_falso", "ser_muito_falso", "outro_ser_falso", "outro_ser_muito_falso"])
           end
+          
         end
         
       end

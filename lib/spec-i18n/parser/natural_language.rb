@@ -156,6 +156,28 @@ module SpecI18n
         return split_word(matchers['be']) if matchers
         []
       end
+      
+      # Return true if the keyword has the '*' character in the last position
+      #
+      # de:
+      #   matchers:
+      #     be: sein
+      #     true_word: wahr*
+      #
+      # @germany = NaturalLanguage.new('de')
+      # @germany.invert_order_of_object_and_verbs?(['sein'], 'wahr*') # => true
+      #
+      # pt:
+      #  matchers:
+      #    be: ser|estar
+      #    true_word: verdadeiro
+      #
+      # @portuguese = NaturalLanguage.new('pt')
+      # @portuguese.invert_order_of_object_and_verbs?(['ser', 'estar'], 'verdadeiro') # => false
+      #
+      def invert_order_of_object_and_verbs?(be_keywords, keyword)
+        matchers_be
+      end
 
       # Return the words of languages.yml in a Hash with Array values
       #

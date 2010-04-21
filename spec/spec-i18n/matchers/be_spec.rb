@@ -150,35 +150,50 @@ describe "should be_predicate" do
     end
     
     describe "when matcher be some word(true, false,nil or empty)" do
-            
-      before(:each) do
-        @pt_keywords = { "matchers" => {'be' => 'ser|estar', 
-          "true_word" => "verdadeiro|verdade", 
-          "false_word" => "falso|muito_falso",
-          "empty_word" => "vazio|sem_elemento",
-          "nil_word" => "nulo|null" }}
-        stub_keywords!(@pt, @pt_keywords)
-        mock_natural_language(@pt)
+      
+      context 'when write specifications exactly as it is in languages.yml' do
+        
+        before(:each) do
+          @pt_keywords = { "matchers" => {'be' => 'ser|estar', 
+            "true_word" => "verdadeiro|verdade",  "false_word" => "falso|muito_falso",
+            "empty_word" => "vazio|sem_elemento", "nil_word" => "nulo|null" }}
+          stub_language!('pt', @pt_keywords)
+        end
+        
+        it "should translate true word for languages" do
+          expected = [:ser_verdadeiro, :ser_verdade, :estar_verdadeiro, :estar_verdade]
+          Spec::Matchers.matcher_be_some(:true => true).should == expected
+        end
+        
+        it "should translate false word for languages" do
+          expected = [:ser_falso, :ser_muito_falso, :estar_falso, :estar_muito_falso]
+          Spec::Matchers.matcher_be_some(:false => true).should == expected
+        end
+        
+        it "should translate false word for languages" do
+          expected = [:ser_vazio, :ser_sem_elemento, :estar_vazio, :estar_sem_elemento]
+          Spec::Matchers.matcher_be_some(:empty => true).should == expected
+        end
+        
+        it "should translate nil word for languages" do
+          expected = [:ser_nulo, :ser_null, :estar_nulo, :estar_null]
+          Spec::Matchers.matcher_be_some(:nil => true).should == expected
+        end
       end
       
-      it "should translate true word for languages" do
-        expected = [:ser_verdadeiro, :ser_verdade, :estar_verdadeiro, :estar_verdade]
-        Spec::Matchers.matcher_be_some(:true => true).should == expected
-      end
-      
-      it "should translate false word for languages" do
-        expected = [:ser_falso, :ser_muito_falso, :estar_falso, :estar_muito_falso]
-        Spec::Matchers.matcher_be_some(:false => true).should == expected
-      end
-      
-      it "should translate false word for languages" do
-        expected = [:ser_vazio, :ser_sem_elemento, :estar_vazio, :estar_sem_elemento]
-        Spec::Matchers.matcher_be_some(:empty => true).should == expected
-      end
-      
-      it "should translate nil word for languages" do
-        expected = [:ser_nulo, :ser_null, :estar_nulo, :estar_null]
-        Spec::Matchers.matcher_be_some(:nil => true).should == expected
+      context 'when write specifications ith objects, verbs and predicates in different orders' do
+        
+        before(:each) do
+          @keywords = { 'matchers' => { 'be' => 'sein', 'true_word' => 'wahr*',
+            'false_word' => 'falsch*', 'nil_word' => 'null*', 'empty_word' => 'leer*' } }
+          stub_language!('de', @keywords)
+        end
+        
+        it "should return be true in different order" do
+          pending
+          Spec::Matchers.matcher_be_some(:true => true).should eql([:wahr_sein])
+        end
+        
       end
       
     end
