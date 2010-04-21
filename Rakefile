@@ -84,7 +84,7 @@ Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.libs << 'lib' << 'spec'
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
-  spec.rcov_opts = ['--exclude', "_spec,gems"]
+  spec.rcov_opts = ['--exclude', "_spec,gems,spec_helper.rb"]
 end
 
 require 'spec/rake/verify_rcov'

@@ -1,26 +1,30 @@
 === development
 
+* enhancements
   * Simplified more and more all the specs!
   * Support Ruby 1.9! =]
   * Translated shared examples( translated: shared_examples_for, share_as, it_should_behave_like)
   * Translated the pending keyword
-  * Put Comments in the methods (For Rspec-i18n rdoc)
-  
-  * Make the describe/it i18n available from a class: 
-
+  * Put Comments in the methods (For Rspec-i18n rdoc)  
+  * Make the describe/it i18n available from a class:
 	Example:
-	#	class PilhaSpec < Spec::ExampleGroup
-	#     descreva Pilha, "sem nenhum elemento"
 	#
-	#     antes do
-	#       @pilha = Pilha.new
-	#     end
+	#  Spec::Runner.configure do |config|
+	#    config.spec_language :pt
+	#  end
 	#
-	#     exemplo "deve lançar um erro no momento do pop" do
-	#       lambda { @pilha.pop }.deve mostrar_erro
-	#     end
+	#  class PilhaSpec < Spec::ExampleGroup
+	#    descreva Pilha, "sem nenhum elemento" do
 	#
-	#   end
+	#      antes do
+	#        @pilha = Pilha.new
+	#      end
+	#
+	#      exemplo "deve lançar um erro no momento do pop" do
+	#        lambda { @pilha.pop }.deve mostrar_erro
+	#      end
+	#    end
+	#  end
 
 ==== Version 1.1.0
 
