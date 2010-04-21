@@ -10,8 +10,7 @@ module Spec
       be_word = matchers['be'] if matchers
       sym = be_to_english(sym, be_word)
       return Matchers::BePredicate.new(sym, *args, &block) if be_predicate?(sym)
-      return Matchers::Has.new(sym, *args, &block) if have_predicate?(sym)      
-      super
+      return Matchers::Has.new(sym, *args, &block) if have_predicate?(sym)
     end
     
     # Return something true(equivalent) for Be Predicate
@@ -36,6 +35,7 @@ module Spec
       be_word = be_word || 'be' 
       sym.to_s.gsub(/#{be_word}/, 'be').to_sym
     end
+    alias :to_english :be_to_english
   
   end  
 end
