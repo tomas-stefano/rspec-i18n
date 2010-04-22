@@ -8,36 +8,45 @@
     <title>{{ page.title }}</title>
   </head>
   <body id="intro">
-    <div id="wrapper">
-      <div id="header" onclick="javascript:window.location='/rspec-i18n/'">
-        <h1>Rspec-I18n</h1>
-      </div>
-      <div id="navigation">
-        <ul>
-          <li id="navi_intro">
-            <a href="/rspec-i18n/">Intro</a>
-          </li>
-          <li id="navi_source">
-            <a href="http://github.com/tomas-stefano/rspec-i18n">Source</a>
-          </li>
-          <li id="navi_tickets">
-            <a href="http://tomas-stefano.lighthouseapp.com/projects/TODO/tickets">Tickets</a>
-          </li>
-        </ul>
-      </div>
+
+      
+	  <div id="header">
+		  <div class="wrapper">
+			
+			<div id="logo">
+				<span>Rspec-I18n</span>
+			</div>
+			
+			<ul id='navigation'>
+	          <li id="navi_intro">
+	            <a href="/rspec-i18n/">Home</a>
+	          </li>
+	          <li id="navi_source">
+	            <a href="http://github.com/tomas-stefano/rspec-i18n">Source</a>
+	          </li>
+	        </ul>
+	
+		  </div>
+        </div>
+
+	  <div id="header-body">
+	  	<div class='wrapper'>
+	  		<div id="middle-screen">
+	  			<h1 id='slogan'></h1>
+				<div id="header-body-text">
+					<pre> $ gem install rspec-i18n </pre>
+					<p></p>
+				</div>
+	  		</div>
+	  	</div>
+	  </div>
+
       <div id="page_body">
-        <div id="content">
+        
+		<div id="content">
           {{ content }}
         </div>
-        <div id="sidebar">
-          <div class="item">
-            <!-- Tickets   -->
-            <h4><a href="http://tomas-stefano.lighthouseapp.com/projects/TODO/tickets">Tickets</a></h4>
-            <p>
-              Found a bug?<br />
-              Request a feature?
-            </p>
-          </div>
+        
           <div class="item">
             <!-- Blog   -->
             <h4><a href="atom.xml" id="rss_feed" name="rss_feed">Blog Posts</a></h4>
@@ -47,15 +56,21 @@
               {% endfor %}
             </p>
           </div>
-          <div class="item">
-            <script type="text/javascript" src="http://disqus.com/forums/rspec-i18n/combination_widget.js?num_items=5&color=orange&default_tab=recent"></script>
-          </div>
+          
         </div>
       </div>
+
       <div id="footer">
 
       </div>
     </div>
-    <a href="http://github.com/tomas-stefano/rspec-i18n"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+
+	<div id='fork-me'>
+      <a href="http://github.com/tomas-stefano/rspec-i18n">
+		<img src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+	  </a>		
+	</div>
+
+
   </body>
 </html>

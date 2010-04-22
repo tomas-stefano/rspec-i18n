@@ -1,166 +1,104 @@
-html {
-	background: #1e1e1e;
-}
 body {
-/*  background: transparent url("http://macromates.com/images/site/bg_body") repeat-y 50% 0px;*/
-/* font: 0.72em/170% "Lucida Grande", Verdana, Helvetica, sans-serif;*/
-	font: 12px "Lucida Grande", Verdana, Helvetica, sans-serif;
-	margin: 0;
-	padding: 0;
-}
-a[href] {
-	color: #525151;
+	color: #555555;
+	font:12px/160% Verdana,Arial,'Bitstream Vera Sans',sans-serif;
+	text-align:center;
 }
 
-#wrapper { /* IE workaround */
-	margin: 0 auto;
-	padding: 0;
-	width: 750px;
+* {
+	margin:0;
+	padding:0;
 }
-html>body #wrapper {
-	margin: 0 auto;
-	padding: 0;
-	width: auto;
-	max-width: 750px;
+
+a:link, a:visited {
+	border-bottom: 1px solid #A1CFD4;
+	color: #006699;
+	text-decoration: none;
+}
+
+pre {
+	background: none repeat scroll 0 0 #000000;
+	color: #d0ffff;
+	font-size: 20px;
+	padding: 15px;
 }
 
 #header {
-	position: relative;
-	background: #aaa;
-	height: 113px;
-}
-#header h1 {
-	position: absolute;
-	left: 60px;
-	top: 40px;
-	width: 380px;
-	height: 50px;
-	cursor: pointer;
-	color: white;
-}
-
-#navigation {
-	background: #232323;
-	border-bottom: 1px solid #171717;
-	margin: 0;
-	padding: 0.5em 0;
+	background: url("/images/bg-header.gif") repeat-x scroll left top #262F35;
+	float: left;
 	width: 100%;
 }
-#navigation ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-#navigation li {
-	display: inline;
-	margin: 0;
-	padding: 0 0 0 25px;
-	text-shadow: 0px 2px 4px #000;
-}
-#navigation li a {
-	color: #5b5b5b;
-	text-decoration: none;
+
+.wrapper {
+	margin: 0 auto;
+	text-align: left;
+	width: 730px;
 }
 
-#intro		#navi_intro			a,
-#blog			#navi_blog			a,
-#toc			#navi_manual		a,
-#chapter		#navi_manual		a,
-#wiki			#navi_wiki			a,
-#community	#navi_community	a,
-#contact		#navi_contact		a,
-#navigation li a:hover {
-	color: #fff;
-}
-
-#page_body {
-	margin: 0;
-	padding: 0;
-	position: relative;
-	overflow: hidden;
-}
-
-#content { /* IE workaround */
-	margin: 0;
-	padding: 25px;
-	width: 430px;
-	height: 584px; /* (64+2*20+2)*6 - 2 - 2*25 */
-	background: #fff;
-}
-html>body #content {
-	margin: 0;
-	padding: 25px;
-	width: auto;
-	height: auto;
-	max-width: 430px;
-	min-height: 584px; /* (64+2*20+2)*6 - 2 - 2*25 */
-	background: #fff;
-}
-#content :first-child {
-	margin-top: 0px;
-}
-#content :first-child + h1 {
-	margin-top: 0px;
-}
-
-#sidebar {
-	margin: 0;
-	padding: 0;
-	top: 0px;
-	left: 480px;
-	width: 270px;
-	background-color: #e8eaea;
-	position: absolute;
-}
-#sidebar .item {
-	color: #5b5b5b;
-	border-bottom: 2px solid #fff;
-	padding: 20px;
-	min-height: 64px;
-}
-#sidebar .item * {
-	margin: 0px;
-}
-#sidebar .item h4 {
-	margin-bottom: 1em;
-	font-size: 120%;
-}
-#sidebar .item p {
-	font-size: 90%;
-}
-#sidebar .item a {
-	text-decoration: none;
-}		  
-#sidebar .item a:hover {
-	text-decoration: underline;
-}
-
-#footer {
-	position: relative;
-	margin: 0;
-	padding: 0.75em 25px 0.75em 25px;
-	min-height: 1em;
-	clear: both;
-	color: #b5b5b5;
-	background: #2E2E2E;
-}
-#footer * {
-	margin: 0;
-	padding: 0;
-}
-#footer a {
-	color: #b5b5b5;
-	text-decoration: none;
-}
-#footer a:hover {
-	color: #2E2E2E;
-	background: #b5b5b5;
-	text-decoration: none;
-}
-#footer .left {
+#logo {
+	color: #FFFFFF;
 	float: left;
-}
-#footer .right {
-	float: right;
+	margin: 29px 0 0;
+	width: 342px;
 }
 
+#logo span {
+	font-size: 30px;
+	line-height: 30px;
+}
+
+ul#navigation {
+	float: right;
+	list-style: none outside none;
+	margin: 37px 0 34px;
+	padding: 3px 0;
+	text-align: right;
+}
+
+ul#navigation li {
+	color: #697987;
+	display: inline;
+	font-size: 17px;
+	font-weight: bold;
+	margin: 0 7px;
+	text-shadow: 0 -1px 0 #12171A;
+}
+
+ul#navigation li a {
+	background: none repeat scroll 0 0 transparent;
+	border: none;
+	color: #FFFFFF;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+#fork-me img {
+	border: 0;
+	position: absolute; 
+	right: 0;
+	top: 0;
+}
+
+#middle-screen {
+	float: left;
+	width: 100%;
+}
+
+h1#slogan {
+	height: 41px;
+	margin: 40px 0 15px;
+}
+
+#header-body-text {
+	float:left;
+	margin-bottom:5px;
+	padding-bottom:40px;
+	width:355px;
+}
+
+
+#header-body {
+	background: url("/images/bg-body.gif") repeat-x scroll left bottom #F6F9FF;
+	float: left;
+	width: 100%;
+}
