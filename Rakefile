@@ -52,6 +52,7 @@ spec_all_ruby_versions
 rcov
 verify_rcov
 git:push
+remove_logs
 )
 
 task :spec_all_ruby_versions do
@@ -76,6 +77,11 @@ end
 #
 task :spec do
  sh('spec spec --diff --color')
+end
+
+task :remove_logs do
+  sh('rm -rf logs') # Be careful!!! =]
+  sh('rm -rf log')
 end
 
 require 'spec/rake/spectask'
