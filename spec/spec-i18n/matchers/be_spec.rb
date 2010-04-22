@@ -8,7 +8,13 @@ describe "should be_predicate" do
     it "should have the translate method" do
       stub_language!('pt', {'matchers' => {'be' => 'ser'}})
       Spec::Matchers.translate_be_matcher
-      methods.sort.to_sym.should include(:ser)          
+      methods.to_sym.should include(:ser)          
+    end
+    
+    it "should have the be translate matchers" do
+      stub_language!('de', { 'matchers' => { 'be' => 'sein' }})
+      Spec::Matchers.translate_be_matcher
+      methods.to_sym.should include(:sein)
     end
     
     it "should not raise exception for the be empty keyword" do
