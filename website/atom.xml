@@ -1,0 +1,27 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Rspec-I18n</title>
+ <link href="http://tomas-stefano.github.com/rspec-i18n/atom.xml" rel="self"/>
+ <link href="http://tomas-stefano.github.com/rspec-i18n/"/>
+ <updated>{{ site.time | date_to_xmlschema }}</updated>
+ <id>http://tomas-stefano.github.com/rspec-i18n/</id>
+ <author>
+   <name>Dr Nic Williams</name>
+   <email>tomas-stefanowilliams@gmail.com</email>
+ </author>
+
+ {% for post in site.posts %}
+ <entry>
+   <title>{{ post.title }}</title>
+   <link href="http://tomas-stefano.github.com/rspec-i18n{{ post.url }}"/>
+   <updated>{{ post.date | date_to_xmlschema }}</updated>
+   <id>http://tomas-stefano.github.com/rspec-i18n{{ post.id }}</id>
+   <content type="html">{{ post.content | xml_escape }}</content>
+ </entry>
+ {% endfor %}
+ 
+</feed>
