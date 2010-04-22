@@ -93,7 +93,7 @@ See more examples in http://github.com/tomas-stefano/rspec-i18n/blob/master/exam
 
 == Adding a new language or completing a existing one
 
-  - See <b> http://wiki.github.com/tomas-stefano/rspec-i18n/collaborating-with-rspec-i18n </b>
+- See <b> http://wiki.github.com/tomas-stefano/rspec-i18n/collaborating-with-rspec-i18n </b>
 
 == Tested Versions
 
