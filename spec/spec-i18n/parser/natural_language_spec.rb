@@ -8,6 +8,9 @@ module SpecI18n
         @pt = NaturalLanguage.new('pt')
         @es = NaturalLanguage.new('es')
         @en = NaturalLanguage.new('en')
+        @germany = NaturalLanguage.new('de')
+        @portuguese = @pt
+        @spanish = @es
       end
       
       context "get languages" do
@@ -275,9 +278,33 @@ module SpecI18n
         context 'when be true keyword' do
                     
           it "should return all the be_true possibilities" do
-            @keywords = { "matchers" => { 'be' => 'ser|outro_ser', 'true_word' => 'verdade|verdadeiro'} }
-            stub_keywords!(@pt, @keywords)
+            keywords = { "matchers" => { 'be' => 'ser|outro_ser', 'true_word' => 'verdade|verdadeiro'} }
+            stub_keywords!(@pt, keywords)
             @pt.word_be("true").should eql(["ser_verdade", "ser_verdadeiro", "outro_ser_verdade","outro_ser_verdadeiro"])
+          end
+          
+          it "should return all the be_true possibilities inverted" do
+            keywords = { 'matchers' => { 'be' => 'sein', 'true_word' => 'wahr*' }}
+            stub_keywords!(@germany, keywords)
+            @germany.word_be('true').should eql(['wahr_sein'])
+          end
+          
+          it "should return a empty array for the non keyword" do
+            keywords = {}
+            stub_keywords!(@germany, keywords)
+            @germany.word_be('true').should eql []
+          end
+          
+          it "should return a empty array for the nil be keyword" do
+            keywords = { 'matchers' => { 'be' => nil, 'true' => nil }}
+            stub_keywords!(@germany, keywords)
+            @germany.word_be('true').should eql []
+          end
+          
+          it "should return a empty array for the nil true keyword" do
+            keywords = { 'matchers' => { 'be' => 'sein', 'true' => nil}}
+            stub_keywords!(@germany, keywords)
+            @germany.word_be('true').should eql []
           end
           
         end
@@ -288,6 +315,30 @@ module SpecI18n
             @pt_keywords = { "matchers" => { 'be' => 'ser|outro_ser', 'nil_word' => 'nulo|muito_nulo'}}
             stub_keywords!(@pt, @pt_keywords)
             @pt.word_be("nil").should eql(["ser_nulo", "ser_muito_nulo", "outro_ser_nulo", "outro_ser_muito_nulo"])
+          end
+          
+          it "should return all the be_nil possibilities for the inverted keyword" do
+            keywords = { 'matchers' => { 'be' => 'sein', 'nil_word' => "null*" }}
+            stub_keywords!(@germany, keywords)
+            @germany.word_be('nil').should eql(['null_sein'])
+          end
+          
+          it "should return a empty array for the non matchers keyword" do
+            keywords = {}
+            stub_keywords!(@es, keywords)
+            @es.word_be('nil').should eql []
+          end
+          
+          it "should return a empty array for the non be keyword" do
+            keywords = { 'matchers' => { 'be' => nil, 'nil' => nil }}
+            stub_keywords!(@en, keywords)
+            @en.word_be('nil').should eql []
+          end
+          
+          it "should return a empty array for the non nil keyword" do
+            keywords = { 'matchers' => { 'be' => 'ser', 'nil' => nil }}
+            stub_keywords!(@pt, keywords)
+            @pt.word_be('nil').should eql []
           end
 
         end
@@ -300,6 +351,72 @@ module SpecI18n
             @pt.word_be("false").should eql(["ser_falso", "ser_muito_falso", "outro_ser_falso", "outro_ser_muito_falso"])
           end
           
+          it "should return all the be_false possibilities for the inverted keyword" do
+            keywords = { 'matchers' => { 'be' => 'sein', 'false_word' => 'falsch*' }}
+            stub_keywords!(@germany, keywords)
+            @germany.word_be('false').should eql(['falsch_sein'])
+          end
+          
+          it 'should return a empty array for the non false keyword' do
+            keywords = {}
+            stub_keywords!(@en, keywords)
+            @en.word_be('false').should eql []
+          end
+          
+          it 'should return a empty array for the non false keyword' do
+            keywords = { 'matchers' => { 'be' => 'ser', 'false' => nil }}
+            stub_keywords!(@es, keywords)
+            @es.word_be('false').should eql []
+          end
+          
+        end
+        
+        context 'when be empty keyword' do
+          
+          it "should return all the be empty possibilities" do
+            keywords = { 'matchers' => { 'be' => 'ser', 'empty_word' => 'vazio|muito_vazio'}}
+            stub_keywords!(@portuguese, keywords)
+            @portuguese.word_be('empty').should eql(['ser_vazio', 'ser_muito_vazio'])
+          end
+          
+          it "should return the inverted be_empty keyword for keywords with '*' char" do
+            keywords = {'matchers' => { 'be' => 'sein', 'empty_word' => 'leer*'}}
+            stub_keywords!(@germany, keywords)
+            @germany.word_be('empty').should eql(['leer_sein'])
+          end
+          
+        end
+        
+      end
+    
+      context 'when invert_order_of_object_and_verbs?' do
+        
+        it "should return true if the keyword include '*' character" do
+          @germany.invert_order_of_object_and_verbs?('wahr*').should be_true
+        end
+        
+        it "should return true if the keyword include '*' char" do
+          @portuguese.invert_order_of_object_and_verbs?('verdadeiro*').should be_true
+        end
+        
+        it "should return true if one keyword include '*' char" do
+          @germany.invert_order_of_object_and_verbs?('wahr*|verdadeiro').should be_true
+        end
+        
+        it "should return true if the two keywords include '*' char" do
+          @portuguese.invert_order_of_object_and_verbs?('wahr*|verdadeiro*').should be_true
+        end
+        
+        it "should return false if the keyword not include '*' character" do
+          @portuguese.invert_order_of_object_and_verbs?('verdadeiro').should be_false
+        end
+        
+        it "should return false if the keyword not include '*' char" do
+          @spanish.invert_order_of_object_and_verbs?('falso').should be_false
+        end
+        
+        it "should return false if the keyword is nil" do
+          @germany.invert_order_of_object_and_verbs?(nil).should be_false
         end
         
       end

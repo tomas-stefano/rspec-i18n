@@ -142,15 +142,15 @@ module SpecI18n
       # NaturalLanguage.new('pt').word_be('true') # => ['ser_verdadeiro', 'ser_verdade']
       #
       def word_be(ruby_type)
-        matchers_be = keywords_of_be_word
-        matcher_ruby_type = split_word(keywords['matchers']["#{ruby_type}_word"])
-        matchers_be.collect! do |matcher_be|
-          matcher_ruby_type.collect { |matcher| "#{matcher_be}_#{matcher}" }
+        ruby_type_matchers = matchers ? split_word(matchers["#{ruby_type}_word"]) : []
+        words = keywords_of_be_word.collect do |matcher_be|
+          invert_or_not_ruby_type_mathers(matcher_be, ruby_type_matchers)
         end
-        matchers_be.flatten
+        words.flatten
       end
       
       # Return the be words in the languages.yml
+      # If not have any matchers return a empty Array
       #
       def keywords_of_be_word
         return split_word(matchers['be']) if matchers
@@ -161,22 +161,38 @@ module SpecI18n
       #
       # de:
       #   matchers:
-      #     be: sein
       #     true_word: wahr*
       #
       # @germany = NaturalLanguage.new('de')
-      # @germany.invert_order_of_object_and_verbs?(['sein'], 'wahr*') # => true
+      # @germany.invert_order_of_object_and_verbs?(matchers['true_word']) # => true
       #
       # pt:
       #  matchers:
-      #    be: ser|estar
       #    true_word: verdadeiro
       #
       # @portuguese = NaturalLanguage.new('pt')
-      # @portuguese.invert_order_of_object_and_verbs?(['ser', 'estar'], 'verdadeiro') # => false
+      # @portuguese.invert_order_of_object_and_verbs?(matchers['true_word']) # => false
       #
-      def invert_order_of_object_and_verbs?(be_keywords, keyword)
-        matchers_be
+      def invert_order_of_object_and_verbs?(keyword)
+        return true if keyword.to_s.include?('*')
+        false
+      end
+      
+      # PENDENCIA - SPEC THIS
+      #
+      def invert_or_not_ruby_type_mathers(matcher_be, ruby_type_matchers)
+        ruby_type_matchers.collect do |matcher|
+          if invert_order_of_object_and_verbs?(matcher) 
+            invert_order(:first => matcher, :second => matcher_be)
+          else
+            "#{matcher_be}_#{matcher}"
+          end
+        end
+      end
+      
+      def invert_order(options={})
+        options.each { |key, value| options[key] = value.delete('*') }
+        "#{options[:first]}_#{options[:second]}"
       end
 
       # Return the words of languages.yml in a Hash with Array values

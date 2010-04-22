@@ -162,26 +162,26 @@ describe "should be_predicate" do
         
         it "should translate true word for languages" do
           expected = [:ser_verdadeiro, :ser_verdade, :estar_verdadeiro, :estar_verdade]
-          Spec::Matchers.matcher_be_some(:true => true).should == expected
+          Spec::Matchers.matcher_be_some(:true).should == expected
         end
         
         it "should translate false word for languages" do
           expected = [:ser_falso, :ser_muito_falso, :estar_falso, :estar_muito_falso]
-          Spec::Matchers.matcher_be_some(:false => true).should == expected
+          Spec::Matchers.matcher_be_some(:false).should == expected
         end
         
         it "should translate false word for languages" do
           expected = [:ser_vazio, :ser_sem_elemento, :estar_vazio, :estar_sem_elemento]
-          Spec::Matchers.matcher_be_some(:empty => true).should == expected
+          Spec::Matchers.matcher_be_some(:empty).should == expected
         end
         
         it "should translate nil word for languages" do
           expected = [:ser_nulo, :ser_null, :estar_nulo, :estar_null]
-          Spec::Matchers.matcher_be_some(:nil => true).should == expected
+          Spec::Matchers.matcher_be_some(:nil).should == expected
         end
       end
       
-      context 'when write specifications ith objects, verbs and predicates in different orders' do
+      context 'when write specifications of objects, verbs and predicates in different orders' do
         
         before(:each) do
           @keywords = { 'matchers' => { 'be' => 'sein', 'true_word' => 'wahr*',
@@ -190,8 +190,19 @@ describe "should be_predicate" do
         end
         
         it "should return be true in different order" do
-          pending
-          Spec::Matchers.matcher_be_some(:true => true).should eql([:wahr_sein])
+          Spec::Matchers.matcher_be_some(:true).should eql([:wahr_sein])
+        end
+        
+        it "should return be_false in different order" do
+          Spec::Matchers.matcher_be_some(:false).should eql([:falsch_sein])
+        end
+        
+        it "should return be_nil in different order" do
+          Spec::Matchers.matcher_be_some(:nil).should eql([:null_sein])
+        end
+        
+        it "should return be_empty in different order" do
+          Spec::Matchers.matcher_be_some(:empty).should eql([:leer_sein])
         end
         
       end
