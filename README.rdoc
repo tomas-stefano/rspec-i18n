@@ -88,16 +88,14 @@ See more examples in http://github.com/tomas-stefano/rspec-i18n/blob/master/exam
 == Listing the available keywords for the language
 
 	rspec-i18n --language pt
-	
-	rspec-i18n --language es
 
-== Adding a new language or completing a existing one
+== Collaborating with Rspec-I18n
 
 - See <b> http://wiki.github.com/tomas-stefano/rspec-i18n/collaborating-with-rspec-i18n </b>
 
-== Tested Versions
+== Supported Versions
 
-<b>TESTS -> ONLY Ruby 1.8 (The Edge Version Supports Ruby 1.9!)</b>
+<b>ONLY Ruby 1.8 (The Edge Version Supports Ruby 1.9!)</b>
 
 <b>Rspec-i18n >= 1.0.0</b> supports <b>ONLY Rspec 1.3</b>
 
