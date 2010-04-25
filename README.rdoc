@@ -3,6 +3,7 @@
 * http://github.com/tomas-stefano/rspec-i18n/wikis
 * http://gemcutter.org/gems/rspec-i18n
 * http://rspec-i18n.lighthouseapp.com
+* http://tomas-stefano.github.com/rspec-i18n
 
 == Install
 
