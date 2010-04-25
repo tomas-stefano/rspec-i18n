@@ -11,3 +11,4 @@ tmp
 *.sw?
 spec/spec_files.txt
 tags
+rerun.txt

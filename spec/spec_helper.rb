@@ -5,6 +5,8 @@ require 'spec-i18n'
 
 $:.unshift(File.dirname(__FILE__), '../lib')
 
+ENV['AUTOFEATURE'] = 'true'
+
 include SpecI18n
 include SpecI18n::Parser
 
