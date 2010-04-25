@@ -19,8 +19,8 @@ describe SpecI18n do
   end
   
   it 'should assign the spec_language' do
-    @configuration.spec_language('ja')
-    spec_language.should == 'ja'
+    @configuration.spec_language('en-au')
+    spec_language.should == 'en-au'
   end
   
   it "should assign the spec language - available for all modules" do

@@ -420,6 +420,25 @@ module SpecI18n
         end
         
       end
+      
+      context 'when values from keywords' do
+        
+        it "should return the empty Hash for non values of keyword" do
+          stub_keywords!(@portuguese, {})
+          @portuguese.values_from_keywords('hooks').should eql({})
+        end
+        
+        it "should return the values for values fo keyword" do
+          stub_keywords!(@portuguese, { 'hooks' => { 'each' => 'cada|de_cada'}})
+          @portuguese.values_from_keywords('hooks').should eql({'each' => 'cada|de_cada'})
+        end
+        
+        it "should return the empty values for non values of middle keyword" do
+          stub_keywords!(@germany, { 'hooks' => {}})
+          @germany.values_from_keywords('hooks').should eql({})
+        end
+        
+      end
     
     end
   end

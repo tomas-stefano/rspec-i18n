@@ -194,7 +194,28 @@ module SpecI18n
         options.each { |key, value| options[key] = value.delete('*') }
         "#{options[:first]}_#{options[:second]}"
       end
-
+      
+      # Return the values from keywords
+      #
+      # @pt.values_from_keywords('hooks') # => {'all'=>'todos','each'=>'cada'}
+      #
+      def values_from_keywords(keyword)
+        unless keywords[keyword]
+          {}
+        else
+          keywords[keyword]
+        end
+      end
+      
+      # List the Basic Keywords
+      # PENDENCIA
+      def basic_keywords(language)
+        NaturalLanguage::BASIC_KEYWORDS.collect do |keyword|
+          words = language.keywords[keyword].to_s.split('|').join(' / ')
+          [ keyword, words ] 
+        end
+      end
+      
       # Return the words of languages.yml in a Hash with Array values
       #
       # pt:

@@ -47,17 +47,15 @@ module SpecI18n
       end
       
       def print_languages(language)
-        if language == 'help'
-          LanguageHelpFormatter.list_languages_and_exit(@output_stream)
-        else
-          LanguageHelpFormatter.list_keywords_and_exit(@output_stream, language)
-        end
+        return Language.list_languages_and_exit(@output_stream) if language == 'help'
+        Language.list_keywords_and_exit(@output_stream, language)  
       end
       
       def print_and_exit(message)
         @output_stream.puts message
         Kernel.exit(0)
       end
+      
     end
   end
 end

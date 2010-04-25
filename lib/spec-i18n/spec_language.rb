@@ -18,6 +18,20 @@ module SpecI18n
     SpecI18n::SPEC_LANGUAGES
   end
   
+  # Return the exaclty value of that keyword
+  #
+  def grep_value(lang, key)
+    SpecI18n::SPEC_LANGUAGES[lang][key]
+  end
+  
+  # List all languages available in the languages.yml
+  #
+  def list_languages
+    languages = all_languages.keys.sort.collect do |lang|
+      [ lang, grep_value(lang, 'name'), grep_value(lang, 'native') ]
+    end
+  end
+  
 end
 
 include SpecI18n
