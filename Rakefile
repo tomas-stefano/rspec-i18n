@@ -31,7 +31,7 @@ begin
 
     gemspec.add_dependency('rspec', '>= 1.3.0')
     gemspec.add_dependency('terminal-table', '>= 1.4.2')
-    gemspec.add_dependency('term-ansicolor', '1.0.4')
+    gemspec.add_dependency('term-ansicolor', '>= 1.0.4')
 
     gemspec.add_development_dependency('rspec', '>= 1.3.0')
     gemspec.add_development_dependency('cucumber', '>= 0.6.2')

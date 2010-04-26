@@ -1,7 +1,8 @@
-require 'term/ansicolor'
-require 'terminal-table/import'
 require 'spec-i18n/spec_language'
 require 'spec-i18n/parser'
+require 'rubygems'
+require 'term/ansicolor'
+require 'terminal-table/import'
   
 module SpecI18n
   module CommandLine

@@ -10,3 +10,4 @@
 * Change the order of predicates and verbs and objects for other languages	
 * Check a better way to manipulating the mocks and stubs (need think more about that)
 * Verify the following matchers: simple_matcher, wrap_expectation, respond_to, change and match_unless_raises.
+* REFACTORING CLI

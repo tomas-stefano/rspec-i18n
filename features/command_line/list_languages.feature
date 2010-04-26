@@ -6,22 +6,22 @@ Feature: Rspec-i18n all the languages executable
   Background:
 	Given a file named "languages.yml" with:
 	  """
-  de:
-    name: German
-    native: Deutsch
-  
-  es:
-    name: Spanish
-    native: Español
-  
-  pt:
-    name: Portuguese
-    native: Português
+de:
+  name: German
+  native: Deutsch
 
-  ja:
-    name: Japanese
-    native: 
-		
+es:
+  name: Spanish
+  native: Español
+
+pt:
+  name: Portuguese
+  native: Português
+
+ja:
+  name: Japanese
+  native: 
+  	
 	  """
 	And rspec-i18n read the "languages.yml" file
 
@@ -36,3 +36,4 @@ Feature: Rspec-i18n all the languages executable
 	  Then I should see "German"
 	  And I should see "Deutsch"
 	  And I should see "Japanese"
+	
