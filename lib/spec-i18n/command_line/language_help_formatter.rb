@@ -27,7 +27,13 @@ module SpecI18n
         end
         
         def list_keywords_and_exit(io, lang)
-          
+          keywords = list_keywords(lang)
+          print_table io, keywords, :exit => true
+        end
+        
+        def list_keywords(lang)
+          language = NaturalLanguage.new(lang)
+          table_for_keywords(language)
         end
         
         # Print the table to list all languages or keywords of a language
@@ -43,6 +49,13 @@ module SpecI18n
           table do
             self.headings = ['Language', 'Name', 'Native']
             languages.each { |language| add_row language }
+          end
+        end
+        
+        def table_for_keywords(language)
+          table do
+            self.headings = ['Rspec Keywords', 'Translated Keyword', 'Rspec Matchers', 'Translated Matcher']
+            add_row ['', '', '', '']
           end
         end
         

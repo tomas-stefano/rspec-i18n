@@ -207,15 +207,6 @@ module SpecI18n
         end
       end
       
-      # List the Basic Keywords
-      # PENDENCIA
-      def basic_keywords(language)
-        NaturalLanguage::BASIC_KEYWORDS.collect do |keyword|
-          words = language.keywords[keyword].to_s.split('|').join(' / ')
-          [ keyword, words ] 
-        end
-      end
-      
       # Return the words of languages.yml in a Hash with Array values
       #
       # pt:

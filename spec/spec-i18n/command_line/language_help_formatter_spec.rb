@@ -17,16 +17,16 @@ module SpecI18n
         Language.list_languages_and_exit(StringIO.new)
       end
       
-     # it "should list keywords" do
-     #   LanguageHelpFormatter.should_receive(:list_basic_keywords).and_return(@portuguese)
-     #   Kernel.should_receive(:exit)
-     #   LanguageHelpFormatter.list_keywords_and_exit(@io_stream, 'pt')
-     # end
-     # 
-     # it "should list all keywords and exit" do
-     #   Kernel.should_receive(:exit)
-     #   LanguageHelpFormatter.list_keywords_and_exit(@io_stream, 'es')
-     # end
+      it "should list keywords" do
+        Language.should_receive(:list_keywords).and_return(@portuguese)
+        Kernel.should_receive(:exit)
+        Language.list_keywords_and_exit(@io_stream, 'pt')
+      end
+      
+      it "should list all keywords and exit" do
+        Kernel.should_receive(:exit)
+        Language.list_keywords_and_exit(@io_stream, 'es')
+      end
     
       context "list languages" do
       
