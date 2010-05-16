@@ -12,11 +12,7 @@ module SpecI18n
         
         include SpecI18n::Parser
         include Term::ANSIColor
-        
-        String.class_eval do
-          include Term::ANSIColor
-        end
-        
+                
         # List Name and Native Keywords of all the languages in the
         # languages.yml
         #
@@ -39,8 +35,8 @@ module SpecI18n
         # Print the table to list all languages or keywords of a language
         #
         def print_table(io, raw, options={})
-         io.puts raw.to_s.send(options[:color] || :green).bold
-         Kernel.exit(0) if options[:exit]
+          io.puts raw
+          Kernel.exit(0) if options[:exit]
         end
         
         # Return a table to use with command to list all languages
