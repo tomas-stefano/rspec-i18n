@@ -12,3 +12,4 @@ tmp
 spec/spec_files.txt
 tags
 rerun.txt
+.bundle/*

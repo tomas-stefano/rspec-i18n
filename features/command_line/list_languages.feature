@@ -1,5 +1,5 @@
 Feature: Rspec-i18n all the languages executable 
-  
+  In order to read the translated keywords
   As an Rspec-i18n user
   I want to run the rspec-i18n executable to see all the languages
 
