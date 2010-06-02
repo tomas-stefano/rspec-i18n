@@ -175,6 +175,11 @@ module SpecI18n
           @pt.matchers.should == @keywords["matchers"]
         end
         
+        it "should return an empty hash for non exist matchers" do
+          stub_keywords!(@portuguese, {'name' => 'Portuguese'})
+          @portuguese.matchers.should eql({})
+        end
+        
         it "should find a matcher that exist" do
           stub_keywords!(@pt, @keywords)
           @pt.find_matcher(:include).should == { "include" => ["incluir", "incluso"]}
@@ -460,6 +465,25 @@ module SpecI18n
         it "should include all the basic keywords" do
           stub_keywords!(@portuguese, {'describe' => 'descreva', 'matchers' => { 'eql' => 'igual_a'}})
           @portuguese.basic_keywords.should eql({'describe' => 'descreva'})
+        end
+        
+      end
+    
+      context '#advanced_keywords' do
+        
+        it "should ignore all the basic keywords" do
+          stub_keywords!(@portuguese, {'describe' => 'descreva', 'matchers' => { 'equal' => 'igual' }})
+          @portuguese.advanced_keywords.should eql({'matchers' => {'equal' => 'igual'}})
+        end
+        
+        it "should accept hooks keywords" do
+          stub_keywords!(@portuguese, {'subject' => 'assunto', 'it' => 'isto', 'hooks' => {'all' => 'todos'}})
+          @portuguese.advanced_keywords.should eql({'hooks' => {'all' => 'todos'}})
+        end
+        
+        it "should accept hooks and matchers" do
+          stub_keywords!(@portuguese, {'subject' => 'assunto', 'hooks' => {'all' => 'todos'}, 'matchers' => { 'include' => 'inclua' }})
+          @portuguese.advanced_keywords.should eql({'hooks' => {'all' => 'todos'}, 'matchers' => {'include' => 'inclua'}})
         end
         
       end

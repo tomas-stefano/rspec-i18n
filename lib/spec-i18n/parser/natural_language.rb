@@ -93,7 +93,7 @@ module SpecI18n
       # Return All the Matchers in the languages.yml
       #
       def matchers
-        keywords["matchers"]
+        keywords["matchers"] || {}
       end
       
       # Return the shared examples for words in the languages.yml
@@ -208,7 +208,11 @@ module SpecI18n
       end
       
       def basic_keywords
-        keywords.delete_if { |keyword, translated| ADVANCED_KEYWORDS.include?(keyword) }
+        keywords.delete_if { |keyword, translated| include_in_advanced_keywords?(keyword) }
+      end
+      
+      def advanced_keywords
+        keywords.reject { |keyword, translated| not_include_in_advanced_keywords?(keyword) }
       end
       
       # Return the words of languages.yml in a Hash with Array values
@@ -237,6 +241,14 @@ module SpecI18n
       
       def split_word(word)
         word.to_s.split("|")
+      end
+      
+      def include_in_advanced_keywords?(keyword)
+        ADVANCED_KEYWORDS.include?(keyword)
+      end
+      
+      def not_include_in_advanced_keywords?(keyword)
+        !ADVANCED_KEYWORDS.include?(keyword)
       end
 
     end
