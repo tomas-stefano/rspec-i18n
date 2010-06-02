@@ -440,6 +440,30 @@ module SpecI18n
         
       end
     
+      context '#basic_keywords' do
+        
+        it "should ignore hooks from keywords" do
+          stub_keywords!(@portuguese, { 'subject' => 'assunto', 'hooks' => {'all' => 'todos'}})
+          @portuguese.basic_keywords.should eql({'subject' => 'assunto'})
+        end
+        
+        it "should ignore matchers from keywords" do
+          stub_keywords!(@portuguese, { 'subject' => 'assunto', 'matchers' => {'be' => 'ser'}})
+          @portuguese.basic_keywords.should eql({'subject' => 'assunto'})
+        end
+        
+        it "should ignore matchers and hooks" do
+          stub_keywords!(@portuguese, {'describe' => 'descreva', 'should' => 'deve', 'should_not' => 'nao_deve', 'matchers' => {'eql' => 'igl'}, 'hooks' => {'all' => 'todos'}})
+          @portuguese.basic_keywords.should eql({'describe' => 'descreva', 'should' => 'deve', 'should_not' => 'nao_deve'})
+        end
+        
+        it "should include all the basic keywords" do
+          stub_keywords!(@portuguese, {'describe' => 'descreva', 'matchers' => { 'eql' => 'igual_a'}})
+          @portuguese.basic_keywords.should eql({'describe' => 'descreva'})
+        end
+        
+      end
+    
     end
   end
 end

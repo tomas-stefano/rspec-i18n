@@ -207,6 +207,10 @@ module SpecI18n
         end
       end
       
+      def basic_keywords
+        keywords.delete_if { |keyword, translated| ADVANCED_KEYWORDS.include?(keyword) }
+      end
+      
       # Return the words of languages.yml in a Hash with Array values
       #
       # pt:

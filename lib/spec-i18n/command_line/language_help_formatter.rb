@@ -50,8 +50,10 @@ module SpecI18n
         
         def table_for_keywords(language)
           table do
-            self.headings = ['Rspec Keywords', 'Translated Keyword', 'Rspec Matchers', 'Translated Matcher']
-            add_row ['', '', '', '']
+            self.headings = ['Rspec Keywords', 'Translated Keyword']
+            language.basic_keywords.each do |rspec_keyword, translated_keyword|
+              add_row [rspec_keyword, translated_keyword.to_s.split('|').join(' / ')]
+            end
           end
         end
         
