@@ -76,27 +76,26 @@ module SpecI18n
         
       end
       
-      context "of before and after keywords" do
-        
-        before(:each) do
-          @language = { "before" => "before", "after" => "after"}
-        end
-        
+      describe "#before_and_after_keywords" do
+                
         it "should return the hooks for the current language" do
-          @en.should_receive(:keywords).at_least(:once).and_return(@language)
-          keywords = { "before" => ["before"], "after" => ["after"]}
-          @en.before_and_after_keywords.should == keywords
+          stub_keywords!(@en, { "before" => "before", "after" => "after"})
+          @en.before_and_after_keywords.should == { "before" => ["before"], "after" => ["after"]}
         end
         
         it "should return the hooks for the language" do
-          language = {"before" => "antes", "after" => "depois"}
-          keywords = { "before" => ["antes"], "after" => ["depois"]}
-          @pt.stub!(:keywords).and_return(language)
-          @pt.before_and_after_keywords.should == keywords
+          stub_keywords!(@portuguese, {"before" => "antes", "after" => "depois"})
+          @portuguese.before_and_after_keywords.should == { "before" => ["antes"], "after" => ["depois"]}
         end
+        
+        it "should not raise a error when not have before and after keyword" do
+          stub_keywords!(@portuguese, {})
+          @portuguese.before_and_after_keywords.should == {'before' => [], 'after' => []}
+        end
+        
       end
       
-      context "of hooks keywords" do
+      context "#hooks" do
         
         before(:each) do
           @lang = { "hooks" => {"each" => "de_cada|de_cada_exemplo", 
@@ -108,11 +107,46 @@ module SpecI18n
         end
         
         it "should return the hooks parameters for the current language" do
-          @pt.stub!(:keywords).and_return(@lang)
-          @pt.hooks_params_keywords.should == @keywords                       
+          stub_keywords!(@portuguese, @lang)
+          @portuguese.hooks_params_keywords.should == @keywords                       
         end
+        
+        it "should return something when not have hooks" do
+          stub_keywords!(@portuguese, {})
+          @portuguese.hooks_params_keywords.should == {}
+        end
+        
       end
       
+      describe "#hooks_permutation" do
+        
+        it "should return a Hash of possibilities" do
+          stub_keywords!(@portuguese, {'before' => 'antes', 'hooks' => {'each' => 'cada|de_cada'}})
+          @portuguese.hooks_permutation.should include({ 'before(:each)' => ['antes(:cada)', 'antes(:de_cada)']})
+        end
+        
+        it "should return a before in Hash keys" do
+          stub_keywords!(@portuguese, {'before' => 'antes', 'hooks' => {'each' => 'de_cada' , 'all' => 'de_todos'}})
+          @portuguese.hooks_permutation.should include({ 'before(:each)' => ['antes(:de_cada)'], 'before(:all)' => ['antes(:de_todos)'] })
+        end
+        
+        it "should return a after in Hash" do
+          stub_keywords!(@portuguese, { 'after' => 'depois', 'hooks' => {'each' => 'cada'} })
+          @portuguese.hooks_permutation.should include({ 'after(:each)' => ['depois(:cada)'] })
+        end
+        
+        it "should return a empty Hash when not have hooks" do
+          stub_keywords!(@portuguese, {'after' => 'depois', 'before' => 'antes'})
+          @portuguese.hooks_permutation.should == {}
+        end
+        
+        it "should return a empty Hash when not have before and after keywords" do
+          stub_keywords!(@portuguese, {})
+          @portuguese.hooks_permutation.should == {}
+        end
+        
+      end
+            
       context "of example group keywords" do
         
         before(:each) do
@@ -192,6 +226,25 @@ module SpecI18n
         
       end
       
+      context 'hooks' do
+        
+        it "should return a empty Hash when not have hooks" do
+          stub_keywords!(@portuguese, {'name' => 'Portuguese'})
+          @portuguese.hooks.should eql({})
+        end
+        
+        it "should return all the hooks" do
+          stub_keywords!(@portuguese, {'hooks' => { 'each' => 'cada'}})
+          @portuguese.hooks.should eql({'each' => 'cada'})
+        end
+        
+        it "should return the hooks with | separator in a string" do
+          stub_keywords!(@portuguese, {'hooks' => {'all' => 'todos|de_todos'}})
+          @portuguese.hooks.should eql({'all' => 'todos|de_todos'})
+        end
+        
+      end
+      
       context 'shared examples keywords' do
         
         before(:each) do
@@ -258,13 +311,17 @@ module SpecI18n
         it "should raise no found key" do
           lambda {
             @pt.spec_keywords("no_found")            
-          }.should raise_exception(RuntimeError)
+          }.should_not raise_exception(RuntimeError)
         end
         
         it "should raise exception for not found key" do
           lambda {
             @pt.spec_keywords("Oh_MY_this_words_is_not_found!")
-          }.should raise_exception(RuntimeError)
+          }.should_not raise_exception(RuntimeError)
+        end
+        
+        it "should return a Hash of Array values" do
+          @portuguese.spec_keywords('something_that_dont_exist').should == {'something_that_dont_exist' => []}
         end
         
         it "should not raise error for key found but key is nil" do

@@ -74,7 +74,16 @@ module SpecI18n
         end
         
         def hooks_table(io, language)
-          
+          hooks = language.hooks_params_keywords
+          return nil if hooks.empty?
+          table_for_hooks = table do
+            self.headings = ['Rspec Hooks', 'Translated Keyword']
+            hooks.each do |rspec_keyword, translated_keyword|
+              add_row [rspec_keyword, translated_keyword.join(' / ')]
+            end
+          end
+          print_table io, table_for_hooks
+          true
         end
         
       end

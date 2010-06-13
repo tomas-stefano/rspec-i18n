@@ -55,8 +55,3 @@ Feature: Rspec-i18n all the languages executable
     """
   
   
-  
-  
-  
-  
-	

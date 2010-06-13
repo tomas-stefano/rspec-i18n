@@ -53,23 +53,42 @@ module SpecI18n
       # Return the before and after words in the languages.yml
       #
       def before_and_after_keywords
-        spec_keywords("before").merge(spec_keywords("after"))
+        spec_keywords('before').merge(spec_keywords('after'))
       end
       
-      # Return all the hooks words in the languages.yml
+      # Return All the Hooks in the languages.yml
+      # If not have hooks return a empty Hash
+      #
       # The hooks in the rspec is the argument for before and after method
       #
-      #       hook                hook
-      #         \                 /
-      # before(:each)     after(:all)
+      #           hook                hook
+      #             \                 /
+      #     before(:each)     after(:all)
+      #
+      def hooks
+        keywords['hooks'] || {}
+      end
+      
+      # Return all the hooks words in the languages.yml in a Hash of Arrays
       #
       def hooks_params_keywords
-        hooks = {}
-        keywords['hooks'].each do |hook, value|
+        hooks_keywords = {}
+        hooks.each do |hook, value|
           values = split_word(value)
-          hooks[hook] = values
+          hooks_keywords[hook] = values
         end
-        hooks
+        hooks_keywords
+      end
+      
+      def hooks_permutation
+        permutation = {}
+        before_and_after_keywords.each do |before_keyword, before_translated|
+          hooks.each do |hook_keyword, hook_translated|
+            words = split_word(hook_translated)
+            permutation["#{before_keyword}(:#{hook_keyword})"] = words.collect { |word| "#{before_translated}(:#{word})" }
+          end
+        end
+        permutation
       end
       
       # Return the it word in the languages.yml
@@ -229,8 +248,7 @@ module SpecI18n
       #
       # NaturalLanguage.new('es').spec_keywords('key_not_found') # => RuntimeError: "No key_not_found in #{keywords}"
       #
-      def spec_keywords(key)
-        raise "No #{key} in #{keywords.inspect}" unless keywords.include?(key)
+      def spec_keywords(key)        
         return { key => [] } unless keywords[key]
         values = split_word(keywords[key])
         { key => values }

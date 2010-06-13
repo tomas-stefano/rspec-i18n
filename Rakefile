@@ -77,7 +77,7 @@ end
 
 # I don't wanna use the Spec::Rake::SpecTask
 #
-task :spec do
+task :rspec do
  sh('spec spec --diff --color')
 end
 

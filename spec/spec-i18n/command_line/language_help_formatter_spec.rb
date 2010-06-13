@@ -55,7 +55,17 @@ module SpecI18n
           stub_keywords!(@portuguese, {'matchers' => {'be' => 'ser'}})
           Language.matchers_table(@io_stream, @portuguese).should equal true
         end
-                
+        
+        it "should return nil if have no hooks" do
+          stub_keywords!(@portuguese, {'hooks' => {}})
+          Language.hooks_table(@io_stream, @portuguese).should be_nil
+        end
+        
+        it "should return true when have hooks" do
+          stub_keywords!(@portuguese, {'hooks' => { 'each' => 'cada'}})
+          Language.hooks_table(@io_stream, @portuguese).should equal true
+        end
+
       end
     
       context "list languages" do
