@@ -15,4 +15,34 @@ Feature: Rspec-i18n all the languages executable
     And I should see "Deutsch"
     And I should see "Portuguese"
 	And I should see "Korean"
+  
+  Scenario: See the language keywords and translations
+    Given I run "rspec-i18n --language pt"
+    Then I should see:
+    """
+    | it                    | isso / isto / especificar / exemplo         |
+    """
+    And I should see:
+    """
+    | before                | antes                                       |
+    """
+  
+  Scenario: See the all the Matchers of a one language
+    When I run "rspec-i18n --language pt"
+    Then I should see:
+    """
+	+-------------------+-------------------------------+
+	| Rspec Matchers    | Translated Keyword            |
+	+-------------------+-------------------------------+
+	| equal             | igual|igual_a                 |
+	| eql               | igl                           |
+	| have_exactly      | ter_exatamente                |
+	| be_a_kind_of      | ser_do_tipo                   |
+	| have_at_most      | ter_no_maximo                 |
+    """
+  
+  
+  
+  
+  
 	

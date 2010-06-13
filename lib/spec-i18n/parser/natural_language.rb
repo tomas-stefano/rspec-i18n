@@ -208,7 +208,7 @@ module SpecI18n
       end
       
       def basic_keywords
-        keywords.delete_if { |keyword, translated| include_in_advanced_keywords?(keyword) }
+        keywords.reject { |keyword, translated| include_in_advanced_keywords?(keyword) }
       end
       
       def advanced_keywords
