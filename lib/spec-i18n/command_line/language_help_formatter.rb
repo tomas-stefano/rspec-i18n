@@ -70,6 +70,7 @@ module SpecI18n
             end
           end
           print_table io, table_for_matchers
+          true
         end
         
         def hooks_table(io, language)

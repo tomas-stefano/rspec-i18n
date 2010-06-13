@@ -39,6 +39,24 @@ module SpecI18n
         Kernel.should_receive(:exit)
         Language.list_keywords_and_exit(@io_stream, 'es')
       end
+      
+      context "list keywords" do
+        
+        before(:each) do
+          @portuguese = NaturalLanguage.new('pt')
+        end
+        
+        it "should return nil if not have matchers" do
+          stub_keywords!(@portuguese, {'matchers' => {}})
+          Language.matchers_table(@io_stream, @portuguese).should be_nil
+        end
+        
+        it "return true when have matchers" do
+          stub_keywords!(@portuguese, {'matchers' => {'be' => 'ser'}})
+          Language.matchers_table(@io_stream, @portuguese).should equal true
+        end
+                
+      end
     
       context "list languages" do
       
