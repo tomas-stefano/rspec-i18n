@@ -18,9 +18,21 @@ module SpecI18n
       end
       
       it "should list keywords" do
-        Language.should_receive(:keywords_table).and_return(@portuguese)
+        Language.should_receive(:keywords_table)
         Kernel.should_receive(:exit)
         Language.list_keywords_and_exit(@io_stream, 'pt')
+      end
+      
+      it "should list matchers keywords" do
+        Language.should_receive(:matchers_table)
+        Kernel.should_receive(:exit)
+        Language.list_keywords_and_exit(@io_stream, 'pt')
+      end
+      
+      it "should list hooks keywords" do
+        Language.should_receive(:hooks_table)
+        Kernel.should_receive(:exit)
+        Language.list_keywords_and_exit(@io_stream, 'es')
       end
       
       it "should list all keywords and exit" do

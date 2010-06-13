@@ -154,7 +154,6 @@ module SpecI18n
       #
       def keywords_of_be_word
         return split_word(matchers['be']) if matchers
-        []
       end
       
       # Return true if the keyword has the '*' character in the last position

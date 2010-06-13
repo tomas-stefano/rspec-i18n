@@ -22,10 +22,6 @@ Feature: Rspec-i18n all the languages executable
     """
     | it                    | isso / isto / especificar / exemplo         |
     """
-    And I should see:
-    """
-    | before                | antes                                       |
-    """
   
   Scenario: See the all the Matchers of a one language
     When I run "rspec-i18n --language pt"
@@ -40,6 +36,24 @@ Feature: Rspec-i18n all the languages executable
 	| be_a_kind_of      | ser_do_tipo                   |
 	| have_at_most      | ter_no_maximo                 |
     """
+  
+  Scenario: See al the hooks of a one language
+    When I run "rspec-i18n --language pt"
+    Then I should see:
+    """
+	+----------------+------------------------------------------------+
+	| Rspec Hooks    | Translated Keyword                             |
+	+----------------+------------------------------------------------+
+	| before         | antes                                          |
+	| after          | depois                                         |
+	| before(:each)  | antes(:de_cada) / antes(:de_cada_exemplo)      |
+	| after(:each)   | depois(:de_cada) / depois(:de_cada_exemplo)    |
+	| before(:all)   | antes(:de_todos) / antes(:de_todos_exemplos)   |
+	| after(:all)    | depois(:de_todos) / depois(:de_todos_exemplos) |
+	| before(:suite) | antes(:suite)                                  |
+	| after(:suite)  | depois(:suite)                                 |
+    """
+  
   
   
   

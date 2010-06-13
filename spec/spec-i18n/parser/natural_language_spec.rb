@@ -235,13 +235,15 @@ module SpecI18n
       end
       
       context "be keyword" do
-        before(:each) do
-          @keywords = { "matchers" => { "be" => "ser|estar" }}
-        end
         
         it "should return an array with values of be word" do
-          stub_keywords!(@pt, @keywords)
+          stub_keywords!(@pt, { "matchers" => { "be" => "ser|estar" }})
           @pt.keywords_of_be_word.should == ["ser", "estar"]
+        end
+        
+        it "should return a empty array for matchers withou be keyword" do
+          stub_keywords!(@portuguese, {'matchers' => { 'eql' => 'igl'}})
+          @portuguese.keywords_of_be_word.should == []
         end
         
         it "should return a empty array for non found keyword" do

@@ -39,6 +39,7 @@ module SpecI18n
           language = NaturalLanguage.new(lang)
           keywords_table(io, language)
           matchers_table(io, language)
+          hooks_table(io, language)
           Kernel.exit(0)
         end
         
@@ -69,6 +70,10 @@ module SpecI18n
             end
           end
           print_table io, table_for_matchers
+        end
+        
+        def hooks_table(io, language)
+          
         end
         
       end
