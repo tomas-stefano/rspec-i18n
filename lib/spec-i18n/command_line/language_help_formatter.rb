@@ -1,18 +1,19 @@
 require 'spec-i18n/spec_language'
 require 'spec-i18n/parser'
-require 'rubygems'
-require 'term/ansicolor'
-require 'terminal-table/import'
+
+begin
+  require 'terminal-table/import'
+rescue LoadError
+  require 'rubygems'
+  require 'terminal-table/import'
+end
   
 module SpecI18n
   module CommandLine
     class Language
-      
+      extend SpecI18n::Parser
       class << self
-        
-        include SpecI18n::Parser
-        include Term::ANSIColor
-                
+                        
         # List Name and Native Keywords of all the languages in the
         # languages.yml
         #
