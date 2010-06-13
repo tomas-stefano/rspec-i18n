@@ -50,6 +50,23 @@ module SpecI18n
           Language.list_languages.should eql [["es", "Spanish", "Español"], ['pt', 'Portuguese', 'Português']]
         end
       end
+
+      context 'require without rubygems' do
+        
+        it "should require without rubygems" do
+          self.should_receive(:require).with('terminal-table/import').and_return(true)
+          self.should_not_receive(:require).with('rubygems')
+          require_terminal_table
+        end
+        
+        it "should rescue load_error" do
+          self.should_receive(:require).with('terminal-table/import').and_raise(LoadError)
+          self.should_receive(:require).with('rubygems').and_return(true)
+          self.should_receive(:require).with('terminal-table/import').and_return(true)
+          require_terminal_table
+        end
+        
+      end
     
     end
   end

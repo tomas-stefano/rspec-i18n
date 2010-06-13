@@ -1,13 +1,17 @@
 require 'spec-i18n/spec_language'
 require 'spec-i18n/parser'
 
-begin
-  require 'terminal-table/import'
-rescue LoadError
-  require 'rubygems'
-  require 'terminal-table/import'
+def require_terminal_table
+  begin
+    require 'terminal-table/import'
+  rescue LoadError
+    require 'rubygems'
+    require 'terminal-table/import'
+  end
 end
-  
+
+require_terminal_table
+
 module SpecI18n
   module CommandLine
     class Language
