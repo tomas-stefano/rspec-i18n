@@ -74,7 +74,7 @@ module SpecI18n
         end
         
         def hooks_table(io, language)
-          hooks = language.hooks_params_keywords
+          hooks = language.hooks_permutation
           return nil if hooks.empty?
           table_for_hooks = table do
             self.headings = ['Rspec Hooks', 'Translated Keyword']

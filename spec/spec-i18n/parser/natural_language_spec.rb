@@ -145,6 +145,11 @@ module SpecI18n
           @portuguese.hooks_permutation.should == {}
         end
         
+        it "should return a empty Hash when have nil values for before and after keywords" do
+          stub_keywords!(@portuguese, {'before' => nil, 'after' => nil})
+          @portuguese.hooks_permutation.should == {}
+        end
+        
       end
             
       context "of example group keywords" do

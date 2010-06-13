@@ -44,14 +44,11 @@ Feature: Rspec-i18n all the languages executable
 	+----------------+------------------------------------------------+
 	| Rspec Hooks    | Translated Keyword                             |
 	+----------------+------------------------------------------------+
-	| before         | antes                                          |
-	| after          | depois                                         |
-	| before(:each)  | antes(:de_cada) / antes(:de_cada_exemplo)      |
-	| after(:each)   | depois(:de_cada) / depois(:de_cada_exemplo)    |
 	| before(:all)   | antes(:de_todos) / antes(:de_todos_exemplos)   |
 	| after(:all)    | depois(:de_todos) / depois(:de_todos_exemplos) |
+	| before(:each)  | antes(:de_cada) / antes(:de_cada_exemplo)      |
+	| after(:each)   | depois(:de_cada) / depois(:de_cada_exemplo)    |
 	| before(:suite) | antes(:suite)                                  |
 	| after(:suite)  | depois(:suite)                                 |
+	+----------------+------------------------------------------------+
     """
-  
-  
