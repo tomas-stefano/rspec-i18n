@@ -24,6 +24,7 @@ Feature: Rspec-i18n all the languages executable
     """
   
   Scenario: See the all the Matchers of a one language
+	Given I am using rvm "1.8.7-p249"
     When I run "rspec-i18n --language pt"
     Then I should see:
     """
@@ -38,6 +39,7 @@ Feature: Rspec-i18n all the languages executable
     """
   
   Scenario: See al the hooks of a one language
+	Given I am using rvm "1.8.7-p249"
     When I run "rspec-i18n --language pt"
     Then I should see:
     """

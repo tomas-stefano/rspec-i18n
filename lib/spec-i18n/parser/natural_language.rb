@@ -80,12 +80,16 @@ module SpecI18n
         hooks_keywords
       end
       
+      # Returns the combination of before and after with hooks keywords
+      #
+      #
       def hooks_permutation
         permutation = {}
         before_and_after_keywords.each do |before_keyword, before_translated|
           hooks.each do |hook_keyword, hook_translated|
             words = split_word(hook_translated)
-            permutation["#{before_keyword}(:#{hook_keyword})"] = words.collect { |word| "#{before_translated}(:#{word})" }
+            translation = words.collect { |word| before_translated.collect { |keyword| "#{keyword}(:#{word})" } }.flatten
+            permutation["#{before_keyword}(:#{hook_keyword})"] = translation
           end
         end
         permutation

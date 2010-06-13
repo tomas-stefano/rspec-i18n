@@ -50,10 +50,20 @@ module SpecI18n
       context "of dsl keywords" do
       
         it "should return the describe dsl keyword" do
-          lang = { "describe" => "descreva", :before => "antes" }
-          @pt.should_receive(:keywords).at_least(:once).and_return(lang)
-          @pt.dsl_keywords.should == { "describe" => [ lang["describe"] ] }
+          stub_keywords!(@portuguese, { "describe" => "descreva", :before => "antes" })
+          @portuguese.dsl_keywords.should == { "describe" => [ 'descreva' ] }
         end
+        
+        it "should return a empty Array whe dont have keywords" do
+          stub_keywords!(@portuguese, {})
+          @portuguese.dsl_keywords.should == { 'describe' => [] }
+        end
+        
+        it "should return a empty Array when describe keyword is nil" do
+          stub_keywords!(@portuguese, { 'describe' => nil})
+          @portuguese.dsl_keywords.should == {'describe' => []}
+        end
+        
       end
 
       context "of expectations keywords" do
@@ -138,6 +148,11 @@ module SpecI18n
         it "should return a empty Hash when not have hooks" do
           stub_keywords!(@portuguese, {'after' => 'depois', 'before' => 'antes'})
           @portuguese.hooks_permutation.should == {}
+        end
+        
+        it "should return a various keys for varius before words" do
+          stub_keywords!(@portuguese, {'after' => 'depois|ah_depois', 'hooks' => {'each' => 'cada'}})
+          @portuguese.hooks_permutation.should include({'after(:each)' => ['depois(:cada)', 'ah_depois(:cada)']})
         end
         
         it "should return a empty Hash when not have before and after keywords" do
