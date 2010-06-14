@@ -1,4 +1,4 @@
-=== development
+===  Version 1.2.0
 
 * enhancements
   * Create the directory features to test with Cucumber
