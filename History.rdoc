@@ -1,11 +1,14 @@
 === development
 
 * enhancements
+  * Create the directory features to test with Cucumber
+  * List all the matchers and hooks in Command Line
+  * Refactoring Language Help Formatter and Command Line
   * Simplified more and more all the specs!
-  * Support Ruby 1.9! =]
-  * Translated shared examples( translated: shared_examples_for, share_as, it_should_behave_like)
+  * Support Ruby 1.9.1 and 1.9.2 > preview1 ! =]
+  * Translated shared examples(translated: shared_examples_for, share_as, it_should_behave_like)
   * Translated the pending keyword
-  * Put Comments in the methods (For Rspec-i18n rdoc)  
+  * Put Comments in the methods(For Rspec-i18n rdoc)  
   * Make the describe/it i18n available from a class:
 	Example:
 	#
