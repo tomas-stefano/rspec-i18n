@@ -53,7 +53,7 @@ module SpecI18n
         def keywords_table(io, language)
           table_for_keywords = table do
             self.headings = ['Rspec Keywords', 'Translated Keyword']
-            language.basic_keywords.each do |rspec_keyword, translated_keyword|
+            language.basic_keywords.sort.each do |rspec_keyword, translated_keyword|
               add_row [rspec_keyword, translated_keyword.to_s.split('|').join(' / ')]
             end
           end
@@ -65,8 +65,8 @@ module SpecI18n
           return if matchers.empty?
           table_for_matchers = table do
             self.headings = ['Rspec Matchers', 'Translated Keyword']
-            matchers.each do |rspec_keyword, translated_keyword|
-              add_row [rspec_keyword, translated_keyword]
+            matchers.sort.each do |rspec_keyword, translated_keyword|
+              add_row [rspec_keyword, translated_keyword.split('|').join(' / ')]
             end
           end
           print_table io, table_for_matchers
