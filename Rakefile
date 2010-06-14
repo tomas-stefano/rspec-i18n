@@ -58,7 +58,7 @@ remove_logs
 )
 
 task :spec_all_ruby_versions do
-  sh("rvm 1.8.7,1.9.1,1.9.2 specs")
+  sh("rvm 1.8.7-p249,1.9.1,1.9.2-preview1 specs")
   puts
 end
 
