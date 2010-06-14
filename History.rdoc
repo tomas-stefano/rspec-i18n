@@ -1,3 +1,7 @@
+=== Version 1.2.1
+
+* Fix Bug in the Matchers Table in the command line
+
 ===  Version 1.2.0
 
 * enhancements
