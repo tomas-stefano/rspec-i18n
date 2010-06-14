@@ -147,30 +147,24 @@ Remember: 'TDD is a muscle. You have to exercise it.' =) (Brian Liles)
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rspec>, [">= 1.3.0"])
       s.add_runtime_dependency(%q<terminal-table>, [">= 1.4.2"])
-      s.add_runtime_dependency(%q<term-ansicolor>, [">= 1.0.4"])
       s.add_development_dependency(%q<rspec>, [">= 1.3.0"])
       s.add_development_dependency(%q<cucumber>, [">= 0.6.2"])
       s.add_development_dependency(%q<terminal-table>, [">= 1.4.2"])
-      s.add_development_dependency(%q<term-ansicolor>, [">= 1.0.4"])
       s.add_development_dependency(%q<aruba>, [">= 0.1.7"])
     else
       s.add_dependency(%q<rspec>, [">= 1.3.0"])
       s.add_dependency(%q<terminal-table>, [">= 1.4.2"])
-      s.add_dependency(%q<term-ansicolor>, [">= 1.0.4"])
       s.add_dependency(%q<rspec>, [">= 1.3.0"])
       s.add_dependency(%q<cucumber>, [">= 0.6.2"])
       s.add_dependency(%q<terminal-table>, [">= 1.4.2"])
-      s.add_dependency(%q<term-ansicolor>, [">= 1.0.4"])
       s.add_dependency(%q<aruba>, [">= 0.1.7"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.3.0"])
     s.add_dependency(%q<terminal-table>, [">= 1.4.2"])
-    s.add_dependency(%q<term-ansicolor>, [">= 1.0.4"])
     s.add_dependency(%q<rspec>, [">= 1.3.0"])
     s.add_dependency(%q<cucumber>, [">= 0.6.2"])
     s.add_dependency(%q<terminal-table>, [">= 1.4.2"])
-    s.add_dependency(%q<term-ansicolor>, [">= 1.0.4"])
     s.add_dependency(%q<aruba>, [">= 0.1.7"])
   end
 end
