@@ -16,7 +16,7 @@ prefer - If don't have your speaking language, please make a fork =)
 The Rspec-i18n was created for the purpose of teaching people who are
 starting to developing applications but also serves to Production use.
 I know that many people prefer to write <b>Specs</b> in English.
-But if you don't prefer that or in SOME cases <b>DON'T NEED THAT</b>, you'll like the Rspec-i18n. =)
+But if you don't prefer that or in some cases <b>DON'T NEED THAT</b>, you'll like the Rspec-i18n. =)
 
 == Synopsis
   
