@@ -66,7 +66,8 @@ module SpecI18n
           table_for_matchers = table do
             self.headings = ['Rspec Matchers', 'Translated Keyword']
             matchers.sort.each do |rspec_keyword, translated_keyword|
-              add_row [rspec_keyword, translated_keyword.split('|').join(' / ')]
+              keyword = translated_keyword ? translated_keyword.split('|').join(' / ') : ''
+              add_row [rspec_keyword, keyword]
             end
           end
           print_table io, table_for_matchers

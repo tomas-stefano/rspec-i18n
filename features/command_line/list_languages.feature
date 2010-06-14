@@ -16,6 +16,21 @@ Feature: Rspec-i18n all the languages executable
     And I should see "Portuguese"
 	And I should see "Korean"
   
+  Scenario Outline: See the keywords for a language
+    When I run "<command>"
+    Then I should see:
+    """
+	+-----------------------+---------------------------------------------+
+	| Rspec Keywords        | Translated Keyword                          |
+	+-----------------------+---------------------------------------------+
+    """
+    Examples:
+    | command          | 
+    | rspec-i18n -l en |
+    | rspec-i18n -l de |
+    | rspec-i18n -l es |
+  
+
   Scenario: See the language keywords and translations in ruby 1.8.7-p249
 	Given I am using rvm "1.8.7-p249"
     When I run "rspec-i18n --language pt"

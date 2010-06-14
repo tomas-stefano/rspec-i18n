@@ -51,6 +51,13 @@ module SpecI18n
           Language.matchers_table(@io_stream, @portuguese).should be_nil
         end
         
+        it "should not raise exception when have nil matchers" do
+          stub_keywords!(@portuguese, {'matchers' => {'be' => nil}})
+          lambda {
+            Language.matchers_table(@io_stream, @portuguese)
+          }.should_not raise_exception
+        end
+        
         it "return true when have matchers" do
           stub_keywords!(@portuguese, {'matchers' => {'be' => 'ser'}})
           Language.matchers_table(@io_stream, @portuguese).should equal true
@@ -64,6 +71,13 @@ module SpecI18n
         it "should return true when have hooks" do
           stub_keywords!(@portuguese, {'hooks' => { 'each' => 'cada'}})
           Language.hooks_table(@io_stream, @portuguese).should equal true
+        end
+        
+        it "should not raise exception when have nil hooks" do
+          stub_keywords!(@portuguese, {'hooks' => {'each' => nil, 'all' => nil}})
+          lambda {
+            Language.hooks_table(@io_stream, @portuguese)
+          }.should_not raise_exception
         end
 
       end
