@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rspec-i18n}
-  s.version = "1.1.0"
+  s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tomas D'Stefano"]
@@ -95,7 +95,7 @@ Gem::Specification.new do |s|
 --------------------------------------------------------------------------------
                               U P G R A D I N G 
 
-Thank you for installing rspec-i18n-1.1.0
+Thank you for installing rspec-i18n-1.2.0
 Please be sure to read http://wiki.github.com/tomas-stefano/rspec-i18n/upgrading
 for information about this release.
 
