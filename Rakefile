@@ -73,18 +73,12 @@ task :integrate do
   end
 end
 
-# I don't wanna use the Spec::Rake::SpecTask
-#
-task :rspec do
- sh('spec spec --diff --color')
-end
-
-task :remove_logs do
-  sh('rm -rf logs') # Be careful!!! =]
-  sh('rm -rf log')
-end
-
 require 'spec/rake/spectask'
+
+Spec::Rake::SpecTask.new(:rspec) do |spec|
+  spec.libs << 'lib' << 'spec'
+  spec.pattern = 'spec/**/*_spec.rb'
+end
 
 Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.libs << 'lib' << 'spec'
@@ -96,3 +90,11 @@ end
 require 'spec/rake/verify_rcov'
 RCov::VerifyTask.new(:verify_rcov) { |t| t.threshold = 100.0 }
 
+require 'rake/rdoctask'
+Rake::RDocTask.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = "doc"
+  rdoc.title = "Rspec-I18n"
+  rdoc.options << '--line-numbers' << '--inline-source' << '-A cattr_accessor=object'
+  rdoc.options << '--charset' << 'utf-8'
+  rdoc.rdoc_files.include("Readme.rdoc", "History.rdoc", "lib/**/*.rb")
+end
