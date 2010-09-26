@@ -1,6 +1,10 @@
-source "http://rubygems.org"
+#!/usr/bin/env ruby
+source :rubygems
 
-gem "rspec", :require => :spec
-gem "aruba"
+gem "rspec", '2.0.0.beta.22'
 gem "terminal-table"
-gem "cucumber"
+
+group :test do
+  gem "aruba"
+  gem "cucumber"
+end

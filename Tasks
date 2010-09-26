@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 class SpecI18n < Morpheus::Base
-  rspec :spec, :rvm_versions => %w(1.8.7-p249 1.9.1 1.9.2-preview1), :verbose => true
+  rspec :spec, :rvm_versions => %w(1.8.7 1.9.2), :verbose => true
 end
